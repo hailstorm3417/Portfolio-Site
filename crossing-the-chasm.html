@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crossing the Chasm — Halie</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<main class="page page--narrow" style="margin:40px auto">
+<article id="crossing-the-chasm">
+
+  <div style="padding:36px 80px 0">
+    <a href="index.html" class="back-link">← Back to writing</a>
+  </div>
+
+  <div style="padding:52px 80px 0;max-width:920px">
+    <div style="font:400 12px Archivo;letter-spacing:.2em;text-transform:uppercase;color:#6a5567">Journal</div>
+    <h1 style="margin:24px 0 28px;max-width:19em;font-size:64px;line-height:1.08;letter-spacing:-.004em;font-weight:200;color:#423b3f">Crossing the Chasm</h1>
+    <div style="display:flex;gap:20px;align-items:center;font:400 11.5px Archivo;letter-spacing:.14em;text-transform:uppercase;color:rgba(66,59,63,.5)">
+      <span>Writing</span><span style="width:24px;height:1px;background:#93a49c"></span><span>13 min read</span>
+    </div>
+  </div>
+
+  <div style="padding:32px 80px 0">
+    <hr class="rule">
+  </div>
+
+  <div style="padding:56px 80px 0;max-width:920px">
+    <p style="margin:0 0 30px;font-size:23px;line-height:1.65;font-weight:300;color:#423b3f">There's a version of this article that starts with a confident declaration about the future of design. About AI, about engineers, and about the blurring of roles that leads to an exciting horizon ahead. That version is more on trend.</p>
+    <p style="margin:36px 0;font-size:29px;line-height:1.45;font-weight:200;color:#6a5567">This isn't that version.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">This is the one where I tell you I sat on a call with DevOps, heard the words "open your terminal," and thought — wait, is that in GitHub or is that something I was supposed to download? I felt like an idiot before I had even gotten to step one. And I thought: oh Lord help me, it has begun.</p>
+    <p style="margin:36px 0;font-size:29px;line-height:1.45;font-weight:200;color:#6a5567">But I'm getting ahead of myself.</p>
+    <hr class="rule" style="margin:64px 0 30px">
+    <h2 style="margin:0 0 30px;max-width:24em;font-size:34px;line-height:1.28;letter-spacing:-.002em;font-weight:200;color:#423b3f">The problem nobody had time to fix</h2>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">When I joined Medbridge as Director of Product Design in 2023, we were in the middle of something that felt a lot like a startup — even though it wasn't one. We were launching an entirely new product line that would eventually be called Care, and with that came all the trade-offs that new product lines bring. Timelines were aggressive and business goals were ambitious. And quality, as it so often does in those moments, became a negotiation.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">You know the phrase "MVP level." You've probably said it yourself, or heard it said in a tone that implies it's temporary — a placeholder, a promise. "We'll come back to this." And you mean it when you say it. But then the next sprint starts, and the next after that, and the "I hope we can come back to this" list quietly grows into a backlog of hundreds of items that nobody has time to touch.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">That's what happened at Medbridge on the care side of the house. And then, just to make things especially exciting, we went through a full rebrand while we were still building out the MVP of our first net new feature. Which meant that things we had designed just two or three months earlier were already out of date before they ever felt finished. That gradient we were told would be everywhere in our branding was nowhere to be seen.I remember the particular frustration of looking at something we'd shipped and thinking — we just made that, and now it's already making me twitch.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">Here's the thing about design that people outside of it don't always understand: we notice things that users can't name but absolutely feel. A margin that's 19px instead of 24px (sorry to make all you designers cringe at the odd integer, but not being divisible by 4 really helps that all too common scenario hit home) can throw off the visual hierarchy, making it feel like the secondary button should be a primary just to be noticed. Users won't tell you "that margin is creating visual tension." They'll tell you the button needs to be moved or a brighter color because they didn't notice it, or that the page feels cluttered, or that something just seems off. They experience the symptom without knowing the cause. But we know the cause. That's part of what makes design valuable — and part of what makes it so hard to deprioritize gracefully.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">But deprioritize we did because we had to. Engineering was keeping pace with an aggressive product roadmap, and asking them to stop and polish the UI wasn't fair for their success. There was always a discussion about what "good enough" looked like. Design always drew that line in a different place than everyone else. And over two years, the gap between where we drew the line and where things actually landed just got wider and wider — until suddenly, people were noticing that the application felt choppy and incoherent, harder to use than it should have been. Not because any one thing was broken, but because a hundred small things hadn't been finished.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">Engineering still didn't have time to go back. And I was tired of waiting for a window that we all knew likely wasn't coming.</p>
+    <hr class="rule" style="margin:64px 0 30px">
+    <h2 style="margin:0 0 30px;max-width:24em;font-size:34px;line-height:1.28;letter-spacing:-.002em;font-weight:200;color:#423b3f">Why design couldn't fix it alone</h2>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">The frustrating irony of being a design team is that you can see exactly what needs to be fixed and have almost no power to fix it yourself. We could document every inconsistency. We could build a prioritized list. We could make the case in every design review. But at the end of the day, turning a design into working code required an engineer — and engineers had other things to build.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">This isn't a criticism of engineering. It's just the reality of how product teams are structured, and how timelines work. The business need is always louder than the polish need. And there's a logic to that — a feature that doesn't exist is a bigger problem than a margin that's off.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">But here's what that logic misses: polish isn't decoration. When you cut enough of it, those small unfinished things don't stay small and separate — they accumulate. The inconsistent spacing, the hierarchy that sends the eye to the wrong place, the interaction that works technically but feels broken in practice. No single one of those is a crisis. But enough of them together, and suddenly the product just feels off in a way that's hard to pinpoint and even harder to fix — because by the time anyone names it, the solution looks less like a ticket and more like a redesign. And nothing makes an engineer or a PM sigh quite like the word redesign.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">I kept thinking, what if design could close some of this gap ourselves? Not by becoming engineers, not by taking over the codebase but by getting close enough to the code that we could handle the parts that didn't require deep engineering expertise — the UI layer, the components, the visual consistency — so engineers could spend their time on the problems that actually needed their skills.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">It was a good idea in theory. The problem was that I had no idea how to make it happen in practice.</p>
+    <hr class="rule" style="margin:64px 0 30px">
+    <h2 style="margin:0 0 30px;max-width:24em;font-size:34px;line-height:1.28;letter-spacing:-.002em;font-weight:200;color:#423b3f">The chasm I didn't think I could cross</h2>
+    <p style="margin:36px 0;font-size:29px;line-height:1.45;font-weight:200;color:#6a5567">Let me tell you about my Dev 101 class at art school.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">The teacher was a designer, not an engineer. He didn't know how to write a single line of code (his words, not mine), let alone how to teach coding. So he handed us a book and more or less left us to figure it out. Nobody — and I mean nobody — got past chapter two. It got bad enough that the school had to step in and rework our education path. It was only the second time in my life that a class had made me want to pull my hair out. (The first was statistics, and that could be an entire blog post on its own).</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">The experience left a mark. For most of my career, engineering was a world I understood enough to design around — and honestly, one I probably should have felt more comfortable with than I did. Heck, I even married a developer! His knowledge is at my fingertips. And still, the moment code entered the picture professionally, something in me just shut down. It wasn't that I felt uninvited. It was more like a scar that hadn't fully healed — a reflexive flinch every time someone suggested I should just learn to code. I knew enough to have the right conversations. I knew what could be easy to implement versus hard. I understood constraints. But the actual mechanics of it — what a repo was, how GitHub worked, what happened on the other side of a handoff — that was a black box. And after art school, I had made a kind of quiet peace with leaving it that way.</p>
+    <p style="margin:36px 0;font-size:29px;line-height:1.45;font-weight:200;color:#6a5567">Then two things happened, almost simultaneously, in the fall of 2025.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">First, a group of our engineers went to an AI bootcamp — an intensive, focused education on using AI to generate code. Those that went came back different. They were energized and genuinely excited about what was possible in a way I hadn't seen before. It was contagious.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">Second, I started paying attention to what AI was already doing for me — not in code, but in everything else. Research. Communication. Synthesis. I was already faster, clearer, more capable in ways I hadn't fully clocked. And I started wondering: what if that was also true on the engineering side? What if AI had built a bridge over a chasm I'd always assumed was too wide to cross?</p>
+    <p style="margin:36px 0;font-size:29px;line-height:1.45;font-weight:200;color:#6a5567">So I started a POC.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">I want to be honest about what that felt like, because this is the part most articles skip. It did not feel exciting at first. It felt like standing at the edge of a ciff when you were afraid of heights. The first call I had with DevOps to get me set up, they told me to open my terminal, and I didn't know what that meant. Was it in GitHub? Was it something I'd already downloaded? I sat there trying to look like I understood what was happening while quietly running a search in another tab. I thought: I am not even at step one yet and I already feel in over my head.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">And if you've ever worked with Claude Code, you know that it frequently asks you to "allow" things. At first, I would just — stop. Hesitate. Stare at the button. Every "allow" felt like a potential disaster. What if I let something in that I wasn't supposed to? What if I broke something? What if I had to explain to DevOps that I needed a new computer because I'd accidentally invited malware into it while trying to learn how to build a component library? Could I cost Medbridge thousands because I made prod catch on fire? It took a lot of reassurance from engineers — multiple of them, multiple times — before I could click "allow" without my stomach tightening.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">But I kept going. Partly because the frustration that had started all of this was still real. And partly because the more I did, the more the hesitancy started to give way to something that felt a lot like excitement.</p>
+    <hr class="rule" style="margin:64px 0 30px">
+    <h2 style="margin:0 0 30px;max-width:24em;font-size:34px;line-height:1.28;letter-spacing:-.002em;font-weight:200;color:#423b3f">Building anyway — and being scared the whole time</h2>
+    <p style="margin:36px 0;font-size:29px;line-height:1.45;font-weight:200;color:#6a5567">I wasn't the only one who was scared.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">Bruno, my principal designer, is one of the most talented people I've worked with. He cares deeply about quality — sometimes more than anyone else in the room. Which made him exactly the right person to lead the Storybook component library work. And which also meant he was acutely aware of exactly how much was at stake if something went wrong.</p>
+    <p style="margin:36px 0;font-size:29px;line-height:1.45;font-weight:200;color:#6a5567">His fear wasn't the terminal. His fear was breaking production.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">We spent a lot of time in the early months ironing out the process — how do we make sure what we're building is actually good? How do we get it reviewed properly? How do we make sure that when we merge something, we're not accidentally breaking something that users depend on? We kicked off a front-end guild at Medbridge, bringing together representatives from each engineering team so we could talk through concerns — ours and theirs — in a cadenced way. It gave everyone a place to ask questions without the pressure of a deadline attached.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">We also made a deliberate decision early on to initially stay as far from production code as we could. Every new component Bruno built went into Storybook — a separate environment — and no engineering team was being pushed to adopt anything right away. Adoption was a second initiative, something we'd get to once we were confident in what we were building.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">This sounds simple in retrospect, but it was an important psychological decision. Staying away from live code meant we could make mistakes in a contained space. It meant "breaking" something wasn't usually catastrophic. It meant we could learn.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">I still remember being on a call for Bruno's first merge after a PR was approved. We were all a little tense. This was net new Storybook components — nothing touching live code — and we were still holding our breath like we were defusing something. That's how careful we were being. But it wasn't a perfectly clean line. A handful of components, like buttons, were already being used in production — just not everywhere. For example, there were a couple hundred instances out of roughly 8,000 buttons in the product that were leveraging the existing Storybook button component. Bruno was nervous about touching those. And honestly, rightfully so — even a component that's only partially adopted is still a component that real users are depending on. So we were careful. I remember Bruno triple checking if he should merge his PR even after it was approved. That's how much we cared about getting it right.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">But we did get it right. And then we did it again. And again. After about ten components, something shifted. Engineering got less hesitant. We got more confident. The process started to feel less like we were crossing into someone else's territory and more like we were building a shared one.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">Eight months later, the library is the real deal. We have 61 production-ready components and 488 CSS custom properties across a full three-tier token architecture: primitives, semantic tokens, and component-level tokens. Dark mode isn't an after thought — it's a systematized, four-way matrix that accounts for inverted surfaces sitting inside ambient pages, with theme-aware shadows on top of that. There are 83 Storybook story files, 722 individual stories, 88 unit test files, Chromatic visual regression running on every PR, and accessibility testing on two separate fronts. We're on version 7.5.1. We have 193 releases. This is not a POC anymore.</p>
+    <figure style="margin:40px 0 44px;background:#efe6e9;border-radius:8px;padding:44px 48px 40px">
+      <div style="font:400 11.5px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.55);margin-bottom:32px">The library, eight months in</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px 28px">
+        <div><div style="font-size:46px;line-height:1;font-weight:200;color:#6a5567">61</div><div style="font:400 11px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:10px">production-ready components</div></div>
+        <div><div style="font-size:46px;line-height:1;font-weight:200;color:#6a5567">488</div><div style="font:400 11px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:10px">CSS custom properties</div></div>
+        <div><div style="font-size:46px;line-height:1;font-weight:200;color:#6a5567">722</div><div style="font:400 11px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:10px">Storybook stories</div></div>
+        <div><div style="font-size:46px;line-height:1;font-weight:200;color:#6a5567">88</div><div style="font:400 11px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:10px">unit test files</div></div>
+        <div><div style="font-size:46px;line-height:1;font-weight:200;color:#6a5567">193</div><div style="font:400 11px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:10px">releases</div></div>
+        <div><div style="font-size:46px;line-height:1;font-weight:200;color:#6a5567">3</div><div style="font:400 11px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:10px">token tiers — primitive, semantic, component</div></div>
+        <div><div style="font-size:46px;line-height:1;font-weight:200;color:#6a5567">4×</div><div style="font:400 11px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:10px">dark mode matrix, theme-aware shadows</div></div>
+        <div><div style="font-size:46px;line-height:1;font-weight:200;color:#6a5567">7.5.1</div><div style="font:400 11px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:10px">current version</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(66,59,63,.16)">
+        <div class="imgph" style="height:200px"><span>storybook screenshot<br>component grid</span></div>
+        <div class="imgph" style="height:200px"><span>token sheet or<br>dark mode pair</span></div>
+      </div>
+    </figure>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">I'll be honest — I understood about 91% of what I just wrote. But considering I started this whole journey not really knowing what a terminal was, I'll take it.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">We're now in the adoption period, working directly with engineering teams and sometimes tackling the front-end code ourselves to swap out one-off solutions for the components we built. The gap that started all of this is finally, slowly, getting smaller — and for the first time, we're the ones closing it.</p>
+    <hr class="rule" style="margin:64px 0 30px">
+    <h2 style="margin:0 0 30px;max-width:24em;font-size:34px;line-height:1.28;letter-spacing:-.002em;font-weight:200;color:#423b3f">What crossing it actually changed</h2>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">I want to be careful here, because I think it's easy to make this part sound more triumphant than it felt.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">The truth is, I'm still learning. I still hesitate sometimes before I click "allow." I still occasionally have to look up things that engineers have memorized. The chasm didn't disappear — I just have a better sense of where it starts and ends, and what it actually takes to get across.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">But what did change is the relationship. When you show up to a conversation with engineering having done some of the work yourself — even a fraction of it — something shifts. You're not asking them to translate for you anymore. You understand enough of the language that you can have a real conversation. And when we can have that conversation earlier, we make fewer wrong turns. We build less of the wrong thing. We catch inconsistencies before they become backlog items that never get touched.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">Bruno's relationship with the engineers he works with through Storybook has completely transformed. They reach out to him more than ever — proactively, with questions, with feedback, with enthusiasm. That's not a small thing. That's the thing I'd been trying to promote for two years through process and meetings and documentation, and what actually moved the needle was him building something they could see, use, and trust.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">Nirav, my senior designer, took it even further. He's building the entire front-end for our Educate pod — combining his PM background with design craft and now front-end execution. He's shipping code through the engineering review process. He's not experimenting. He's in production. At this point, the only thing slowing him down isn't skill, or confidence, or engineering sign-off. It's Claude's usage limits. Which, if you think about it, is a pretty good problem to have.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">This is what I mean when I say the line between designer and engineer is blurring, not disappearing — just blurring. The skills are different, the judgment is different, the instincts are different. But the gap between the two? It's smaller than it's ever been. And the designers who figure out how to operate in that space are going to be able to do things that weren't possible before.</p>
+    <hr class="rule" style="margin:64px 0 30px">
+    <h2 style="margin:0 0 30px;max-width:24em;font-size:34px;line-height:1.28;letter-spacing:-.002em;font-weight:200;color:#423b3f">What this means for you</h2>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">If you're a designer reading this and you've looked at the engineering side of your work and thought — I could never — I want to offer you something more useful than inspiration.</p>
+    <p style="margin:36px 0;font-size:29px;line-height:1.45;font-weight:200;color:#6a5567">I want to offer you permission to not know what a terminal is.</p>
+    <p style="margin:36px 0;font-size:29px;line-height:1.45;font-weight:200;color:#6a5567">Permission to click "allow" and be scared about it anyway.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">Permission to ask what a token is — and by the way, I used to only know a token as things you trade in at an arcade, and yes, I literally asked claude to explain tokens to me, and no, it did not tell me I was stupid for asking.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">AI has changed what's possible for designers not because it makes the work easier in some abstract sense, but because it meets you where you are. If you tell it you know nothing of code, it won't assume you know what a commit is versus a merge. It doesn't sigh when you ask the same question three different ways trying to understand it. It just explains it again, differently, until it clicks. It's the teacher that art school Dev 101 never had.</p>
+    <p style="margin:0 0 26px;font-size:18px;line-height:1.85;color:rgba(66,59,63,.9)">The chasm between design and engineering is real. I'm not going to pretend it isn't. But it's crossable. And on the other side of it is a version of your work that's more connected, more impactful, and more satisfying than the one where you hand something off and hope it comes back looking right.</p>
+    <p style="margin:36px 0;font-size:29px;line-height:1.45;font-weight:200;color:#6a5567">The best part? You don't have to jump.</p>
+    <p style="margin:36px 0;font-size:29px;line-height:1.45;font-weight:200;color:#6a5567">You just have to start walking.</p>
+  </div>
+
+  <div style="padding:72px 80px 80px">
+    <hr class="rule--strong" style="margin-bottom:36px">
+    <a href="shifting-role.html" class="next-link">
+      <span class="eyebrow">Next</span>
+      <span class="title">The Shifting Role of a Product Designer →</span>
+    </a>
+
+    <div class="contact" style="padding:48px 48px 52px">
+      <h2 style="font-size:38px">If any of this resonated, I'd love to hear from you.</h2>
+      <div class="contact-grid">
+        <a href="mailto:halievw@gmail.com" class="contact-item">
+          <span class="label">Email</span>
+          <span class="value" style="font-size:18px">halievw@gmail.com</span>
+        </a>
+        <a href="tel:+14142072807" class="contact-item">
+          <span class="label">Phone</span>
+          <span class="value" style="font-size:18px">(414) 207-2807</span>
+        </a>
+        <a href="#" class="contact-item">
+          <span class="label">LinkedIn</span>
+          <span class="value" style="font-size:18px">Connect &rarr;</span>
+        </a>
+      </div>
+      <div class="contact-actions">
+        <a href="#" class="btn btn-primary">Download resume <span style="font-size:15px">&darr;</span></a>
+        <a href="#" class="btn btn-secondary">View in browser</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+</main>
+</body>
+</html>

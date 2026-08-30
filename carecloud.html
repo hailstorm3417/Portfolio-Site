@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CareCloud — Halie</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.pill {
+  padding: 12px 20px; border-radius: 8px; cursor: pointer;
+  font-family: Archivo, sans-serif; font-weight: 400; font-size: 13.5px; letter-spacing: .04em;
+  border: 1px solid rgba(66,59,63,.2); background: transparent; color: var(--charcoal);
+  transition: all .2s ease;
+}
+.pill[aria-selected="true"] { border-color: var(--plum); background: var(--plum); color: var(--oat); }
+
+.nav-btn {
+  width: 34px; height: 34px; border-radius: 8px; border: 1px solid rgba(66,59,63,.28);
+  background: transparent; color: var(--charcoal); cursor: pointer;
+  font-family: Archivo, sans-serif; font-size: 14px; line-height: 1;
+}
+.nav-btn:hover { background: var(--plum); color: var(--oat); border-color: var(--plum); }
+
+.role-line {
+  font: 400 12px Archivo, sans-serif; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--plum); margin-bottom: 24px;
+}
+.lede { margin: 0; max-width: 30em; font-size: 22px; line-height: 1.65; font-weight: 300; color: var(--charcoal); }
+.body-copy { margin: 0; font-size: 16.5px; line-height: 1.85; color: rgba(66,59,63,.88); }
+.caption { margin: 14px 0 0; font: 400 11.5px Archivo, sans-serif; letter-spacing: .06em; color: rgba(66,59,63,.5); }
+.section-h2 { margin: 0 0 28px; max-width: 22em; font-size: 42px; line-height: 1.2; letter-spacing: -.002em; font-weight: 200; color: var(--charcoal); }
+.chapter-label { font: 400 11.5px Archivo, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: rgba(66,59,63,.5); margin-bottom: 18px; }
+</style>
+</head>
+<body>
+
+<main class="page page--narrow" style="margin:40px auto">
+<article id="carecloud">
+  <div style="padding:36px 80px 0">
+    <a href="index.html" class="back-link">← Back</a>
+  </div>
+
+  <div style="padding:52px 80px 0">
+    <div class="role-line">UX Designer · May 2018 – March 2020</div>
+    <h1 style="margin:0 0 32px;font-size:84px;line-height:1.02;letter-spacing:-.004em;font-weight:200;color:#423b3f">CareCloud</h1>
+    <p class="lede">This was my first UX role, right after five years as a graphic designer — and I was lucky to join at the start of something ambitious: a full rebuild of a legacy SaaS product from the ground up.</p>
+  </div>
+
+  <div style="padding:56px 80px 0">
+    <img src="uploads/assets-1787974982619-ut64.webp" alt="CareCloud analytics dashboard on a tablet" style="width:100%;height:420px;object-fit:cover;border-radius:8px">
+    <p class="caption">Analytics dashboards — one of the seven core sections of the rebuild.</p>
+  </div>
+
+  <div style="padding:64px 80px 0">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
+      <p class="body-copy">I started by owning the guarantor center — essentially a patient record, but for the financial and administrative side of care. By the end of my time there, I'd grown into five of the seven core sections: claim remittance, front office, settings, patient portals, and the guarantor center, alongside working with our UI Engineering Lead on a shared component library.</p>
+      <p class="body-copy">Most days meant sitting with internal stakeholders and multi-million dollar clients to understand where our designs fell short of their actual workflows. At one point, we shadowed users working side by side in a competitor's product just to see the gap for ourselves.</p>
+    </div>
+    <p class="body-copy" style="margin-top:32px;max-width:44em">I worked closely with our Head of Product, project managers, and engineering leads — and by the latter half of my time there, I was interviewing, onboarding, and managing timelines for two designers who joined the team.</p>
+  </div>
+
+  <div style="padding:52px 80px 0">
+    <div style="background:#efe6e9;border-radius:8px;padding:40px 44px;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center">
+      <div>
+        <div style="font-size:56px;line-height:1;font-weight:200;color:#6a5567">3,000+</div>
+        <div style="font:400 11.5px Archivo;letter-spacing:.16em;text-transform:uppercase;color:rgba(66,59,63,.55);margin-top:10px">mocks in one year</div>
+      </div>
+      <p style="margin:0;font-size:16.5px;line-height:1.8;font-weight:300;color:#423b3f">It was a fast pace — our small team of two produced over 3,000 mocks in a single year — but it also gave me some of the most genuinely complex problems I've worked on.</p>
+    </div>
+  </div>
+
+  <div style="padding:72px 80px 0">
+    <hr class="rule--strong" style="margin-bottom:44px">
+    <h2 class="section-h2">The scheduler nobody thought could work</h2>
+    <div style="display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:start">
+      <div>
+        <p class="body-copy" style="margin-bottom:24px">The one I'm proudest of is the scheduler, part of the front office workflow. Clinician schedules aren't simple — hard rules on overbooking, custom logic for which visit types could happen at which hours, multiple locations to track, and front office staff who needed to find availability fast, often mid-call with a patient who needed more than one clinician in the room.</p>
+        <p class="body-copy">There were so many intersecting rules that a lot of people doubted we could make it feel calm instead of chaotic. We did. I still remember the high of watching something that complicated finally click into place for the people using it every day.</p>
+      </div>
+      <div class="imgph" style="height:220px"><span>scheduler screen<br>if you have one</span></div>
+    </div>
+  </div>
+
+  <div style="padding:64px 80px 72px">
+    <hr class="rule--strong" style="margin-bottom:36px">
+    <a href="rbi.html" class="next-link" style="margin-bottom:-20px">
+      <span class="eyebrow">Next</span>
+      <span class="title" style="font-size:34px">Restaurant Brands International →</span>
+    </a>
+  </div>
+</article>
+
+</main>
+</body>
+</html>
