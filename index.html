@@ -23,8 +23,42 @@
 .glitch.on .ghost-a { opacity: .95; animation: gGhostA .16s steps(2, end) 5; }
 .glitch.on .ghost-b { opacity: .9; animation: gGhostB .19s steps(2, end) 4; }
 
-.collapse { overflow: hidden; max-height: 0; opacity: 0; transition: max-height .35s ease, opacity .2s ease; }
-.collapse.open { max-height: 900px; opacity: 1; transition: max-height .45s ease, opacity .3s ease .05s; }
+/* Gradient reveal. The mask is a tall strip: opaque down to (mask height
+   − 200px), then feathering to transparent over its last 200px. It starts
+   entirely above the box and slides down, so its trailing soft edge sweeps
+   through the copy — the first line clears while the last is still dissolving.
+
+   mask-image is never transitioned (it is a discrete property and would snap
+   on frame one, collapsing this back to a plain fade). Only mask-position
+   animates, in pixels — percentage offsets resolve against
+   (box size − mask size), which is negative here and inverts the sweep.
+
+   homepage.js sets mask-size and both mask-position endpoints from the
+   measured content height, so max-height lands on the real height and the
+   feather clears the last line exactly as the box stops growing. */
+.collapse {
+  overflow: hidden;
+  max-height: 0;
+  -webkit-mask-image: linear-gradient(180deg, #000 0px, #000 calc(100% - 200px), transparent 100%);
+          mask-image: linear-gradient(180deg, #000 0px, #000 calc(100% - 200px), transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 700px;
+          mask-size: 100% 700px;
+  -webkit-mask-position: 0 -700px;
+          mask-position: 0 -700px;
+  transition: max-height .45s cubic-bezier(.45, 0, .55, 1),
+              -webkit-mask-position .45s cubic-bezier(.45, 0, .55, 1),
+                      mask-position .45s cubic-bezier(.45, 0, .55, 1);
+}
+.collapse.open {
+  transition: max-height .7s cubic-bezier(.45, 0, .55, 1),
+              -webkit-mask-position .7s cubic-bezier(.45, 0, .55, 1),
+                      mask-position .7s cubic-bezier(.45, 0, .55, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .collapse, .collapse.open { transition-duration: 1ms; }
+}
 
 .work-row {
   display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 9px;

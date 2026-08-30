@@ -36,15 +36,76 @@ setInterval(() => {
   setTimeout(() => glitch.classList.remove('on'), 820);
 }, 5000);
 
-// "How I got here" progressive disclosure
+// "How I got here" progressive disclosure — gradient reveal.
+//
+// The mask strip is (content + FEATHER) tall and starts wholly above the box.
+// As it slides down, its soft trailing edge leads the growing bottom of the
+// box by exactly FEATHER, so newly revealed lines dissolve in while the ones
+// above them are already clear. Sizing the strip off the measured height is
+// what keeps that relationship true: the feather clears the final line at the
+// same moment max-height stops growing.
+const FEATHER = 200;
 const bioToggle = document.getElementById('bio-toggle');
 const bioMore = document.getElementById('bio-more');
 
+let contentH = 0;
+let maskH = 0;
+
+// Run a mutation with transitions off, committing it as the new baseline.
+function withoutTransition(fn) {
+  const prev = bioMore.style.transition;
+  bioMore.style.transition = 'none';
+  fn();
+  void bioMore.offsetHeight;
+  bioMore.style.transition = prev;
+}
+
+// Cache the natural height and size the mask strip to match. This must never
+// run inside the click handler: reading scrollHeight under max-height:none
+// forces a layout that becomes the transition's starting value, so max-height
+// would have no delta left to animate and would snap open instead.
+function remeasure() {
+  const prevMaxHeight = bioMore.style.maxHeight;
+  bioMore.style.maxHeight = 'none';
+  contentH = bioMore.scrollHeight;
+  maskH = contentH + FEATHER;
+  // The gradient never changes — only the box it paints into, which its
+  // calc(100% - 200px) stop tracks, and the offset it sits at.
+  bioMore.style.webkitMaskSize = bioMore.style.maskSize = `100% ${maskH}px`;
+  bioMore.style.maxHeight = prevMaxHeight;
+}
+
+function setCollapseState(open) {
+  bioMore.style.maxHeight = open ? `${contentH}px` : '0px';
+  const y = open ? 0 : -maskH;
+  bioMore.style.webkitMaskPosition = bioMore.style.maskPosition = `0 ${y}px`;
+}
+
+function resync() {
+  withoutTransition(() => {
+    remeasure();
+    setCollapseState(bioMore.classList.contains('open'));
+  });
+}
+
 bioToggle.addEventListener('click', () => {
+  // Toggle first: the duration differs by direction and lives on .open.
   const open = bioMore.classList.toggle('open');
+  setCollapseState(open);
   bioToggle.setAttribute('aria-expanded', String(open));
   bioToggle.textContent = open ? 'Collapse' : 'Read the rest';
 });
+
+// Copy reflows with the viewport, and the webfont swap changes line heights
+// after first paint — the cached measurement has to follow both.
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(resync, 150);
+});
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(resync);
+
+resync();
 
 // Work index — hovering a role swaps the preview image
 const workPreview = document.getElementById('work-preview');
