@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halie — Product Designer</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+@keyframes gSlice{0%{clip-path:inset(0 0 84% 0);transform:translateX(-5px)}20%{clip-path:inset(26% 0 52% 0);transform:translateX(6px)}40%{clip-path:inset(58% 0 20% 0);transform:translateX(-7px)}60%{clip-path:inset(10% 0 72% 0);transform:translateX(4px)}80%{clip-path:inset(76% 0 2% 0);transform:translateX(-3px)}100%{clip-path:inset(0 0 0 0);transform:none}}
+@keyframes gGhostA{0%,100%{transform:translate(0,0);clip-path:inset(0 0 0 0)}25%{transform:translate(-4px,-2px);clip-path:inset(0 0 62% 0)}50%{transform:translate(3px,1px);clip-path:inset(44% 0 26% 0)}75%{transform:translate(-2px,2px);clip-path:inset(70% 0 0 0)}}
+@keyframes gGhostB{0%,100%{transform:translate(0,0);clip-path:inset(0 0 0 0)}25%{transform:translate(4px,2px);clip-path:inset(56% 0 8% 0)}50%{transform:translate(-3px,-1px);clip-path:inset(6% 0 66% 0)}75%{transform:translate(2px,-2px);clip-path:inset(32% 0 40% 0)}}
+@keyframes gFlick{0%,100%{opacity:1}40%{opacity:.45}52%{opacity:1}68%{opacity:.7}}
+
+.glitch { position: relative; display: inline-block; }
+.glitch .base { position: relative; z-index: 2; display: inline-block; }
+.glitch .ghost {
+  position: absolute; left: 0; top: 0; z-index: 1;
+  pointer-events: none; mix-blend-mode: multiply; opacity: 0;
+}
+.glitch .ghost-a { color: #c4a7b6; }
+.glitch .ghost-b { color: #93a49c; }
+.glitch.on .base { animation: gSlice .26s steps(5, end) 3, gFlick .2s steps(3, end) 4; }
+.glitch.on .ghost-a { opacity: .95; animation: gGhostA .16s steps(2, end) 5; }
+.glitch.on .ghost-b { opacity: .9; animation: gGhostB .19s steps(2, end) 4; }
+
+.collapse { overflow: hidden; max-height: 0; opacity: 0; transition: max-height .35s ease, opacity .2s ease; }
+.collapse.open { max-height: 900px; opacity: 1; transition: max-height .45s ease, opacity .3s ease .05s; }
+
+.work-row {
+  display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 9px;
+  padding: 26px 0; border-bottom: 1px solid rgba(66,59,63,.14); text-decoration: none;
+  transition: padding-left .18s ease, background .18s ease;
+}
+.work-row:hover, .work-row:focus-visible { padding-left: 14px; background: var(--rose); border-radius: 8px; }
+.work-row .name { font-size: 30px; line-height: 1.25; letter-spacing: .004em; font-weight: 300; color: var(--charcoal); }
+.work-row .meta {
+  font: 300 11px/1 Archivo, sans-serif; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(66,59,63,.5); white-space: nowrap;
+}
+
+.pill {
+  padding: 12px 20px; border-radius: 8px; cursor: pointer;
+  font-family: Archivo, sans-serif; font-weight: 400; font-size: 13.5px; letter-spacing: .04em;
+  border: 1px solid rgba(66,59,63,.2); background: transparent; color: var(--charcoal);
+  transition: all .2s ease;
+}
+.pill[aria-selected="true"] { border-color: var(--plum); background: var(--plum); color: var(--oat); }
+
+.nav-btn {
+  width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(66,59,63,.28);
+  background: transparent; color: var(--charcoal); cursor: pointer;
+  font-family: Archivo, sans-serif; font-size: 13px; line-height: 1;
+}
+.nav-btn:hover { background: var(--plum); color: var(--oat); border-color: var(--plum); }
+
+.dot {
+  width: 22px; height: 3px; border: 0; border-radius: 2px; cursor: pointer; padding: 0;
+  background: rgba(66,59,63,.25); transition: background .2s ease;
+}
+.dot[aria-selected="true"] { background: var(--plum); }
+
+.writing-card {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+  padding: 34px 32px 30px; background: var(--oat-banner);
+  border: 1px solid transparent; border-radius: 8px; text-decoration: none;
+}
+.writing-card:hover { border-color: var(--plum); }
+</style>
+</head>
+<body>
+
+<main class="page" style="margin:40px auto">
+
+  <div style="display:grid;grid-template-columns:1fr 430px;gap:40px;align-items:end;padding:0 90px 0 88px">
+    <div style="padding:72px 0 0">
+      <h1 style="margin:0;font-size:112px;line-height:1;letter-spacing:-.005em;font-weight:200;color:#423b3f">Hi, I'm<br><span style="font-weight:400">Halie.</span></h1>
+      <div style="margin:36px 0 0;min-height:38px">
+        <span class="glitch" id="glitch" style="font-size:29px;line-height:1.3;letter-spacing:.01em;font-weight:300;color:#6a5567">
+          <span class="base">Director of Product Design</span>
+          <span class="ghost ghost-a" aria-hidden="true">Director of Product Design</span>
+          <span class="ghost ghost-b" aria-hidden="true">Director of Product Design</span>
+        </span>
+      </div>
+    </div>
+    <img src="assets/halie-portrait.png" alt="Halie" style="width:100%;height:auto;mix-blend-mode:multiply">
+  </div>
+
+  <div style="padding:0 88px">
+    <hr class="rule" style="background:rgba(66,59,63,.22)">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:900px;padding:44px 0 84px">
+      <p style="margin:0;font-size:16px;line-height:1.75;color:rgba(66,59,63,.88)">For most of my career, I understood engineering the way you understand rain through a window — I could see it, respect it, design around it. But I'd never actually stepped outside and felt it.</p>
+      <p style="margin:0;font-size:16px;line-height:1.75;color:rgba(66,59,63,.88)">AI is changing that. So I'm stepping out into the rain — back into IC work, learning to build right as everyone else is too. Which, honestly, is the best part.</p>
+    </div>
+  </div>
+
+  <section style="background:#6a5567;padding:84px 88px 88px">
+    <div style="font:300 11px/1 Archivo;letter-spacing:.24em;text-transform:uppercase;color:rgba(246,242,238,.6);margin-bottom:40px">How I got here</div>
+    <p style="margin:0 0 30px;max-width:25em;font-size:32px;line-height:1.45;letter-spacing:.005em;font-weight:200;color:#f6f2ee">I started in graphic design, drawn to making beautiful imagery. But I couldn't shake the feeling that the work was fleeting.</p>
+    <div class="collapse" id="bio-more">
+      <p style="margin:0 0 18px;max-width:44em;font-size:16px;line-height:1.8;color:rgba(246,242,238,.8)">Once it was seen, it was done. Beauty and trends came and went, and each piece served its purpose once and disappeared.</p>
+      <p style="margin:0 0 18px;max-width:44em;font-size:16px;line-height:1.8;color:rgba(246,242,238,.8)">Then I was hired as a UX designer at CareCloud, and I had no idea what I was doing. I'd been thrown into the deep end of something far more complex than I'd ever touched. Turns out, I was a good swimmer. Healthcare product design didn't feel fleeting — it felt like something I could actually build on, and I fell for it fast.</p>
+      <p style="margin:0 0 18px;max-width:44em;font-size:16px;line-height:1.8;color:rgba(246,242,238,.8)">From there: RBI, Optimize Health, and eventually Medbridge, where I stepped into management — not because I sought it out, but because someone believed I was ready before I did. Three and a half years later, I've got a small, mighty team. And for the last nine months, we've been figuring out what "design engineer" even means — building our own component library, shipping front-end code alongside engineering, closing the gap handoff usually creates.</p>
+      <p style="margin:0;max-width:44em;font-size:16px;line-height:1.8;color:rgba(246,242,238,.8)">Which is what brought me back here. Ready to be an IC again, right as this shift is happening.</p>
+    </div>
+    <button id="bio-toggle" aria-expanded="false" aria-controls="bio-more" style="margin-top:26px;padding:13px 22px;border-radius:8px;background:transparent;border:1px solid rgba(246,242,238,.45);color:#f6f2ee;cursor:pointer;font-family:Archivo;font-weight:400;font-size:13.5px;letter-spacing:.06em;text-transform:uppercase">Read the rest</button>
+  </section>
+
+  <section style="padding:80px 88px 88px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px">
+      <h2 style="margin:0;font-size:52px;line-height:1.1;letter-spacing:-.002em;font-weight:200;color:#423b3f">The work</h2>
+      <span style="font:300 11px/1 Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.45)">hover to preview · click to open</span>
+    </div>
+    <hr class="rule" style="background:rgba(66,59,63,.22);margin:30px 0 0">
+    <div style="display:grid;grid-template-columns:1fr 400px;gap:52px;align-items:stretch">
+      <div id="work-list">
+        <a href="case-studies.html#carecloud" class="work-row" data-work="0">
+          <span class="name">CareCloud</span>
+          <span class="meta">UX Designer · 2018–2020</span>
+        </a>
+        <a href="case-studies.html#rbi" class="work-row" data-work="1">
+          <span class="name">Restaurant Brands Int'l</span>
+          <span class="meta">Brand Lead · 2020–2021</span>
+        </a>
+        <a href="case-studies.html#optimize-health" class="work-row" data-work="2">
+          <span class="name">Optimize Health</span>
+          <span class="meta">Product Designer · 2021–2023</span>
+        </a>
+        <a href="case-studies.html#medbridge" class="work-row" data-work="3">
+          <span class="name">Medbridge</span>
+          <span class="meta">Director · 2023–Present</span>
+        </a>
+      </div>
+      <div style="margin-top:28px;display:flex">
+        <div id="work-preview" role="img" aria-label="Selected work preview" style="width:100%;flex:1 1 auto;border-radius:8px;background:#ede6e0 center/cover no-repeat"></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:80px 88px 48px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:36px">
+      <h2 style="margin:0;font-size:52px;line-height:1.1;letter-spacing:-.002em;font-weight:200;color:#423b3f">Writing</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <a href="journal.html#crossing-the-chasm" class="writing-card">
+        <span style="font:300 11px/1 Archivo;letter-spacing:.16em;text-transform:uppercase;color:rgba(66,59,63,.5)">Learning to build</span>
+        <span style="font-size:28px;line-height:1.25;font-weight:300;color:#423b3f">Crossing the Chasm</span>
+        <span style="font-size:15px;line-height:1.7;color:rgba(66,59,63,.72)">Sitting on a call with DevOps, hearing "open your terminal," and building a coded component library anyway.</span>
+        <span style="margin-top:8px;font:400 11.5px Archivo;letter-spacing:.14em;text-transform:uppercase;color:#6a5567">Read &rarr;</span>
+      </a>
+      <a href="journal.html#shifting-role" class="writing-card">
+        <span style="font:300 11px/1 Archivo;letter-spacing:.16em;text-transform:uppercase;color:rgba(66,59,63,.5)">On the craft</span>
+        <span style="font-size:28px;line-height:1.25;font-weight:300;color:#423b3f">The Shifting Role of a Product Designer</span>
+        <span style="font-size:15px;line-height:1.7;color:rgba(66,59,63,.72)">If AI isn't replacing designers, what is it doing to the role? Four pillars and the workflow that follows.</span>
+        <span style="margin-top:8px;font:400 11.5px Archivo;letter-spacing:.14em;text-transform:uppercase;color:#6a5567">Read &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <section style="padding:24px 88px 88px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin:0 0 36px">
+      <h2 style="margin:0;font-size:52px;line-height:1.1;letter-spacing:-.002em;font-weight:200;color:#423b3f">Working with me</h2>
+      <div style="display:flex;gap:7px">
+        <button class="nav-btn" id="quote-prev" aria-label="Previous quotes">&larr;</button>
+        <button class="nav-btn" id="quote-next" aria-label="Next quotes">&rarr;</button>
+      </div>
+    </div>
+
+    <div style="margin:0 0 40px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch">
+        <figure style="margin:0;background:#efe6e9;border-radius:8px;padding:20px 22px 18px;display:flex;flex-direction:column;gap:12px;min-height:150px">
+          <blockquote style="margin:0;flex:1 1 auto;font-size:13px;line-height:1.7;color:#423b3f" data-quote-text="0"></blockquote>
+          <figcaption>
+            <div style="font-size:13.5px;line-height:1.4;color:#423b3f" data-quote-name="0"></div>
+            <div style="font:300 11.5px/1.5 Archivo;color:rgba(66,59,63,.62)" data-quote-role="0"></div>
+          </figcaption>
+        </figure>
+        <figure style="margin:0;background:#efe6e9;border-radius:8px;padding:20px 22px 18px;display:flex;flex-direction:column;gap:12px;min-height:150px">
+          <blockquote style="margin:0;flex:1 1 auto;font-size:13px;line-height:1.7;color:#423b3f" data-quote-text="1"></blockquote>
+          <figcaption>
+            <div style="font-size:13.5px;line-height:1.4;color:#423b3f" data-quote-name="1"></div>
+            <div style="font:300 11.5px/1.5 Archivo;color:rgba(66,59,63,.62)" data-quote-role="1"></div>
+          </figcaption>
+        </figure>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:16px" id="quote-dots">
+        <button class="dot" data-page="0" aria-label="Quotes 1 and 2"></button>
+        <button class="dot" data-page="1" aria-label="Quotes 3 and 4"></button>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px" id="qa-tabs" role="tablist">
+      <button class="pill" role="tab" data-tab="0">Day-to-day</button>
+      <button class="pill" role="tab" data-tab="1">A belief</button>
+      <button class="pill" role="tab" data-tab="2">With engineers</button>
+      <button class="pill" role="tab" data-tab="3">What scares me</button>
+      <button class="pill" role="tab" data-tab="4">Outside work</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px;min-height:200px">
+      <p style="margin:0;font-size:27px;line-height:1.5;letter-spacing:.004em;font-weight:300;color:#423b3f" id="qa-question"></p>
+      <div>
+        <p style="margin:0;font-size:16.5px;line-height:1.8;color:rgba(66,59,63,.85)" id="qa-answer"></p>
+        <p style="margin:18px 0 0;font:300 10.5px/1.5 Archivo;letter-spacing:.1em;text-transform:uppercase;color:rgba(66,59,63,.4)" id="qa-note"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>If any of this resonated, I'd love to hear from you.</h2>
+    <div class="contact-grid">
+      <a href="mailto:halievw@gmail.com" class="contact-item">
+        <span class="label">Email</span>
+        <span class="value">halievw@gmail.com</span>
+      </a>
+      <a href="tel:+14142072807" class="contact-item">
+        <span class="label">Phone</span>
+        <span class="value">(414) 207-2807</span>
+      </a>
+      <a href="#" class="contact-item">
+        <span class="label">LinkedIn</span>
+        <span class="value">Connect →</span>
+      </a>
+    </div>
+    <div class="contact-actions">
+      <a href="#" class="btn btn-primary">Download resume <span style="font-size:15px">↓</span></a>
+      <a href="#" class="btn btn-secondary">View in browser</a>
+      <span class="contact-note">PDF · updated when you send it to me</span>
+    </div>
+  </section>
+
+</main>
+
+<script src="homepage.js"></script>
+</body>
+</html>
