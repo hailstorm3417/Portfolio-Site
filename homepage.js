@@ -1,9 +1,9 @@
 const TITLES = ['Director of Product Design', 'Design Engineer'];
 
 const WORK_PREVIEWS = [
-  'uploads/assets-1787974982619-ut64.gif',
+  'uploads/assets-1787974982619-ut64.webp',
   'uploads/assets-1787974993322-50lf.avif',
-  'uploads/assets-1787975017498-jzsn.gif',
+  'uploads/assets-1787975017498-jzsn.webp',
   'uploads/assets-1787975245904-t1i7.png'
 ];
 
