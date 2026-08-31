@@ -194,7 +194,16 @@
 .pill[aria-selected="true"] { border-color: var(--plum); background: var(--plum); color: var(--oat); }
 .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
 
-.qa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; min-height: 200px; }
+/* min-height holds the section steady as answers of different lengths swap
+   in. Without align-content:start the auto rows absorb that slack by
+   stretching, which pads a variable amount of empty space under the question
+   — the shorter the question, the bigger the gap. Pinning both axes to start
+   keeps the headline-to-copy distance at exactly the row gap and lets the
+   leftover space collect at the bottom instead. */
+.qa-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 52px; min-height: 200px;
+  align-content: start; align-items: start;
+}
 .qa-question { margin: 0; font-size: 27px; line-height: 1.5; letter-spacing: .004em; font-weight: 300; color: var(--charcoal); }
 .qa-answer { margin: 0; font-size: 16.5px; line-height: 1.8; color: rgba(66, 59, 63, .85); }
 .qa-note { margin: 18px 0 0; font: 300 10.5px/1.5 Archivo, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: rgba(66, 59, 63, .4); }
