@@ -11,7 +11,7 @@
 @keyframes gGhostB{0%,100%{transform:translate(0,0);clip-path:inset(0 0 0 0)}25%{transform:translate(4px,2px);clip-path:inset(56% 0 8% 0)}50%{transform:translate(-3px,-1px);clip-path:inset(6% 0 66% 0)}75%{transform:translate(2px,-2px);clip-path:inset(32% 0 40% 0)}}
 @keyframes gFlick{0%,100%{opacity:1}40%{opacity:.45}52%{opacity:1}68%{opacity:.7}}
 
-.glitch { position: relative; display: inline-block; }
+.glitch { position: relative; display: inline-block; font-size: 29px; line-height: 1.3; letter-spacing: .01em; font-weight: 300; color: var(--plum); }
 .glitch .base { position: relative; z-index: 2; display: inline-block; }
 .glitch .ghost {
   position: absolute; left: 0; top: 0; z-index: 1;
@@ -35,7 +35,9 @@
 
    homepage.js sets mask-size and both mask-position endpoints from the
    measured content height, so max-height lands on the real height and the
-   feather clears the last line exactly as the box stops growing. */
+   feather clears the last line exactly as the box stops growing. That
+   measurement is what keeps this correct on mobile, where the same copy runs
+   more than twice as tall. */
 .collapse {
   overflow: hidden;
   max-height: 0;
@@ -60,180 +62,372 @@
   .collapse, .collapse.open { transition-duration: 1ms; }
 }
 
+/* ── Hero ──────────────────────────────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 430px;
+  gap: 40px;
+  align-items: end;
+  padding: 0 90px 0 var(--gutter);
+}
+.hero-copy { padding: 72px 0 0; }
+.hero-title {
+  margin: 0;
+  font-size: 112px;
+  line-height: 1;
+  letter-spacing: -.005em;
+  font-weight: 200;
+  color: var(--charcoal);
+}
+.hero-title span { font-weight: 400; }
+.hero-sub { margin: 36px 0 0; min-height: 38px; }
+.hero-portrait { width: 100%; height: auto; mix-blend-mode: multiply; }
+
+.gutter { padding: 0 var(--gutter); }
+
+.intro-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  max-width: 900px;
+  padding: 44px 0 84px;
+}
+.intro-cols p { margin: 0; font-size: 16px; line-height: 1.75; color: rgba(66, 59, 63, .88); }
+
+/* ── Sections ──────────────────────────────────────────────────────────── */
+.sect { padding: 80px var(--gutter) 88px; }
+.sect--writing { padding: 80px var(--gutter) 48px; }
+.sect--qa { padding: 24px var(--gutter) 88px; }
+
+.panel-plum { background: var(--plum); padding: 84px var(--gutter) 88px; }
+.eyebrow-light {
+  font: 300 11px/1 Archivo, sans-serif;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: rgba(246, 242, 238, .6);
+  margin-bottom: 40px;
+}
+.panel-lede {
+  margin: 0 0 30px; max-width: 25em;
+  font-size: 32px; line-height: 1.45; letter-spacing: .005em;
+  font-weight: 200; color: var(--oat);
+}
+.panel-body { margin: 0 0 18px; max-width: 44em; font-size: 16px; line-height: 1.8; color: rgba(246, 242, 238, .8); }
+.panel-body:last-child { margin-bottom: 0; }
+
+.btn-outline-light {
+  margin-top: 26px; padding: 13px 22px; border-radius: var(--radius);
+  background: transparent; border: 1px solid rgba(246, 242, 238, .45);
+  color: var(--oat); cursor: pointer; font-family: Archivo, sans-serif;
+  font-weight: 400; font-size: 13.5px; letter-spacing: .06em; text-transform: uppercase;
+}
+.btn-outline-light:hover { background: var(--oat); color: var(--plum); border-color: var(--oat); }
+
+.h2 { margin: 0; font-size: 52px; line-height: 1.1; letter-spacing: -.002em; font-weight: 200; color: var(--charcoal); }
+.sect-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+.sect-head--mb36 { margin-bottom: 36px; align-items: center; }
+.hint { font: 300 11px/1 Archivo, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: rgba(66, 59, 63, .45); }
+
+/* ── The work ──────────────────────────────────────────────────────────── */
+.work-grid { display: grid; grid-template-columns: 1fr 400px; gap: 52px; align-items: stretch; }
 .work-row {
-  display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 9px;
-  padding: 26px 0; border-bottom: 1px solid rgba(66,59,63,.14); text-decoration: none;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 9px;
+  padding: 26px 0; border-bottom: 1px solid rgba(66, 59, 63, .14); text-decoration: none;
   transition: padding-left .18s ease, background .18s ease;
 }
 .work-row:hover, .work-row:focus-visible { padding-left: 14px; background: var(--rose); border-radius: 8px; }
 .work-row .name { font-size: 30px; line-height: 1.25; letter-spacing: .004em; font-weight: 300; color: var(--charcoal); }
 .work-row .meta {
   font: 300 11px/1 Archivo, sans-serif; letter-spacing: .12em; text-transform: uppercase;
-  color: rgba(66,59,63,.5); white-space: nowrap;
+  color: rgba(66, 59, 63, .5); white-space: nowrap;
 }
+/* Each row carries its own thumbnail for mobile, where there is no room for
+   a shared hover panel. Desktop keeps the panel and hides these. */
+.work-thumb { display: none; }
+.work-preview-wrap { margin-top: 28px; display: flex; }
+#work-preview { width: 100%; flex: 1 1 auto; border-radius: var(--radius); background: #ede6e0 center/cover no-repeat; }
 
-.pill {
-  padding: 12px 20px; border-radius: 8px; cursor: pointer;
-  font-family: Archivo, sans-serif; font-weight: 400; font-size: 13.5px; letter-spacing: .04em;
-  border: 1px solid rgba(66,59,63,.2); background: transparent; color: var(--charcoal);
-  transition: all .2s ease;
-}
-.pill[aria-selected="true"] { border-color: var(--plum); background: var(--plum); color: var(--oat); }
-
-.nav-btn {
-  width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(66,59,63,.28);
-  background: transparent; color: var(--charcoal); cursor: pointer;
-  font-family: Archivo, sans-serif; font-size: 13px; line-height: 1;
-}
-.nav-btn:hover { background: var(--plum); color: var(--oat); border-color: var(--plum); }
-
-.dot {
-  width: 22px; height: 3px; border: 0; border-radius: 2px; cursor: pointer; padding: 0;
-  background: rgba(66,59,63,.25); transition: background .2s ease;
-}
-.dot[aria-selected="true"] { background: var(--plum); }
-
+/* ── Writing ───────────────────────────────────────────────────────────── */
+.writing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .writing-card {
   display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
   padding: 34px 32px 30px; background: var(--oat-banner);
-  border: 1px solid transparent; border-radius: 8px; text-decoration: none;
+  border: 1px solid transparent; border-radius: var(--radius); text-decoration: none;
 }
 .writing-card:hover { border-color: var(--plum); }
+.writing-card .kicker { font: 300 11px/1 Archivo, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: rgba(66, 59, 63, .5); }
+.writing-card .title { font-size: 28px; line-height: 1.25; font-weight: 300; color: var(--charcoal); }
+.writing-card .summary { font-size: 15px; line-height: 1.7; color: rgba(66, 59, 63, .72); }
+.writing-card .more { margin-top: 8px; font: 400 11.5px Archivo, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--plum); }
+.carousel-nav { display: none; gap: 8px; flex: none; }
+
+/* ── Working with me ───────────────────────────────────────────────────── */
+.quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: stretch; }
+.quote-card {
+  margin: 0; background: var(--rose); border-radius: var(--radius);
+  padding: 20px 22px 18px; display: flex; flex-direction: column; gap: 12px; min-height: 150px;
+}
+.quote-card blockquote { margin: 0; flex: 1 1 auto; font-size: 13px; line-height: 1.7; color: var(--charcoal); }
+.quote-card .qname { font-size: 13.5px; line-height: 1.4; color: var(--charcoal); }
+.quote-card .qrole { font: 300 11.5px/1.5 Archivo, sans-serif; color: rgba(66, 59, 63, .62); }
+.dots { display: flex; gap: 6px; margin-top: 16px; }
+.dot {
+  position: relative;
+  width: 22px; height: 3px; border: 0; border-radius: 2px; cursor: pointer; padding: 0;
+  background: rgba(66, 59, 63, .25); transition: background .2s ease;
+}
+.dot[aria-selected="true"] { background: var(--plum); }
+/* The dot reads as a 3px pill but has to be tappable, so the hit area is
+   expanded to the 44pt minimum without changing what is drawn. */
+.dot::after {
+  content: ''; position: absolute; left: 0; right: 0;
+  top: 50%; transform: translateY(-50%); height: 44px;
+}
+
+.pill {
+  flex: none; white-space: nowrap;
+  padding: 12px 20px; border-radius: var(--radius); cursor: pointer;
+  font-family: Archivo, sans-serif; font-weight: 400; font-size: 13.5px; letter-spacing: .04em;
+  border: 1px solid rgba(66, 59, 63, .2); background: transparent; color: var(--charcoal);
+  transition: all .2s ease;
+}
+.pill[aria-selected="true"] { border-color: var(--plum); background: var(--plum); color: var(--oat); }
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+
+.qa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; min-height: 200px; }
+.qa-question { margin: 0; font-size: 27px; line-height: 1.5; letter-spacing: .004em; font-weight: 300; color: var(--charcoal); }
+.qa-answer { margin: 0; font-size: 16.5px; line-height: 1.8; color: rgba(66, 59, 63, .85); }
+.qa-note { margin: 18px 0 0; font: 300 10.5px/1.5 Archivo, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: rgba(66, 59, 63, .4); }
+
+/* ── Mobile — 390pt target ─────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  /* Hero type sits above the portrait and overlaps its top edge. The overlap
+     is load-bearing for this layout, not decoration — hence the explicit
+     stacking order, without which the positioned portrait would paint over
+     the static type. The portrait cancels the gutter so it can run 78% wide
+     off the right edge, as the design has it. */
+  .hero { display: block; padding: 40px var(--gutter) 0; }
+  .hero-copy { padding: 0; position: relative; z-index: 2; pointer-events: none; }
+  .hero-title { font-size: 52px; line-height: 1.02; }
+  .hero-sub { margin: 20px 0 0; min-height: 26px; }
+  .glitch { font-size: 20px; }
+  .hero-portrait-wrap {
+    position: relative; z-index: 1;
+    margin: -56px calc(-1 * var(--gutter)) 0;
+  }
+  .hero-portrait { width: 78%; margin-left: auto; }
+
+  .intro-cols { display: flex; flex-direction: column; gap: 18px; padding: 28px 0 48px; max-width: none; }
+  .intro-cols p { font-size: 15.5px; }
+
+  .sect { padding: 48px var(--gutter) 52px; }
+  .sect--writing { padding: 0 var(--gutter) 40px; }
+  .sect--qa { padding: 24px var(--gutter) 52px; }
+
+  .panel-plum { padding: 48px var(--gutter) 52px; }
+  .eyebrow-light { font-size: 10.5px; margin-bottom: 26px; }
+  .panel-lede { font-size: 23px; margin-bottom: 24px; max-width: none; }
+  .panel-body { font-size: 15px; margin-bottom: 16px; max-width: none; }
+  .btn-outline-light { width: 100%; min-height: 48px; margin-top: 22px; font-size: 13px; }
+
+  .h2 { font-size: 34px; }
+  .sect-head { margin-bottom: 24px; align-items: center; }
+  .hint { display: none; }
+
+  /* One column, and every row carries its own thumbnail instead of the
+     shared hover panel — there is no hover on a phone. */
+  .work-grid { display: block; }
+  .work-preview-wrap { display: none; }
+  /* Reverse-chronological here, without duplicating the markup. */
+  #work-list { display: flex; flex-direction: column-reverse; }
+  .work-row {
+    display: block; padding: 20px 0;
+    border-top: 1px solid rgba(66, 59, 63, .14); border-bottom: 0;
+  }
+  /* Column-reverse puts the DOM-first row last on screen, so that is the
+     one that closes the list. */
+  .work-row:first-child { border-bottom: 1px solid rgba(66, 59, 63, .14); }
+  .work-row:hover, .work-row:focus-visible { padding-left: 0; border-radius: 0; }
+  .work-row .meta { display: block; font-size: 10.5px; letter-spacing: .14em; margin-bottom: 8px; }
+  .work-row .name { display: block; font-size: 24px; line-height: 1.2; margin-bottom: 14px; }
+  .work-thumb { display: block; width: 100%; height: 150px; object-fit: cover; border-radius: var(--radius); }
+  .work-thumb--contain { object-fit: contain; background: var(--oat-banner); }
+
+  /* Writing becomes a swipeable carousel with arrow controls. */
+  .writing-grid { display: flex; gap: 14px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+  .writing-grid::-webkit-scrollbar { display: none; }
+  .writing-card { flex: none; width: 84%; padding: 24px 22px; gap: 10px; }
+  .writing-card .title { font-size: 22px; }
+  .writing-card .summary { font-size: 14px; }
+  .writing-card .more { font-size: 11px; margin-top: 4px; }
+  .carousel-nav { display: flex; }
+
+  /* One quote at a time, four dots. */
+  .quote-grid { grid-template-columns: 1fr; gap: 0; }
+  .quote-card { padding: 22px 22px 20px; min-height: 190px; gap: 14px; }
+  .quote-card blockquote { font-size: 13.5px; line-height: 1.75; }
+  .quote-card .qname { font-size: 14px; }
+  .quote-card .qrole { font-size: 12px; }
+  .quote-card--second { display: none; }
+  .dots { margin-top: 14px; margin-bottom: 34px; }
+  .dot { width: 20px; }
+
+  /* Pills scroll horizontally rather than wrapping. */
+  .pill-row {
+    flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; margin-bottom: 28px;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .pill-row::-webkit-scrollbar { display: none; }
+  .pill { min-height: 44px; padding: 12px 18px; font-size: 13px; }
+
+  .qa-grid { grid-template-columns: 1fr; gap: 18px; min-height: 280px; }
+  .qa-question { font-size: 21px; line-height: 1.4; }
+  .qa-answer { font-size: 15.5px; }
+}
 </style>
 </head>
 <body>
 
-<main class="page" style="margin:40px auto">
+<main class="page">
 
-  <div style="display:grid;grid-template-columns:1fr 430px;gap:40px;align-items:end;padding:0 90px 0 88px">
-    <div style="padding:72px 0 0">
-      <h1 style="margin:0;font-size:112px;line-height:1;letter-spacing:-.005em;font-weight:200;color:#423b3f">Hi, I'm<br><span style="font-weight:400">Halie.</span></h1>
-      <div style="margin:36px 0 0;min-height:38px">
-        <span class="glitch" id="glitch" style="font-size:29px;line-height:1.3;letter-spacing:.01em;font-weight:300;color:#6a5567">
+  <header class="hero">
+    <div class="hero-copy">
+      <h1 class="hero-title">Hi, I'm<br><span>Halie.</span></h1>
+      <div class="hero-sub">
+        <span class="glitch" id="glitch">
           <span class="base">Director of Product Design</span>
           <span class="ghost ghost-a" aria-hidden="true">Director of Product Design</span>
           <span class="ghost ghost-b" aria-hidden="true">Director of Product Design</span>
         </span>
       </div>
     </div>
-    <img src="assets/halie-portrait.png" alt="Halie" style="width:100%;height:auto;mix-blend-mode:multiply">
-  </div>
+    <div class="hero-portrait-wrap">
+      <img class="hero-portrait" src="assets/halie-portrait.png" alt="Halie">
+    </div>
+  </header>
 
-  <div style="padding:0 88px">
+  <div class="gutter">
     <hr class="rule" style="background:rgba(66,59,63,.22)">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:900px;padding:44px 0 84px">
-      <p style="margin:0;font-size:16px;line-height:1.75;color:rgba(66,59,63,.88)">For most of my career, I've lived in the messy space between a problem and its solution — understanding users, untangling systems, and turning ambiguity into experiences that feel simple. Engineering was always part of that process, but I understood it the way you understand rain through a window — I could see it, respect it, design around it. But I'd never actually stepped outside and felt it.</p>
-      <p style="margin:0;font-size:16px;line-height:1.75;color:rgba(66,59,63,.88)">AI is changing that. So I'm stepping out into the rain — back into IC work, learning to build alongside designing. Not because I want to leave design behind, but because I want fewer boundaries between an idea and what I can make real.</p>
+    <div class="intro-cols">
+      <p>For most of my career, I've lived in the messy space between a problem and its solution — understanding users, untangling systems, and turning ambiguity into experiences that feel simple. Engineering was always part of that process, but I understood it the way you understand rain through a window — I could see it, respect it, design around it. But I'd never actually stepped outside and felt it.</p>
+      <p>AI is changing that. So I'm stepping out into the rain — back into IC work, learning to build alongside designing. Not because I want to leave design behind, but because I want fewer boundaries between an idea and what I can make real.</p>
     </div>
   </div>
 
-  <section style="background:#6a5567;padding:84px 88px 88px">
-    <div style="font:300 11px/1 Archivo;letter-spacing:.24em;text-transform:uppercase;color:rgba(246,242,238,.6);margin-bottom:40px">How I got here</div>
-    <p style="margin:0 0 30px;max-width:25em;font-size:32px;line-height:1.45;letter-spacing:.005em;font-weight:200;color:#f6f2ee">I started in graphic design, drawn to making beautiful imagery. But I couldn't shake the feeling that the work was fleeting.</p>
+  <section class="panel-plum">
+    <div class="eyebrow-light">How I got here</div>
+    <p class="panel-lede">I started in graphic design, drawn to making beautiful imagery. But I couldn't shake the feeling that the work was fleeting.</p>
     <div class="collapse" id="bio-more">
-      <p style="margin:0 0 18px;max-width:44em;font-size:16px;line-height:1.8;color:rgba(246,242,238,.8)">Once it was seen, it was done. Beauty and trends came and went, and each piece served its purpose once and disappeared.</p>
-      <p style="margin:0 0 18px;max-width:44em;font-size:16px;line-height:1.8;color:rgba(246,242,238,.8)">Then I was hired as a UX designer at CareCloud, and I had no idea what I was doing. I'd been thrown into the deep end of something far more complex than I'd ever touched. Turns out, I was a good swimmer. Healthcare product design didn't feel fleeting — it felt like something I could actually build on, and I fell for it fast.</p>
-      <p style="margin:0 0 18px;max-width:44em;font-size:16px;line-height:1.8;color:rgba(246,242,238,.8)">From there: RBI, Optimize Health, and eventually Medbridge, where I stepped into management — not because I sought it out, but because someone believed I was ready before I did. Three and a half years later, I've got a small, mighty team. And for the last nine months, we've been figuring out what "design engineer" even means — building our own component library, shipping front-end code alongside engineering, closing the gap handoff usually creates.</p>
-      <p style="margin:0;max-width:44em;font-size:16px;line-height:1.8;color:rgba(246,242,238,.8)">Which is what brought me back here. Ready to be an IC again, right as this shift is happening.</p>
+      <p class="panel-body">Once it was seen, it was done. Beauty and trends came and went, and each piece served its purpose once and disappeared.</p>
+      <p class="panel-body">Then I was hired as a UX designer at CareCloud, and I had no idea what I was doing. I'd been thrown into the deep end of something far more complex than I'd ever touched. Turns out, I was a good swimmer. Healthcare product design didn't feel fleeting — it felt like something I could actually build on, and I fell for it fast.</p>
+      <p class="panel-body">From there: RBI, Optimize Health, and eventually Medbridge, where I stepped into management — not because I sought it out, but because someone believed I was ready before I did. Three and a half years later, I've got a small, mighty team. And for the last nine months, we've been figuring out what "design engineer" even means — building our own component library, shipping front-end code alongside engineering, closing the gap handoff usually creates.</p>
+      <p class="panel-body">Which is what brought me back here. Ready to be an IC again, right as this shift is happening.</p>
     </div>
-    <button id="bio-toggle" aria-expanded="false" aria-controls="bio-more" style="margin-top:26px;padding:13px 22px;border-radius:8px;background:transparent;border:1px solid rgba(246,242,238,.45);color:#f6f2ee;cursor:pointer;font-family:Archivo;font-weight:400;font-size:13.5px;letter-spacing:.06em;text-transform:uppercase">Read the rest</button>
+    <button id="bio-toggle" class="btn-outline-light" aria-expanded="false" aria-controls="bio-more">Read the rest</button>
   </section>
 
-  <section style="padding:80px 88px 88px">
-    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px">
-      <h2 style="margin:0;font-size:52px;line-height:1.1;letter-spacing:-.002em;font-weight:200;color:#423b3f">The work</h2>
-      <span style="font:300 11px/1 Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.45)">hover to preview · click to open</span>
+  <section class="sect">
+    <div class="sect-head">
+      <h2 class="h2">The work</h2>
+      <span class="hint">hover to preview · click to open</span>
     </div>
     <hr class="rule" style="background:rgba(66,59,63,.22);margin:30px 0 0">
-    <div style="display:grid;grid-template-columns:1fr 400px;gap:52px;align-items:stretch">
+    <div class="work-grid">
+      <!-- Chronological in source, as the desktop design runs it. Mobile
+           reverses the row order in CSS, per the mobile spec. -->
       <div id="work-list">
         <a href="carecloud.html" class="work-row" data-work="0">
-          <span class="name">CareCloud</span>
           <span class="meta">UX Designer · 2018–2020</span>
+          <span class="name">CareCloud</span>
+          <img class="work-thumb" src="uploads/assets-1787974982619-ut64.webp" alt="CareCloud analytics dashboard on a tablet">
         </a>
         <a href="rbi.html" class="work-row" data-work="1">
-          <span class="name">Restaurant Brands Int'l</span>
           <span class="meta">Brand Lead · 2020–2021</span>
+          <span class="name">Restaurant Brands Int'l</span>
+          <img class="work-thumb" src="uploads/assets-1787974993322-50lf.avif" alt="RBI brand app screens">
         </a>
         <a href="optimize-health.html" class="work-row" data-work="2">
-          <span class="name">Optimize Health</span>
           <span class="meta">Product Designer · 2021–2023</span>
+          <span class="name">Optimize Health</span>
+          <img class="work-thumb" src="uploads/assets-1787975017498-jzsn.webp" alt="Optimize Health patient list on a laptop">
         </a>
         <a href="medbridge.html" class="work-row" data-work="3">
-          <span class="name">Medbridge</span>
           <span class="meta">Director · 2023–Present</span>
+          <span class="name">Medbridge</span>
+          <img class="work-thumb work-thumb--contain" src="uploads/assets-1787975245904-t1i7.png" alt="Medbridge Pathways mobile screens">
         </a>
       </div>
-      <div style="margin-top:28px;display:flex">
-        <div id="work-preview" role="img" aria-label="Selected work preview" style="width:100%;flex:1 1 auto;border-radius:8px;background:#ede6e0 center/cover no-repeat"></div>
+      <div class="work-preview-wrap">
+        <div id="work-preview" role="img" aria-label="Selected work preview"></div>
       </div>
     </div>
   </section>
 
-  <section style="padding:80px 88px 48px">
-    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:36px">
-      <h2 style="margin:0;font-size:52px;line-height:1.1;letter-spacing:-.002em;font-weight:200;color:#423b3f">Writing</h2>
+  <section class="sect--writing">
+    <div class="sect-head sect-head--mb36">
+      <h2 class="h2">Writing</h2>
+      <div class="carousel-nav">
+        <button class="arrow-btn" id="writing-prev" aria-label="Previous post">&larr;</button>
+        <button class="arrow-btn" id="writing-next" aria-label="Next post">&rarr;</button>
+      </div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div class="writing-grid" id="writing-scroller">
       <a href="crossing-the-chasm.html" class="writing-card">
-        <span style="font:300 11px/1 Archivo;letter-spacing:.16em;text-transform:uppercase;color:rgba(66,59,63,.5)">Learning to build</span>
-        <span style="font-size:28px;line-height:1.25;font-weight:300;color:#423b3f">Crossing the Chasm</span>
-        <span style="font-size:15px;line-height:1.7;color:rgba(66,59,63,.72)">Sitting on a call with DevOps, hearing "open your terminal," and building a coded component library anyway.</span>
-        <span style="margin-top:8px;font:400 11.5px Archivo;letter-spacing:.14em;text-transform:uppercase;color:#6a5567">Read &rarr;</span>
+        <span class="kicker">Learning to build</span>
+        <span class="title">Crossing the Chasm</span>
+        <span class="summary">Sitting on a call with DevOps, hearing "open your terminal," and building a coded component library anyway.</span>
+        <span class="more">Read &rarr;</span>
       </a>
       <a href="shifting-role.html" class="writing-card">
-        <span style="font:300 11px/1 Archivo;letter-spacing:.16em;text-transform:uppercase;color:rgba(66,59,63,.5)">On the craft</span>
-        <span style="font-size:28px;line-height:1.25;font-weight:300;color:#423b3f">The Shifting Role of a Product Designer</span>
-        <span style="font-size:15px;line-height:1.7;color:rgba(66,59,63,.72)">If AI isn't replacing designers, what is it doing to the role? Four pillars and the workflow that follows.</span>
-        <span style="margin-top:8px;font:400 11.5px Archivo;letter-spacing:.14em;text-transform:uppercase;color:#6a5567">Read &rarr;</span>
+        <span class="kicker">On the craft</span>
+        <span class="title">The Shifting Role of a Product Designer</span>
+        <span class="summary">If AI isn't replacing designers, what is it doing to the role? Four pillars and the workflow that follows.</span>
+        <span class="more">Read &rarr;</span>
       </a>
     </div>
   </section>
 
-  <section style="padding:24px 88px 88px">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin:0 0 36px">
-      <h2 style="margin:0;font-size:52px;line-height:1.1;letter-spacing:-.002em;font-weight:200;color:#423b3f">Working with me</h2>
-      <div style="display:flex;gap:7px">
-        <button class="nav-btn" id="quote-prev" aria-label="Previous quotes">&larr;</button>
-        <button class="nav-btn" id="quote-next" aria-label="Next quotes">&rarr;</button>
+  <section class="sect--qa">
+    <div class="sect-head sect-head--mb36">
+      <h2 class="h2">Working with me</h2>
+      <div style="display:flex;gap:8px;flex:none">
+        <button class="arrow-btn" id="quote-prev" aria-label="Previous quote">&larr;</button>
+        <button class="arrow-btn" id="quote-next" aria-label="Next quote">&rarr;</button>
       </div>
     </div>
 
     <div style="margin:0 0 40px">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch">
-        <figure style="margin:0;background:#efe6e9;border-radius:8px;padding:20px 22px 18px;display:flex;flex-direction:column;gap:12px;min-height:150px">
-          <blockquote style="margin:0;flex:1 1 auto;font-size:13px;line-height:1.7;color:#423b3f" data-quote-text="0"></blockquote>
+      <div class="quote-grid">
+        <figure class="quote-card">
+          <blockquote data-quote-text="0"></blockquote>
           <figcaption>
-            <div style="font-size:13.5px;line-height:1.4;color:#423b3f" data-quote-name="0"></div>
-            <div style="font:300 11.5px/1.5 Archivo;color:rgba(66,59,63,.62)" data-quote-role="0"></div>
+            <div class="qname" data-quote-name="0"></div>
+            <div class="qrole" data-quote-role="0"></div>
           </figcaption>
         </figure>
-        <figure style="margin:0;background:#efe6e9;border-radius:8px;padding:20px 22px 18px;display:flex;flex-direction:column;gap:12px;min-height:150px">
-          <blockquote style="margin:0;flex:1 1 auto;font-size:13px;line-height:1.7;color:#423b3f" data-quote-text="1"></blockquote>
+        <figure class="quote-card quote-card--second">
+          <blockquote data-quote-text="1"></blockquote>
           <figcaption>
-            <div style="font-size:13.5px;line-height:1.4;color:#423b3f" data-quote-name="1"></div>
-            <div style="font:300 11.5px/1.5 Archivo;color:rgba(66,59,63,.62)" data-quote-role="1"></div>
+            <div class="qname" data-quote-name="1"></div>
+            <div class="qrole" data-quote-role="1"></div>
           </figcaption>
         </figure>
       </div>
-      <div style="display:flex;gap:6px;margin-top:16px" id="quote-dots">
-        <button class="dot" data-page="0" aria-label="Quotes 1 and 2"></button>
-        <button class="dot" data-page="1" aria-label="Quotes 3 and 4"></button>
-      </div>
+      <div class="dots" id="quote-dots"></div>
     </div>
 
-    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px" id="qa-tabs" role="tablist">
+    <div class="pill-row" id="qa-tabs" role="tablist">
       <button class="pill" role="tab" data-tab="0">Day-to-day</button>
       <button class="pill" role="tab" data-tab="1">A belief</button>
       <button class="pill" role="tab" data-tab="2">With engineers</button>
       <button class="pill" role="tab" data-tab="3">What scares me</button>
       <button class="pill" role="tab" data-tab="4">Outside work</button>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px;min-height:200px">
-      <p style="margin:0;font-size:27px;line-height:1.5;letter-spacing:.004em;font-weight:300;color:#423b3f" id="qa-question"></p>
+    <div class="qa-grid">
+      <p class="qa-question" id="qa-question"></p>
       <div>
-        <p style="margin:0;font-size:16.5px;line-height:1.8;color:rgba(66,59,63,.85)" id="qa-answer"></p>
-        <p style="margin:18px 0 0;font:300 10.5px/1.5 Archivo;letter-spacing:.1em;text-transform:uppercase;color:rgba(66,59,63,.4)" id="qa-note"></p>
+        <p class="qa-answer" id="qa-answer"></p>
+        <p class="qa-note" id="qa-note"></p>
       </div>
     </div>
   </section>

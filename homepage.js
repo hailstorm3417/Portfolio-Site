@@ -121,44 +121,108 @@ document.querySelectorAll('.work-row').forEach(row => {
 });
 showWorkPreview(0);
 
-// Recommendation quotes — two per page
-const quoteDots = [...document.querySelectorAll('#quote-dots .dot')];
-const pageCount = QUOTES.length / 2;
+// Everything below shares one breakpoint with the stylesheet: desktop shows
+// two quotes side by side, mobile one at a time, so the page count and the
+// number of dots both change with it.
+const MOBILE = window.matchMedia('(max-width: 720px)');
+
+// Recommendation quotes
+const quoteDots = document.getElementById('quote-dots');
+let perPage = MOBILE.matches ? 1 : 2;
 let quotePage = 0;
+
+function pageCount() {
+  return Math.ceil(QUOTES.length / perPage);
+}
+
+function renderDots() {
+  quoteDots.replaceChildren(...Array.from({ length: pageCount() }, (_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot';
+    dot.setAttribute('aria-label', perPage === 1 ? `Quote ${i + 1}` : `Quotes ${i * 2 + 1} and ${i * 2 + 2}`);
+    dot.addEventListener('click', () => goToQuotePage(i));
+    return dot;
+  }));
+}
 
 function renderQuotes() {
   for (let slot = 0; slot < 2; slot++) {
-    const [text, name, role] = QUOTES[quotePage * 2 + slot];
+    // The second card is hidden on mobile; leave its content in place rather
+    // than reading past the end of the list.
+    const quote = QUOTES[quotePage * perPage + slot];
+    if (!quote) continue;
+    const [text, name, role] = quote;
     document.querySelector(`[data-quote-text="${slot}"]`).textContent = text;
     document.querySelector(`[data-quote-name="${slot}"]`).textContent = name;
     document.querySelector(`[data-quote-role="${slot}"]`).textContent = role;
   }
-  quoteDots.forEach((dot, i) => dot.setAttribute('aria-selected', String(i === quotePage)));
+  [...quoteDots.children].forEach((dot, i) =>
+    dot.setAttribute('aria-selected', String(i === quotePage)));
 }
 
 function goToQuotePage(page) {
-  quotePage = (page + pageCount) % pageCount;
+  quotePage = (page + pageCount()) % pageCount();
   renderQuotes();
 }
 
 document.getElementById('quote-prev').addEventListener('click', () => goToQuotePage(quotePage - 1));
 document.getElementById('quote-next').addEventListener('click', () => goToQuotePage(quotePage + 1));
-quoteDots.forEach(dot => dot.addEventListener('click', () => goToQuotePage(Number(dot.dataset.page))));
+
+// Crossing the breakpoint changes how many quotes fit, so rebuild the dots
+// and keep the reader near the quote they were already on.
+MOBILE.addEventListener('change', e => {
+  const firstVisible = quotePage * perPage;
+  perPage = e.matches ? 1 : 2;
+  quotePage = Math.min(Math.floor(firstVisible / perPage), pageCount() - 1);
+  renderDots();
+  renderQuotes();
+});
+
+renderDots();
 renderQuotes();
 
+// Bring a pill fully inside its scroller, with 16px of breathing room. Without
+// this the last pill in each row sits clipped off the right edge on a phone.
+function scrollPillIntoView(row, pill) {
+  const left = pill.offsetLeft;
+  const right = left + pill.offsetWidth;
+  if (right > row.scrollLeft + row.clientWidth - 16) {
+    row.scrollLeft = right - row.clientWidth + 16;
+  } else if (left < row.scrollLeft + 16) {
+    row.scrollLeft = left - 16;
+  }
+}
+
 // Q&A tabs
-const qaTabs = [...document.querySelectorAll('#qa-tabs .pill')];
+const qaRow = document.getElementById('qa-tabs');
+const qaTabs = [...qaRow.querySelectorAll('.pill')];
 const qaQuestion = document.getElementById('qa-question');
 const qaAnswer = document.getElementById('qa-answer');
 const qaNote = document.getElementById('qa-note');
 
-function selectQa(index) {
+function selectQa(index, scroll = false) {
   const [question, answer, note] = QA[index];
   qaQuestion.textContent = question;
   qaAnswer.textContent = answer;
   qaNote.textContent = note;
   qaTabs.forEach((tab, i) => tab.setAttribute('aria-selected', String(i === index)));
+  if (scroll) scrollPillIntoView(qaRow, qaTabs[index]);
 }
 
-qaTabs.forEach(tab => tab.addEventListener('click', () => selectQa(Number(tab.dataset.tab))));
+qaTabs.forEach(tab => tab.addEventListener('click', () => selectQa(Number(tab.dataset.tab), true)));
 selectQa(0);
+
+// Writing carousel — mobile only; on desktop the cards sit in a static grid
+// and the arrows are hidden. Assigning scrollLeft directly rather than using
+// scroll-behavior:smooth, which the design notes cancelled programmatic
+// scrolling in the prototype's environment.
+const writingScroller = document.getElementById('writing-scroller');
+
+function scrollWriting(direction) {
+  const step = writingScroller.clientWidth * 0.86;
+  const max = writingScroller.scrollWidth - writingScroller.clientWidth;
+  writingScroller.scrollLeft = Math.max(0, Math.min(max, writingScroller.scrollLeft + direction * step));
+}
+
+document.getElementById('writing-prev').addEventListener('click', () => scrollWriting(-1));
+document.getElementById('writing-next').addEventListener('click', () => scrollWriting(1));

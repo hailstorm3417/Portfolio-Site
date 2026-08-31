@@ -30,37 +30,75 @@
 .caption { margin: 14px 0 0; font: 400 11.5px Archivo, sans-serif; letter-spacing: .06em; color: rgba(66,59,63,.5); }
 .section-h2 { margin: 0 0 28px; max-width: 22em; font-size: 42px; line-height: 1.2; letter-spacing: -.002em; font-weight: 200; color: var(--charcoal); }
 .chapter-label { font: 400 11.5px Archivo, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: rgba(66,59,63,.5); margin-bottom: 18px; }
+
+.cs-title { margin: 0 0 32px; font-size: 76px; line-height: 1.04; letter-spacing: -.004em; font-weight: 200; color: var(--charcoal); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.copy-aside { display: grid; grid-template-columns: 1fr 300px; gap: 52px; align-items: start; }
+.facts-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.pair-grid--wide { gap: 40px; }
+.ws-grid { display: grid; grid-template-columns: 1fr 340px; gap: 52px; align-items: start; min-height: 360px; }
+.stat-callout { background: var(--rose); border-radius: var(--radius); padding: 40px 44px; display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; }
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+.plum-body { margin: 0 0 22px; max-width: 44em; font-size: 17px; line-height: 1.85; color: rgba(246,242,238,.84); }
+.plum-body--last { margin-bottom: 0; }
+
+/* ── Mobile — 390pt target ─────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .two-col, .copy-aside, .facts-3, .pair-grid, .ws-grid { grid-template-columns: 1fr; gap: 20px; }
+  .ws-grid { min-height: 0; gap: 20px; }
+  .stat-callout { grid-template-columns: 1fr; gap: 18px; padding: 28px 24px; }
+
+  /* Tabs scroll rather than wrap; the last one is otherwise clipped. */
+  .pill-row {
+    flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; margin-bottom: 26px;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .pill-row::-webkit-scrollbar { display: none; }
+  .pill { flex: none; white-space: nowrap; min-height: 44px; padding: 12px 16px; font-size: 13px; }
+
+  .cs-title { font-size: 44px; line-height: 1.04; margin-bottom: 22px; }
+  .role-line { font-size: 11px; letter-spacing: .2em; margin-bottom: 16px; }
+  /* The lede matches the body weight on mobile — deliberate in the spec. */
+  .lede { font-size: 18px; line-height: 1.6; font-weight: 400; max-width: none; }
+  .body-copy { font-size: 15.5px; line-height: 1.8; max-width: none !important; }
+  .plum-body { font-size: 15.5px; line-height: 1.8; font-weight: 300; margin-bottom: 18px; max-width: none; }
+  .section-h2 { font-size: 32px; line-height: 1.15; margin-bottom: 20px; max-width: none; }
+  .chapter-label { font-size: 11px; margin-bottom: 14px; }
+  .caption { font-size: 11px; }
+  .nav-btn { width: 44px; height: 44px; }
+}
 </style>
 </head>
 <body>
 
 <main class="page page--narrow" style="margin:40px auto">
 <article id="optimize-health">
-  <div style="padding:36px 80px 0">
+  <div style="padding:36px var(--gutter) 0">
     <a href="index.html" class="back-link">← Back</a>
   </div>
 
-  <div style="padding:52px 80px 0">
+  <div style="padding:52px var(--gutter) 0">
     <div class="role-line">Product Designer · November 2021 – April 2023</div>
-    <h1 style="margin:0 0 32px;font-size:76px;line-height:1.04;letter-spacing:-.004em;font-weight:200;color:#423b3f">Optimize Health</h1>
+    <h1 class="cs-title">Optimize Health</h1>
     <p class="lede">After nearly two years away from healthcare, coming back to Optimize felt like a breath of fresh air. I'd learned a lot in the QSR world, but complex, high-stakes problems were where I actually wanted to be.</p>
   </div>
 
-  <div style="padding:56px 80px 0">
+  <div style="padding:56px var(--gutter) 0">
     <img src="uploads/assets-1787975017498-jzsn.webp" alt="Optimize Health patient list on a laptop" style="width:100%;height:420px;object-fit:cover;border-radius:8px">
     <p class="caption">The patient list — the spine of the product we rebuilt.</p>
   </div>
 
-  <div style="padding:64px 80px 0">
+  <div style="padding:64px var(--gutter) 0">
     <p class="body-copy" style="margin-bottom:28px;max-width:44em">We started at ground zero. The working POC that users were currently using was no longer cutting it — it was time to grow into the product people were envisioning. Within a year, my fellow designer and I had built out a complex patient record and communication tool, organization management, tasking, and a full billing reporting solution — essentially, the product, from the ground up. Alongside the high-fidelity mocks and prototypes, we ran research through Userlytics and kept a regular cadence of sessions with internal users, our CS team, and clients themselves.</p>
     <p class="body-copy" style="max-width:44em">I also built and managed an in-depth Figma component library — not a coded one, but a system that made sure the patterns we designed stayed consistent and carried through cleanly to code. We'd occasionally direct a third-party design firm when we needed extra hands, giving them the documentation to work within our existing patterns.</p>
   </div>
 
-  <div style="padding:72px 80px 0">
+  <div style="padding:72px var(--gutter) 0">
     <hr class="rule--strong" style="margin-bottom:44px">
     <h2 class="section-h2" style="margin-bottom:12px">Designing every state, not just the happy one</h2>
     <p style="margin:0 0 36px;max-width:34em;font-size:16.5px;line-height:1.85;color:rgba(66,59,63,.75)">Patient search had to hold up when a name returned nothing, returned too much, or returned one exact match mid-call. Four states, one pattern.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div class="pair-grid">
       <figure style="margin:0">
         <img src="uploads/assets-1787975017293-uqed.png" alt="Search overlay, empty state" style="width:100%;height:230px;object-fit:cover;object-position:top;border-radius:8px;border:1px solid rgba(66,59,63,.12)">
         <figcaption style="font:400 11.5px Archivo;letter-spacing:.1em;text-transform:uppercase;color:rgba(66,59,63,.55);margin-top:12px">Search appears</figcaption>
@@ -80,14 +118,14 @@
     </div>
   </div>
 
-  <div style="padding:72px 80px 0">
+  <div style="padding:72px var(--gutter) 0">
     <div style="background:#efe6e9;border-radius:8px;padding:44px 48px">
       <div style="font:400 11.5px Archivo;letter-spacing:.18em;text-transform:uppercase;color:rgba(66,59,63,.55);margin-bottom:20px">Mentorship</div>
       <p style="margin:0;max-width:42em;font-size:17px;line-height:1.85;font-weight:300;color:#423b3f">Around the same time I joined, so did a designer just making the shift into UX — her background was in user analytics. Over the two years we worked together, I mentored her through everything from design patterns and process to component creation and problem solving, with a real focus on strengthening her relationship with engineering: understanding their constraints and requests, and finding solutions that worked for everyone.</p>
     </div>
   </div>
 
-  <div style="padding:64px 80px 72px">
+  <div style="padding:64px var(--gutter) 72px">
     <hr class="rule--strong" style="margin-bottom:36px">
     <a href="medbridge.html" class="next-link" style="margin-bottom:-20px">
       <span class="eyebrow">Next</span>

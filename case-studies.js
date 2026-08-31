@@ -57,9 +57,22 @@ function renderWorkstream() {
   wsTabs.forEach((tab, i) => tab.setAttribute('aria-selected', String(i === wsIndex)));
 }
 
+// Bring the selected pill fully inside its scroller, with 16px of room.
+// Without this the last tab sits clipped off the right edge on a phone.
+function scrollPillIntoView(row, pill) {
+  const left = pill.offsetLeft;
+  const right = left + pill.offsetWidth;
+  if (right > row.scrollLeft + row.clientWidth - 16) {
+    row.scrollLeft = right - row.clientWidth + 16;
+  } else if (left < row.scrollLeft + 16) {
+    row.scrollLeft = left - 16;
+  }
+}
+
 function goToWorkstream(index) {
   wsIndex = (index + WORKSTREAMS.length) % WORKSTREAMS.length;
   renderWorkstream();
+  scrollPillIntoView(document.getElementById('ws-tabs'), wsTabs[wsIndex]);
 }
 
 document.getElementById('ws-prev').addEventListener('click', () => goToWorkstream(wsIndex - 1));

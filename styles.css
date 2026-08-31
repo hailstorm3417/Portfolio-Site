@@ -14,6 +14,12 @@
   --rule: rgba(66, 59, 63, .18);
   --rule-strong: rgba(66, 59, 63, .3);
   --radius: 8px;
+
+  /* Horizontal page gutter. Layout rules consume this as var(--gutter)
+     rather than a literal, which is what lets the mobile breakpoint retune
+     the whole page from one place — including from inline styles, since a
+     custom property resolves at use time. */
+  --gutter: 88px;
 }
 
 * { box-sizing: border-box; }
@@ -39,7 +45,7 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
 }
 
-.page--narrow { max-width: 1000px; }
+.page--narrow { max-width: 1000px; --gutter: 80px; }
 
 .rule {
   height: 1px;
@@ -53,7 +59,7 @@ img { max-width: 100%; display: block; }
 /* — footer contact banner, shared by every page — */
 .contact {
   background: var(--oat-banner);
-  padding: 88px 88px 96px;
+  padding: 88px var(--gutter) 96px;
 }
 
 .contact h2 {
@@ -195,6 +201,80 @@ img { max-width: 100%; display: block; }
   color: rgba(66, 59, 63, .55);
 }
 
+/* — horizontal scroller, shared by the pill rows and the writing carousel.
+     Scrollbar hidden; scrolling is driven by touch or the arrow buttons. — */
+.hs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hs::-webkit-scrollbar { display: none; }
+
+/* — 44pt arrow control — */
+.arrow-btn {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: var(--radius);
+  border: 1px solid rgba(66, 59, 63, .28);
+  background: transparent;
+  color: var(--charcoal);
+  cursor: pointer;
+  font-family: Archivo, sans-serif;
+  font-size: 14px;
+  line-height: 1;
+}
+.arrow-btn:hover {
+  background: var(--plum);
+  color: var(--oat);
+  border-color: var(--plum);
+}
+
+/* The prototype leans on hover alone; keyboard users need the same signal. */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--plum);
+  outline-offset: 2px;
+}
+
 @media (max-width: 900px) {
   .page { border-radius: 0; }
+}
+
+/* ── Mobile — 390pt target ─────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  /* Declared here, after .page--narrow sets its own 80px, because a media
+     query adds no specificity — source order decides which one wins. */
+  :root, .page--narrow { --gutter: 24px; }
+
+  body { background: var(--oat); }
+  .page { margin: 0 auto !important; }
+
+  .contact { padding: 48px var(--gutter) 52px; }
+  .contact h2 { font-size: 34px; line-height: 1.2; margin-bottom: 32px; max-width: none; }
+
+  /* Contact links stack into ruled rows rather than three columns. */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 28px;
+  }
+  .contact-item { padding: 16px 0; gap: 6px; }
+  .contact-item:last-child { border-bottom: 1px solid var(--rule-strong); }
+  .contact-item .label { font-size: 10.5px; }
+  .contact-item .value { font-size: 18px !important; }
+
+  /* Buttons go full width and stack, at a 48px touch target. */
+  .contact-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+  .btn { min-height: 48px; padding: 15px 22px; justify-content: flex-start; }
+  .btn-primary { justify-content: space-between; }
+  .contact-note { display: none; }
+
+  .next-link { margin-left: 0; margin-right: 0; padding: 20px 0; }
+  .next-link .title { font-size: 26px !important; }
+
+  .back-link { min-height: 44px; align-items: center; }
 }
