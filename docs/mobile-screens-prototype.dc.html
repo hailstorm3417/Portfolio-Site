@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/modernist-8759f727-9c9b-4b5f-a809-66b2b26f9a5e/styles.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500&display=swap">
+<style>
+body{margin:0;background:#e6e0dc;font-family:Archivo,system-ui,sans-serif}
+a{color:#6a5567}a:hover{color:#423b3f}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}
+.dv-tid{font:400 10px Archivo;letter-spacing:.1em;padding:4px 8px;background:#423b3f;color:#f6f2ee;text-decoration:none;border-radius:6px}
+.dv-tname{font:400 13px/1.2 Archivo;color:#423b3f}
+.dv-opts{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:400 10.5px Archivo;letter-spacing:.08em;padding:4px 8px;background:rgba(66,59,63,.1);color:#423b3f;text-decoration:none;border-radius:6px}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Archivo;color:rgba(66,59,63,.6)}
+.dv-card{width:390px;background:#f6f2ee;border:1px solid rgba(66,59,63,.12);border-radius:8px;box-shadow:0 3px 14px rgba(66,59,63,.12);overflow:hidden}
+.dv-opt:target .dv-oid{background:#6a5567;color:#f6f2ee}
+.dv-note{margin:0 0 18px;max-width:780px;font:400 12.5px/1.6 Archivo;color:rgba(66,59,63,.65)}
+.hs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.hs::-webkit-scrollbar{display:none}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Mobile — 390pt</span></div>
+<p class="dv-note">All three pages at iPhone width. Same palette, type and 8px radius; the changes are structural — single column throughout, display type dropped roughly 40%, side-by-side grids stacked, the work index carrying its own thumbnail per row instead of a shared hover panel, and the Q&amp;A tabs plus quote cards becoming horizontal scrollers. Touch targets are 44pt minimum.</p>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Homepage</div>
+<div class="dv-card" data-screen-label="M · Homepage">
+
+  <div style="position:relative;z-index:2;padding:40px 24px 0;pointer-events:none">
+    <h1 style="margin:0;font-size:52px;line-height:1.02;letter-spacing:-.005em;font-weight:200;color:#423b3f">Hi, I'm<br><span style="font-weight:400">Halie.</span></h1>
+    <div style="margin:20px 0 0;min-height:26px">
+      <span style="position:relative;display:inline-block;font-size:20px;line-height:1.3;letter-spacing:.01em;font-weight:300;color:#6a5567">
+        <span style="{{ gBase }}">{{ heroTitle }}</span>
+        <span aria-hidden="true" style="{{ gGhostA }}">{{ heroTitle }}</span>
+        <span aria-hidden="true" style="{{ gGhostB }}">{{ heroTitle }}</span>
+      </span>
+    </div>
+  </div>
+
+  <div style="position:relative;z-index:1;margin-top:-56px">
+    <img src="assets/halie-portrait.png" alt="Halie" style="width:78%;height:auto;display:block;margin-left:auto;mix-blend-mode:multiply">
+  </div>
+
+  <div style="padding:0 24px">
+    <div style="height:1px;background:rgba(66,59,63,.22)"></div>
+    <div style="display:flex;flex-direction:column;gap:18px;padding:28px 0 48px">
+      <p style="margin:0;font-size:15.5px;line-height:1.75;color:rgba(66,59,63,.88)">For most of my career, I understood engineering the way you understand rain through a window — I could see it, respect it, design around it. But I'd never actually stepped outside and felt it.</p>
+      <p style="margin:0;font-size:15.5px;line-height:1.75;color:rgba(66,59,63,.88)">AI is changing that. So I'm stepping out into the rain — back into IC work, learning to build right as everyone else is too. Which, honestly, is the best part.</p>
+    </div>
+  </div>
+
+  <div style="background:#6a5567;padding:48px 24px 52px">
+    <div style="font:300 10.5px/1 Archivo;letter-spacing:.24em;text-transform:uppercase;color:rgba(246,242,238,.6);margin-bottom:26px">How I got here</div>
+    <p style="margin:0 0 24px;font-size:23px;line-height:1.45;font-weight:200;color:#f6f2ee">I started in graphic design, drawn to making beautiful imagery. But I couldn't shake the feeling that the work was fleeting.</p>
+    <div style="{{ moreStyleM }}">
+      <p style="margin:0 0 16px;font-size:15px;line-height:1.8;color:rgba(246,242,238,.8)">Once it was seen, it was done. Beauty and trends came and went, and each piece served its purpose once and disappeared.</p>
+      <p style="margin:0 0 16px;font-size:15px;line-height:1.8;color:rgba(246,242,238,.8)">Then I was hired as a UX designer at CareCloud, and I had no idea what I was doing. I'd been thrown into the deep end of something far more complex than I'd ever touched. Turns out, I was a good swimmer. Healthcare product design didn't feel fleeting — it felt like something I could actually build on, and I fell for it fast.</p>
+      <p style="margin:0 0 16px;font-size:15px;line-height:1.8;color:rgba(246,242,238,.8)">From there: RBI, Optimize Health, and eventually Medbridge, where I stepped into management — not because I sought it out, but because someone believed I was ready before I did. Three and a half years later, I've got a small, mighty team. And for the last nine months, we've been figuring out what "design engineer" even means — building our own component library, shipping front-end code alongside engineering, closing the gap handoff usually creates.</p>
+      <p style="margin:0;font-size:15px;line-height:1.8;color:rgba(246,242,238,.8)">Which is what brought me back here. Ready to be an IC again, right as this shift is happening.</p>
+    </div>
+    <button onClick="{{ toggleMoreM }}" style="margin-top:22px;width:100%;min-height:48px;padding:13px 20px;border-radius:8px;background:transparent;border:1px solid rgba(246,242,238,.45);color:#f6f2ee;cursor:pointer;font-family:Archivo;font-weight:400;font-size:13px;letter-spacing:.06em;text-transform:uppercase" style-hover="background:#f6f2ee;color:#6a5567;border-color:#f6f2ee">{{ moreLabelM }}</button>
+  </div>
+
+  <div style="padding:48px 24px 52px">
+    <h2 style="margin:0 0 24px;font-size:34px;line-height:1.1;font-weight:200;color:#423b3f">The work</h2>
+    <a href="#1b" style="display:block;padding:20px 0;border-top:1px solid rgba(66,59,63,.14);text-decoration:none" style-hover="background:#efe6e9">
+      <div style="font:300 10.5px/1 Archivo;letter-spacing:.14em;text-transform:uppercase;color:rgba(66,59,63,.5);margin-bottom:8px">Director · 2023–Present</div>
+      <div style="font-size:24px;line-height:1.2;font-weight:300;color:#423b3f;margin-bottom:14px">Medbridge</div>
+      <img src="uploads/assets-1787975245904-t1i7.png" alt="Medbridge Pathways screens" style="width:100%;height:150px;object-fit:contain;background:#efe9e2;border-radius:8px">
+    </a>
+    <a href="#1b" style="display:block;padding:20px 0;border-top:1px solid rgba(66,59,63,.14);text-decoration:none" style-hover="background:#efe6e9">
+      <div style="font:300 10.5px/1 Archivo;letter-spacing:.14em;text-transform:uppercase;color:rgba(66,59,63,.5);margin-bottom:8px">Product Designer · 2021–2023</div>
+      <div style="font-size:24px;line-height:1.2;font-weight:300;color:#423b3f;margin-bottom:14px">Optimize Health</div>
+      <img src="uploads/assets-1787975017498-jzsn.gif" alt="Optimize Health patient list" style="width:100%;height:150px;object-fit:cover;border-radius:8px">
+    </a>
+    <a href="#1b" style="display:block;padding:20px 0;border-top:1px solid rgba(66,59,63,.14);text-decoration:none" style-hover="background:#efe6e9">
+      <div style="font:300 10.5px/1 Archivo;letter-spacing:.14em;text-transform:uppercase;color:rgba(66,59,63,.5);margin-bottom:8px">Brand Lead · 2020–2021</div>
+      <div style="font-size:24px;line-height:1.2;font-weight:300;color:#423b3f;margin-bottom:14px">Restaurant Brands Int'l</div>
+      <img src="uploads/assets-1787974993322-50lf.avif" alt="RBI brand app screens" style="width:100%;height:150px;object-fit:cover;border-radius:8px">
+    </a>
+    <a href="#1b" style="display:block;padding:20px 0;border-top:1px solid rgba(66,59,63,.14);border-bottom:1px solid rgba(66,59,63,.14);text-decoration:none" style-hover="background:#efe6e9">
+      <div style="font:300 10.5px/1 Archivo;letter-spacing:.14em;text-transform:uppercase;color:rgba(66,59,63,.5);margin-bottom:8px">UX Designer · 2018–2020</div>
+      <div style="font-size:24px;line-height:1.2;font-weight:300;color:#423b3f;margin-bottom:14px">CareCloud</div>
+      <img src="uploads/assets-1787974982619-ut64.gif" alt="CareCloud dashboard" style="width:100%;height:150px;object-fit:cover;border-radius:8px">
+    </a>
+  </div>
+
+  <div style="padding:0 24px 40px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px">
+      <h2 style="margin:0;font-size:34px;line-height:1.1;font-weight:200;color:#423b3f">Writing</h2>
+      <div style="display:flex;gap:8px;flex:none">
+        <button onClick="{{ prevW }}" aria-label="Previous post" style="width:44px;height:44px;border-radius:8px;border:1px solid rgba(66,59,63,.28);background:transparent;color:#423b3f;cursor:pointer;font-family:Archivo;font-size:14px;line-height:1" style-hover="background:#6a5567;color:#f6f2ee;border-color:#6a5567">←</button>
+        <button onClick="{{ nextW }}" aria-label="Next post" style="width:44px;height:44px;border-radius:8px;border:1px solid rgba(66,59,63,.28);background:transparent;color:#423b3f;cursor:pointer;font-family:Archivo;font-size:14px;line-height:1" style-hover="background:#6a5567;color:#f6f2ee;border-color:#6a5567">→</button>
+      </div>
+    </div>
+    <div class="hs" id="m-writing-hs" style="gap:14px">
+      <a href="Journal.dc.html#1a" style="flex:none;width:84%;display:flex;flex-direction:column;gap:10px;padding:24px 22px;background:#efe9e2;border:1px solid transparent;border-radius:8px;text-decoration:none" style-hover="border-color:#6a5567">
+        <span style="font:300 10.5px/1 Archivo;letter-spacing:.16em;text-transform:uppercase;color:rgba(66,59,63,.5)">Learning to build</span>
+        <span style="font-size:22px;line-height:1.25;font-weight:300;color:#423b3f">Crossing the Chasm</span>
+        <span style="font-size:14px;line-height:1.7;color:rgba(66,59,63,.72)">Sitting on a call with DevOps, hearing "open your terminal," and building a coded component library anyway.</span>
+        <span style="margin-top:4px;font:400 11px Archivo;letter-spacing:.14em;text-transform:uppercase;color:#6a5567">Read →</span>
+      </a>
+      <a href="Journal.dc.html#1b" style="flex:none;width:84%;display:flex;flex-direction:column;gap:10px;padding:24px 22px;background:#efe9e2;border:1px solid transparent;border-radius:8px;text-decoration:none" style-hover="border-color:#6a5567">
+        <span style="font:300 10.5px/1 Archivo;letter-spacing:.16em;text-transform:uppercase;color:rgba(66,59,63,.5)">On the craft</span>
+        <span style="font-size:22px;line-height:1.25;font-weight:300;color:#423b3f">The Shifting Role of a Product Designer</span>
+        <span style="font-size:14px;line-height:1.7;color:rgba(66,59,63,.72)">If AI isn't replacing designers, what is it doing to the role? Four pillars and the workflow that follows.</span>
+        <span style="margin-top:4px;font:400 11px Archivo;letter-spacing:.14em;text-transform:uppercase;color:#6a5567">Read →</span>
+      </a>
+    </div>
+  </div>
+
+  <div style="padding:24px 24px 52px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px">
+      <h2 style="margin:0;font-size:34px;line-height:1.1;font-weight:200;color:#423b3f">Working with me</h2>
+      <div style="display:flex;gap:8px;flex:none">
+        <button onClick="{{ prevQ }}" aria-label="Previous quote" style="width:44px;height:44px;border-radius:8px;border:1px solid rgba(66,59,63,.28);background:transparent;color:#423b3f;cursor:pointer;font-family:Archivo;font-size:14px;line-height:1" style-hover="background:#6a5567;color:#f6f2ee;border-color:#6a5567">←</button>
+        <button onClick="{{ nextQ }}" aria-label="Next quote" style="width:44px;height:44px;border-radius:8px;border:1px solid rgba(66,59,63,.28);background:transparent;color:#423b3f;cursor:pointer;font-family:Archivo;font-size:14px;line-height:1" style-hover="background:#6a5567;color:#f6f2ee;border-color:#6a5567">→</button>
+      </div>
+    </div>
+
+    <div style="background:#efe6e9;border-radius:8px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:14px;min-height:190px;margin-bottom:14px">
+      <p style="margin:0;flex:1 1 auto;font-size:13.5px;line-height:1.75;color:#423b3f">{{ qText }}</p>
+      <div>
+        <div style="font-size:14px;line-height:1.4;color:#423b3f">{{ qName }}</div>
+        <div style="font:300 12px/1.5 Archivo;color:rgba(66,59,63,.62)">{{ qRole }}</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:6px;margin-bottom:34px">
+      <button onClick="{{ goQ0 }}" aria-label="Quote 1" style="{{ dot0 }}"></button>
+      <button onClick="{{ goQ1 }}" aria-label="Quote 2" style="{{ dot1 }}"></button>
+      <button onClick="{{ goQ2 }}" aria-label="Quote 3" style="{{ dot2 }}"></button>
+      <button onClick="{{ goQ3 }}" aria-label="Quote 4" style="{{ dot3 }}"></button>
+    </div>
+
+    <div class="hs" style="margin-bottom:28px">
+      <button onClick="{{ tabC0 }}" style="{{ tabStyle0 }}">Day-to-day</button>
+      <button onClick="{{ tabC1 }}" style="{{ tabStyle1 }}">A belief</button>
+      <button onClick="{{ tabC2 }}" style="{{ tabStyle2 }}">With engineers</button>
+      <button onClick="{{ tabC3 }}" style="{{ tabStyle3 }}">What scares me</button>
+      <button onClick="{{ tabC4 }}" style="{{ tabStyle4 }}">Outside work</button>
+    </div>
+    <div style="min-height:280px">
+      <p style="margin:0 0 18px;font-size:21px;line-height:1.4;font-weight:300;color:#423b3f">{{ tabQuestion }}</p>
+      <p style="margin:0;font-size:15.5px;line-height:1.8;color:rgba(66,59,63,.85)">{{ tabAnswer }}</p>
+    </div>
+  </div>
+
+  <div style="background:#efe9e2;padding:48px 24px 52px">
+    <p style="margin:0 0 32px;font-size:34px;line-height:1.2;font-weight:200;color:#423b3f">If any of this resonated, I'd love to hear from you.</p>
+    <div style="display:flex;flex-direction:column;gap:0;margin-bottom:28px">
+      <a href="mailto:halievw@gmail.com" style="display:flex;flex-direction:column;gap:6px;padding:16px 0;border-top:1px solid rgba(66,59,63,.3);text-decoration:none" style-hover="border-color:#6a5567">
+        <span style="font:400 10.5px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.55)">Email</span>
+        <span style="font-size:18px;line-height:1.3;font-weight:300;color:#423b3f">halievw@gmail.com</span>
+      </a>
+      <a href="tel:+14142072807" style="display:flex;flex-direction:column;gap:6px;padding:16px 0;border-top:1px solid rgba(66,59,63,.3);text-decoration:none" style-hover="border-color:#6a5567">
+        <span style="font:400 10.5px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.55)">Phone</span>
+        <span style="font-size:18px;line-height:1.3;font-weight:300;color:#423b3f">(414) 207-2807</span>
+      </a>
+      <a href="#1a" style="display:flex;flex-direction:column;gap:6px;padding:16px 0;border-top:1px solid rgba(66,59,63,.3);border-bottom:1px solid rgba(66,59,63,.3);text-decoration:none" style-hover="border-color:#6a5567">
+        <span style="font:400 10.5px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.55)">LinkedIn</span>
+        <span style="font-size:18px;line-height:1.3;font-weight:300;color:#423b3f">Connect →</span>
+      </a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <a href="#1a" style="display:flex;align-items:center;justify-content:space-between;min-height:48px;padding:15px 22px;border-radius:8px;background:#6a5567;color:#f6f2ee;text-decoration:none;font-weight:400;font-size:13px;letter-spacing:.08em;text-transform:uppercase" style-hover="background:#423b3f">Download resume <span style="font-size:15px">↓</span></a>
+      <a href="#1a" style="display:flex;align-items:center;min-height:48px;padding:15px 22px;border-radius:8px;border:1px solid rgba(66,59,63,.45);color:#423b3f;text-decoration:none;font-weight:400;font-size:13px;letter-spacing:.08em;text-transform:uppercase" style-hover="background:#423b3f;color:#f6f2ee;border-color:#423b3f">View in browser</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Case study — Medbridge</div>
+<div class="dv-card" data-screen-label="M · Medbridge">
+
+  <div style="padding:24px 24px 0">
+    <a href="#1a" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font:400 11.5px Archivo;letter-spacing:.14em;text-transform:uppercase;color:rgba(66,59,63,.6);text-decoration:none" style-hover="color:#6a5567">← Back</a>
+  </div>
+
+  <div style="padding:16px 24px 0">
+    <div style="font:400 11px Archivo;letter-spacing:.2em;text-transform:uppercase;color:#6a5567;margin-bottom:16px">Director of Product Design · 2023 – Present</div>
+    <h1 style="margin:0 0 22px;font-size:44px;line-height:1.04;letter-spacing:-.004em;font-weight:200;color:#423b3f">Medbridge</h1>
+    <p style="margin:0 0 20px;font-size:18px;line-height:1.6;font-weight:400;color:#423b3f">It isn't just about designing. At Medbridge, my work has centered on shaping product vision and driving alignment — not just defining end states, but helping teams see possibilities early, build buy-in, and make confident bets in moments of uncertainty.</p>
+    <p style="margin:0;font-size:15.5px;line-height:1.8;color:rgba(66,59,63,.88)">I've helped guide the evolution from a primarily education-focused platform into a scalable care ecosystem, supporting a rebrand, launching a new care platform, integrating more care experiences, and growing the design function from a team of one to three.</p>
+  </div>
+
+  <div style="padding:32px 24px 0">
+    <img src="uploads/assets-1787975263498-fqw4.png" alt="Pathways collection builder" style="width:100%;height:auto;display:block;border-radius:8px">
+  </div>
+
+  <div style="padding:40px 24px 0">
+    <div style="height:1px;background:rgba(66,59,63,.2);margin-bottom:28px"></div>
+    <div style="font:400 11px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.5);margin-bottom:14px">Chapter one</div>
+    <h2 style="margin:0 0 20px;font-size:32px;line-height:1.15;font-weight:200;color:#423b3f">The workstreams</h2>
+    <div class="hs" style="margin-bottom:26px">
+      <button onClick="{{ goCh0 }}" style="{{ chTab0 }}">Pathways</button>
+      <button onClick="{{ goCh1 }}" style="{{ chTab1 }}">Educate</button>
+      <button onClick="{{ goCh2 }}" style="{{ chTab2 }}">Growth</button>
+      <button onClick="{{ goCh3 }}" style="{{ chTab3 }}">GTM</button>
+    </div>
+    <h3 style="margin:0 0 18px;font-size:23px;line-height:1.25;font-weight:300;color:#423b3f">{{ chTitle }}</h3>
+    <p style="margin:0 0 18px;font-size:15.5px;line-height:1.8;color:rgba(66,59,63,.88)">{{ chP1 }}</p>
+    <p style="margin:0 0 18px;font-size:15.5px;line-height:1.8;color:rgba(66,59,63,.88)">{{ chP2 }}</p>
+    <p style="margin:0 0 20px;font-size:15.5px;line-height:1.8;color:rgba(66,59,63,.88)">{{ chPunch }}</p>
+    <img src="{{ chImg }}" alt="{{ chAlt }}" style="width:100%;height:auto;display:block;border-radius:8px">
+  </div>
+
+  <div style="background:#6a5567;margin-top:40px;padding:44px 24px 48px">
+    <div style="font:400 11px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,242,238,.55);margin-bottom:14px">Chapter two</div>
+    <h2 style="margin:0 0 22px;font-size:28px;line-height:1.25;font-weight:200;color:#f6f2ee">Building the team I wanted to lead</h2>
+    <p style="margin:0 0 18px;font-size:15.5px;line-height:1.8;font-weight:300;color:rgba(246,242,238,.84)">During my time at Medbridge, I've interviewed 30+ designers while learning that building a strong team takes more than finding talented people. I had to learn which skills, perspectives, and personalities complemented each other—and which qualities mattered far more in practice than they did on a résumé.</p>
+    <p style="margin:0 0 18px;font-size:15.5px;line-height:1.8;font-weight:300;color:rgba(246,242,238,.84)">But hiring was only the beginning. I learned that leading a team wasn't just about making sure the work was good. It was about creating an environment where people could grow: giving designers room to stretch, helping them find goals they were genuinely excited about, and creating opportunities to learn from one another.</p>
+    <p style="margin:0;font-size:15.5px;line-height:1.8;font-weight:300;color:rgba(246,242,238,.84)">Eventually, I realized my job wasn't to build a team that could execute my vision. It was to build one where each designer could develop their own.</p>
+  </div>
+
+  <div style="padding:40px 24px 0">
+    <div style="font:400 11px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.5);margin-bottom:14px">Chapter three</div>
+    <h2 style="margin:0 0 20px;font-size:32px;line-height:1.15;font-weight:200;color:#423b3f">Rethinking what the role looks like</h2>
+    <p style="margin:0 0 22px;font-size:15.5px;line-height:1.8;color:rgba(66,59,63,.88)">For the last nine months, my team and I have been asking what "design engineer" actually means, and shifting how we work to match. We fully coded our Storybook component library from the ground up — not just designed it, built it — and started shipping front-end code alongside engineering, closing the communication gap that handoff so often creates. I also fully built an internal tool myself, one that lets my team see the health of our core workflows, set goals against them, and track how shipped work actually moves the needle.</p>
+    <div style="height:160px;border-radius:8px;background:repeating-linear-gradient(135deg,#ede4e6 0 8px,#e4d8dc 8px 16px);display:flex;align-items:flex-end;padding:14px">
+      <span style="font:400 10px/1.5 Archivo;letter-spacing:.1em;text-transform:uppercase;color:rgba(66,59,63,.55)">storybook or<br>internal tool shot</span>
+    </div>
+  </div>
+
+  <div style="padding:32px 24px 0">
+    <div style="background:#efe6e9;border-radius:8px;padding:28px 24px">
+      <div style="font:400 11px Archivo;letter-spacing:.2em;text-transform:uppercase;color:#6a5567;margin-bottom:14px">Keystone</div>
+      <h3 style="margin:0 0 22px;font-size:23px;line-height:1.3;font-weight:200;color:#423b3f">Lorem ipsum dolor sit amet, the one project that only worked because design could build it.</h3>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div>
+          <div style="font:400 10.5px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.55);margin-bottom:8px">The what</div>
+          <p style="margin:0;font-size:14.5px;line-height:1.8;color:rgba(66,59,63,.85)">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div>
+          <div style="font:400 10.5px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.55);margin-bottom:8px">The why</div>
+          <p style="margin:0;font-size:14.5px;line-height:1.8;color:rgba(66,59,63,.85)">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#efe9e2;margin-top:40px;padding:44px 24px 48px">
+    <p style="margin:0 0 30px;font-size:30px;line-height:1.2;font-weight:200;color:#423b3f">If any of this resonated, I'd love to hear from you.</p>
+    <div style="display:flex;flex-direction:column;margin-bottom:26px">
+      <a href="mailto:halievw@gmail.com" style="display:flex;flex-direction:column;gap:6px;padding:15px 0;border-top:1px solid rgba(66,59,63,.3);text-decoration:none" style-hover="border-color:#6a5567">
+        <span style="font:400 10.5px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.55)">Email</span>
+        <span style="font-size:17px;line-height:1.3;font-weight:300;color:#423b3f">halievw@gmail.com</span>
+      </a>
+      <a href="tel:+14142072807" style="display:flex;flex-direction:column;gap:6px;padding:15px 0;border-top:1px solid rgba(66,59,63,.3);border-bottom:1px solid rgba(66,59,63,.3);text-decoration:none" style-hover="border-color:#6a5567">
+        <span style="font:400 10.5px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.55)">Phone</span>
+        <span style="font-size:17px;line-height:1.3;font-weight:300;color:#423b3f">(414) 207-2807</span>
+      </a>
+    </div>
+    <a href="#1b" style="display:flex;align-items:center;justify-content:space-between;min-height:48px;padding:15px 22px;border-radius:8px;background:#6a5567;color:#f6f2ee;text-decoration:none;font-weight:400;font-size:13px;letter-spacing:.08em;text-transform:uppercase" style-hover="background:#423b3f">Download resume <span style="font-size:15px">↓</span></a>
+  </div>
+</div>
+</div>
+
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Journal post — Crossing the Chasm</div>
+<div class="dv-card" data-screen-label="M · Journal">
+
+  <div style="padding:24px 24px 0">
+    <a href="#1a" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font:400 11.5px Archivo;letter-spacing:.14em;text-transform:uppercase;color:rgba(66,59,63,.6);text-decoration:none" style-hover="color:#6a5567">← Back to writing</a>
+  </div>
+
+  <div style="padding:16px 24px 0">
+    <div style="font:400 11px Archivo;letter-spacing:.2em;text-transform:uppercase;color:#6a5567;margin-bottom:18px">Writing</div>
+    <h1 style="margin:0 0 20px;font-size:40px;line-height:1.08;letter-spacing:-.004em;font-weight:200;color:#423b3f">Crossing the Chasm</h1>
+    <p style="margin:0;font-size:18px;line-height:1.6;font-weight:300;color:#423b3f">A design leader's attempt at learning to build, eight months in.</p>
+    <div style="height:1px;background:rgba(66,59,63,.18);margin:28px 0 0"></div>
+  </div>
+
+  <div style="padding:28px 24px 0;display:flex;flex-direction:column;gap:22px">
+    <p style="margin:0;font-size:16px;line-height:1.85;color:rgba(66,59,63,.9)">Eight months ago I sat on a call with our DevOps team while someone said, gently, "okay, now open your terminal." I had never opened a terminal. I had spent five years telling engineers what to build and I could not open a terminal.</p>
+    <p style="margin:0;font-size:16px;line-height:1.85;color:rgba(66,59,63,.9)">This is a post about what happened next, and about the specific and slightly humiliating experience of being extremely senior at one thing and a complete beginner at the thing next to it.</p>
+  </div>
+
+  <div style="padding:32px 24px 0">
+    <div style="background:#efe6e9;border-radius:8px;padding:28px 24px">
+      <div style="font:400 11px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.55);margin-bottom:24px">The library, eight months in</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px 20px">
+        <div><div style="font-size:36px;line-height:1;font-weight:200;color:#6a5567">61</div><div style="font:400 10.5px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:8px">production-ready components</div></div>
+        <div><div style="font-size:36px;line-height:1;font-weight:200;color:#6a5567">488</div><div style="font:400 10.5px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:8px">CSS custom properties</div></div>
+        <div><div style="font-size:36px;line-height:1;font-weight:200;color:#6a5567">722</div><div style="font:400 10.5px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:8px">Storybook stories</div></div>
+        <div><div style="font-size:36px;line-height:1;font-weight:200;color:#6a5567">88</div><div style="font:400 10.5px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:8px">unit test files</div></div>
+        <div><div style="font-size:36px;line-height:1;font-weight:200;color:#6a5567">193</div><div style="font:400 10.5px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:8px">releases</div></div>
+        <div><div style="font-size:36px;line-height:1;font-weight:200;color:#6a5567">7.5.1</div><div style="font:400 10.5px/1.5 Archivo;letter-spacing:.12em;text-transform:uppercase;color:rgba(66,59,63,.6);margin-top:8px">current version</div></div>
+      </div>
+      <div style="height:170px;border-radius:8px;margin-top:26px;background:repeating-linear-gradient(135deg,#e7dade 0 8px,#ded0d5 8px 16px);display:flex;align-items:flex-end;padding:14px">
+        <span style="font:400 10px/1.5 Archivo;letter-spacing:.1em;text-transform:uppercase;color:rgba(66,59,63,.55)">storybook screenshot</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:32px 24px 0;display:flex;flex-direction:column;gap:22px">
+    <p style="margin:0;font-size:16px;line-height:1.85;color:rgba(66,59,63,.9)">I'll be honest — I understood about 91% of what we built. The remaining 9% is real and I am not going to pretend otherwise.</p>
+  </div>
+
+  <div style="padding:32px 24px 0">
+    <p style="margin:0;padding:26px 24px;background:#efe9e2;border-radius:8px;font-size:21px;line-height:1.5;font-weight:200;color:#423b3f">The gap was never the code. It was the belief that the code was for someone else.</p>
+  </div>
+
+  <div style="padding:32px 24px 0">
+    <p style="margin:0;font:400 11px/1.7 Archivo;letter-spacing:.1em;text-transform:uppercase;color:rgba(66,59,63,.45)">mockup note — full post copy continues; this screen shows the opening, the stat panel and a pull statement at mobile scale</p>
+  </div>
+
+  <div style="background:#efe9e2;margin-top:40px;padding:44px 24px 48px">
+    <p style="margin:0 0 30px;font-size:30px;line-height:1.2;font-weight:200;color:#423b3f">If any of this resonated, I'd love to hear from you.</p>
+    <div style="display:flex;flex-direction:column;margin-bottom:26px">
+      <a href="mailto:halievw@gmail.com" style="display:flex;flex-direction:column;gap:6px;padding:15px 0;border-top:1px solid rgba(66,59,63,.3);text-decoration:none" style-hover="border-color:#6a5567">
+        <span style="font:400 10.5px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.55)">Email</span>
+        <span style="font-size:17px;line-height:1.3;font-weight:300;color:#423b3f">halievw@gmail.com</span>
+      </a>
+      <a href="tel:+14142072807" style="display:flex;flex-direction:column;gap:6px;padding:15px 0;border-top:1px solid rgba(66,59,63,.3);border-bottom:1px solid rgba(66,59,63,.3);text-decoration:none" style-hover="border-color:#6a5567">
+        <span style="font:400 10.5px Archivo;letter-spacing:.2em;text-transform:uppercase;color:rgba(66,59,63,.55)">Phone</span>
+        <span style="font-size:17px;line-height:1.3;font-weight:300;color:#423b3f">(414) 207-2807</span>
+      </a>
+    </div>
+    <a href="#1c" style="display:flex;align-items:center;justify-content:space-between;min-height:48px;padding:15px 22px;border-radius:8px;background:#6a5567;color:#f6f2ee;text-decoration:none;font-weight:400;font-size:13px;letter-spacing:.08em;text-transform:uppercase" style-hover="background:#423b3f">Download resume <span style="font-size:15px">↓</span></a>
+  </div>
+</div>
+</div>
+
+</div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:1200}}">
+const TITLES = ["Director of Product Design", "Design Engineer"];
+
+const QUOTES = [
+  ["Halie is one of the most talented UX Designers I have ever worked with. She has always taken the designs of our application to the next level. Our apps would not be the same without her.", "Francisco Nolla", "CTO, Optimize Health"],
+  ["Halie is a talented and dedicated UX designer who excels at creating design systems that are consistent, re-usable, and adaptable. She is a master of Figma, using it to craft beautiful and functional designs that solve problems and meet user needs.", "Allison Card", "Senior Director of Product, Optimize Health"],
+  ["Creativity is the phrase that comes to mind when I think about Halie. I was impressed with Halie's ability to continually dive into unfamiliar products and deliver comprehensive solutions. Halie would be a true asset for any positions requiring graphic design, product design, user research or creating prototypes.", "Robert Hale", "Head of Product, CareCloud"],
+  ["Halie has an amazing ability to grasp what the users need, and asks the right questions to really understand the problem for which she is creating a solution. She makes the collaboration process very rewarding!", "Beth Turner", "Project Manager, CareCloud"]
+];
+
+const QA = [
+  ["What's it like to work with you day-to-day?", "I want to be a breath of fresh air. Steady, dependable, easy to think alongside. I'd rather talk through a hard problem than argue one out — arguing is counterproductive, finding a solution together is the point."],
+  ["What's something you believe about design that not everyone agrees with?", "Output matters more than ego. It isn't enough for me to feel good about the work — others need to feel it too. That's part of why I thrive in constraints rather than open space: a blank canvas is intimidating, but a clear problem with real limits sparks clarity. So pushback usually just becomes fuel for the next idea, not a wall."],
+  ["What's your approach to working with engineers?", "Engineering was never a group I handed designs off to and moved on from. I've always wanted validation throughout the process — is this executable, does this actually make sense — not just a sign-off at the end. And when the answer was no, it was never a frustrating \"back to the drawing board\" moment. It meant I had a gap in my own understanding, and now I knew a little more than I did before."],
+  ["What scares you, professionally?", "Learning something new — every time. But the last eight years have been one leap after another, and I've come to trust that the scary jumps are where the real growth happens."],
+  ["What do you do when you're not designing?", "Write novels, run a small handmade home decor business with my family, help run an annual art show, and raise three kids under five. Creativity isn't really my job — it's just how I move through the world."]
+];
+
+const CH = [
+  ["Pathways", "When I joined, Medbridge was best known as a best-in-class education platform with a single, much-loved product used by clinicians. There was an emerging idea to explore lower-acuity, self-managed care, but it wasn't yet a committed direction.", "Out of curiosity, I spent a weekend exploring what that future might look like. That exploration became the foundation for a six-month pursuit of a multi-million dollar RFP with one of the largest hospital systems in the country.", "We won.", "uploads/assets-1787975191831-qtgz.png", "Pre-brand Pathways exploration", "Pre-brand exploration."],
+  ["Educate", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "", "uploads/assets-1787975326295-yi88.png", "Completion history view", "Completion history — placeholder copy"],
+  ["Growth", "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.", "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.", "", "uploads/assets-1787975255512-1u83.png", "Cart with items", "Items in cart — placeholder copy"],
+  ["GTM initiatives", "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.", "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.", "", "uploads/assets-1787975331540-puu4.png", "Collection view", "Collection view — placeholder copy"]
+];
+
+class Component extends DCLogic {
+  state = { t: 0, glitch: false, more: false, q: 0, tab: 0, ch: 0 };
+
+  componentDidMount() {
+    this._iv = setInterval(() => {
+      this.setState({ glitch: true });
+      this._a = setTimeout(() => this.setState(s => ({ t: 1 - s.t })), 300);
+      this._b = setTimeout(() => this.setState({ glitch: false }), 820);
+    }, 5000);
+  }
+  componentWillUnmount() { clearInterval(this._iv); clearTimeout(this._a); clearTimeout(this._b); }
+
+  pill(on, size) {
+    return "flex:none;white-space:nowrap;min-height:44px;padding:12px " + size + "px;border-radius:8px;cursor:pointer;font-family:Archivo;font-weight:400;font-size:13px;letter-spacing:.04em;border:1px solid " +
+      (on ? "#6a5567" : "rgba(66,59,63,.2)") + ";background:" + (on ? "#6a5567" : "transparent") +
+      ";color:" + (on ? "#f6f2ee" : "#423b3f") + ";transition:all .2s ease";
+  }
+
+  keepVisible(e) {
+    const btn = e && e.currentTarget;
+    const box = btn && btn.parentElement;
+    if (!box) return;
+    const pad = 16;
+    const left = btn.offsetLeft - box.offsetLeft;
+    const right = left + btn.offsetWidth;
+    if (right > box.scrollLeft + box.clientWidth - pad) {
+      box.scrollLeft = right - box.clientWidth + pad;
+    } else if (left < box.scrollLeft + pad) {
+      box.scrollLeft = Math.max(0, left - pad);
+    }
+  }
+
+  scrollWriting(dir) {
+    const box = document.getElementById("m-writing-hs");
+    if (!box) return;
+    const step = box.clientWidth * 0.86;
+    const max = box.scrollWidth - box.clientWidth;
+    box.scrollLeft = Math.min(max, Math.max(0, box.scrollLeft + dir * step));
+  }
+
+  dot(i) {
+    return "width:20px;height:3px;border:0;border-radius:2px;cursor:pointer;padding:0;transition:background .2s ease;background:" +
+      (this.state.q === i ? "#6a5567" : "rgba(66,59,63,.25)");
+  }
+
+  renderVals() {
+    const s = this.state;
+    const g = s.glitch;
+    const mask = "linear-gradient(180deg,transparent 0px,#000 200px,#000 100%)";
+    const common = "overflow:hidden;-webkit-mask-image:" + mask + ";mask-image:" + mask +
+      ";-webkit-mask-size:100% 900px;mask-size:100% 900px;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;";
+    const ease = "cubic-bezier(.45,0,.55,1)";
+
+    const v = {
+      heroTitle: TITLES[s.t],
+      gBase: "position:relative;z-index:2;display:inline-block" +
+        (g ? ";animation:none" : ""),
+      gGhostA: "position:absolute;left:0;top:0;z-index:1;color:#c4a7b6;pointer-events:none;mix-blend-mode:multiply;opacity:" + (g ? ".95;transform:translate(-3px,-1px)" : "0"),
+      gGhostB: "position:absolute;left:0;top:0;z-index:1;color:#93a49c;pointer-events:none;mix-blend-mode:multiply;opacity:" + (g ? ".9;transform:translate(3px,1px)" : "0"),
+      moreStyleM: s.more
+        ? common + "max-height:640px;-webkit-mask-position:0 -200px;mask-position:0 -200px;transition:max-height .6s " + ease + ",-webkit-mask-position .7s " + ease + ",mask-position .7s " + ease
+        : common + "max-height:0;-webkit-mask-position:0 -900px;mask-position:0 -900px;transition:max-height .45s " + ease + ",-webkit-mask-position .45s " + ease + ",mask-position .45s " + ease,
+      moreLabelM: s.more ? "Collapse" : "Read the rest",
+      toggleMoreM: () => this.setState(x => ({ more: !x.more })),
+      qText: QUOTES[s.q][0], qName: QUOTES[s.q][1], qRole: QUOTES[s.q][2],
+      prevQ: () => this.setState(x => ({ q: (x.q + QUOTES.length - 1) % QUOTES.length })),
+      nextQ: () => this.setState(x => ({ q: (x.q + 1) % QUOTES.length })),
+      prevW: () => this.scrollWriting(-1),
+      nextW: () => this.scrollWriting(1),
+      tabQuestion: QA[s.tab][0], tabAnswer: QA[s.tab][1],
+      chTitle: CH[s.ch][0], chP1: CH[s.ch][1], chP2: CH[s.ch][2], chPunch: CH[s.ch][3],
+      chImg: CH[s.ch][4], chAlt: CH[s.ch][5], chCaption: CH[s.ch][6]
+    };
+    for (let i = 0; i < 4; i++) {
+      const n = i;
+      v["goQ" + n] = () => this.setState({ q: n });
+      v["dot" + n] = this.dot(n);
+      v["goCh" + n] = (e) => { this.setState({ ch: n }); this.keepVisible(e); };
+      v["chTab" + n] = this.pill(s.ch === n, 16);
+    }
+    for (let i = 0; i < 5; i++) {
+      const n = i;
+      v["tabC" + n] = (e) => { this.setState({ tab: n }); this.keepVisible(e); };
+      v["tabStyle" + n] = this.pill(s.tab === n, 18);
+    }
+    return v;
+  }
+}
+</script>
+</body>
+</html>
