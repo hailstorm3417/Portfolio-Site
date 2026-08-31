@@ -74,7 +74,8 @@ img { max-width: 100%; display: block; }
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* Two rows now that the phone number is gone. */
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   margin-bottom: 44px;
 }

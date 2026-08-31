@@ -1,4 +1,4 @@
-const TITLES = ['Director of Product Design', 'Design Engineer'];
+const TITLES = ['Director of Product Design', 'Design Engineer', 'Product Designer'];
 
 const WORK_PREVIEWS = [
   'uploads/assets-1787974982619-ut64.webp',
@@ -30,7 +30,7 @@ let titleIndex = 0;
 setInterval(() => {
   glitch.classList.add('on');
   setTimeout(() => {
-    titleIndex = 1 - titleIndex;
+    titleIndex = (titleIndex + 1) % TITLES.length;
     glitchSpans.forEach(el => { el.textContent = TITLES[titleIndex]; });
   }, 300);
   setTimeout(() => glitch.classList.remove('on'), 820);
@@ -114,12 +114,15 @@ function showWorkPreview(i) {
   workPreview.style.backgroundImage = `url("${WORK_PREVIEWS[i]}")`;
 }
 
-document.querySelectorAll('.work-row').forEach(row => {
+const workRows = [...document.querySelectorAll('.work-row')];
+workRows.forEach(row => {
   const show = () => showWorkPreview(Number(row.dataset.work));
   row.addEventListener('mouseenter', show);
   row.addEventListener('focus', show);
 });
-showWorkPreview(0);
+// Default to whichever row sits at the top, so the panel always agrees with
+// the list rather than assuming a fixed order.
+showWorkPreview(Number(workRows[0].dataset.work));
 
 // Everything below shares one breakpoint with the stylesheet: desktop shows
 // two quotes side by side, mobile one at a time, so the page count and the
@@ -212,17 +215,3 @@ function selectQa(index, scroll = false) {
 qaTabs.forEach(tab => tab.addEventListener('click', () => selectQa(Number(tab.dataset.tab), true)));
 selectQa(0);
 
-// Writing carousel — mobile only; on desktop the cards sit in a static grid
-// and the arrows are hidden. Assigning scrollLeft directly rather than using
-// scroll-behavior:smooth, which the design notes cancelled programmatic
-// scrolling in the prototype's environment.
-const writingScroller = document.getElementById('writing-scroller');
-
-function scrollWriting(direction) {
-  const step = writingScroller.clientWidth * 0.86;
-  const max = writingScroller.scrollWidth - writingScroller.clientWidth;
-  writingScroller.scrollLeft = Math.max(0, Math.min(max, writingScroller.scrollLeft + direction * step));
-}
-
-document.getElementById('writing-prev').addEventListener('click', () => scrollWriting(-1));
-document.getElementById('writing-next').addEventListener('click', () => scrollWriting(1));

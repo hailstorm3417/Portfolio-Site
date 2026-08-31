@@ -96,7 +96,6 @@
 
 /* ── Sections ──────────────────────────────────────────────────────────── */
 .sect { padding: 80px var(--gutter) 88px; }
-.sect--writing { padding: 80px var(--gutter) 48px; }
 .sect--qa { padding: 24px var(--gutter) 88px; }
 
 .panel-plum { background: var(--plum); padding: 84px var(--gutter) 88px; }
@@ -147,11 +146,14 @@
 .work-preview-wrap { margin-top: 28px; display: flex; }
 #work-preview { width: 100%; flex: 1 1 auto; border-radius: var(--radius); background: #ede6e0 center/cover no-repeat; }
 
-/* ── Writing ───────────────────────────────────────────────────────────── */
-.writing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+/* ── Writing cards — they sit at the top of the contact block ──────────── */
+.writing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 60px; }
 .writing-card {
   display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
-  padding: 34px 32px 30px; background: var(--oat-banner);
+  padding: 34px 32px 30px;
+  /* Oat, not the banner colour — these now sit on the banner and would
+     otherwise disappear into it. */
+  background: var(--oat);
   border: 1px solid transparent; border-radius: var(--radius); text-decoration: none;
 }
 .writing-card:hover { border-color: var(--plum); }
@@ -159,7 +161,6 @@
 .writing-card .title { font-size: 28px; line-height: 1.25; font-weight: 300; color: var(--charcoal); }
 .writing-card .summary { font-size: 15px; line-height: 1.7; color: rgba(66, 59, 63, .72); }
 .writing-card .more { margin-top: 8px; font: 400 11.5px Archivo, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--plum); }
-.carousel-nav { display: none; gap: 8px; flex: none; }
 
 /* ── Working with me ───────────────────────────────────────────────────── */
 .quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: stretch; }
@@ -230,7 +231,6 @@
   .intro-cols p { font-size: 15.5px; }
 
   .sect { padding: 48px var(--gutter) 52px; }
-  .sect--writing { padding: 0 var(--gutter) 40px; }
   .sect--qa { padding: 24px var(--gutter) 52px; }
 
   .panel-plum { padding: 48px var(--gutter) 52px; }
@@ -247,29 +247,24 @@
      shared hover panel — there is no hover on a phone. */
   .work-grid { display: block; }
   .work-preview-wrap { display: none; }
-  /* Reverse-chronological here, without duplicating the markup. */
-  #work-list { display: flex; flex-direction: column-reverse; }
   .work-row {
     display: block; padding: 20px 0;
     border-top: 1px solid rgba(66, 59, 63, .14); border-bottom: 0;
   }
-  /* Column-reverse puts the DOM-first row last on screen, so that is the
-     one that closes the list. */
-  .work-row:first-child { border-bottom: 1px solid rgba(66, 59, 63, .14); }
+  .work-row:last-child { border-bottom: 1px solid rgba(66, 59, 63, .14); }
   .work-row:hover, .work-row:focus-visible { padding-left: 0; border-radius: 0; }
   .work-row .meta { display: block; font-size: 10.5px; letter-spacing: .14em; margin-bottom: 8px; }
   .work-row .name { display: block; font-size: 24px; line-height: 1.2; margin-bottom: 14px; }
   .work-thumb { display: block; width: 100%; height: 150px; object-fit: cover; border-radius: var(--radius); }
   .work-thumb--contain { object-fit: contain; background: var(--oat-banner); }
 
-  /* Writing becomes a swipeable carousel with arrow controls. */
-  .writing-grid { display: flex; gap: 14px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
-  .writing-grid::-webkit-scrollbar { display: none; }
-  .writing-card { flex: none; width: 84%; padding: 24px 22px; gap: 10px; }
+  /* Stacked in the footer; no carousel now that the section header and its
+     arrow pair are gone. */
+  .writing-grid { grid-template-columns: 1fr; gap: 14px; margin-bottom: 40px; }
+  .writing-card { padding: 24px 22px; gap: 10px; }
   .writing-card .title { font-size: 22px; }
   .writing-card .summary { font-size: 14px; }
   .writing-card .more { font-size: 11px; margin-top: 4px; }
-  .carousel-nav { display: flex; }
 
   /* One quote at a time, four dots. */
   .quote-grid { grid-template-columns: 1fr; gap: 0; }
@@ -342,28 +337,27 @@
     </div>
     <hr class="rule" style="background:rgba(66,59,63,.22);margin:30px 0 0">
     <div class="work-grid">
-      <!-- Chronological in source, as the desktop design runs it. Mobile
-           reverses the row order in CSS, per the mobile spec. -->
+      <!-- Reverse chronological — newest first — at every width. -->
       <div id="work-list">
-        <a href="carecloud.html" class="work-row" data-work="0">
-          <span class="meta">UX Designer · 2018–2020</span>
-          <span class="name">CareCloud</span>
-          <img class="work-thumb" src="uploads/assets-1787974982619-ut64.webp" alt="CareCloud analytics dashboard on a tablet">
-        </a>
-        <a href="rbi.html" class="work-row" data-work="1">
-          <span class="meta">Brand Lead · 2020–2021</span>
-          <span class="name">Restaurant Brands Int'l</span>
-          <img class="work-thumb" src="uploads/assets-1787974993322-50lf.avif" alt="RBI brand app screens">
+        <a href="medbridge.html" class="work-row" data-work="3">
+          <span class="meta">Director · 2023–Present</span>
+          <span class="name">Medbridge</span>
+          <img class="work-thumb work-thumb--contain" src="uploads/assets-1787975245904-t1i7.png" alt="Medbridge Pathways mobile screens">
         </a>
         <a href="optimize-health.html" class="work-row" data-work="2">
           <span class="meta">Product Designer · 2021–2023</span>
           <span class="name">Optimize Health</span>
           <img class="work-thumb" src="uploads/assets-1787975017498-jzsn.webp" alt="Optimize Health patient list on a laptop">
         </a>
-        <a href="medbridge.html" class="work-row" data-work="3">
-          <span class="meta">Director · 2023–Present</span>
-          <span class="name">Medbridge</span>
-          <img class="work-thumb work-thumb--contain" src="uploads/assets-1787975245904-t1i7.png" alt="Medbridge Pathways mobile screens">
+        <a href="rbi.html" class="work-row" data-work="1">
+          <span class="meta">Brand Lead · 2020–2021</span>
+          <span class="name">Restaurant Brands Int'l</span>
+          <img class="work-thumb" src="uploads/assets-1787974993322-50lf.avif" alt="RBI brand app screens">
+        </a>
+        <a href="carecloud.html" class="work-row" data-work="0">
+          <span class="meta">UX Designer · 2018–2020</span>
+          <span class="name">CareCloud</span>
+          <img class="work-thumb" src="uploads/assets-1787974982619-ut64.webp" alt="CareCloud analytics dashboard on a tablet">
         </a>
       </div>
       <div class="work-preview-wrap">
@@ -372,29 +366,6 @@
     </div>
   </section>
 
-  <section class="sect--writing">
-    <div class="sect-head sect-head--mb36">
-      <h2 class="h2">Writing</h2>
-      <div class="carousel-nav">
-        <button class="arrow-btn" id="writing-prev" aria-label="Previous post">&larr;</button>
-        <button class="arrow-btn" id="writing-next" aria-label="Next post">&rarr;</button>
-      </div>
-    </div>
-    <div class="writing-grid" id="writing-scroller">
-      <a href="crossing-the-chasm.html" class="writing-card">
-        <span class="kicker">Learning to build</span>
-        <span class="title">Crossing the Chasm</span>
-        <span class="summary">Sitting on a call with DevOps, hearing "open your terminal," and building a coded component library anyway.</span>
-        <span class="more">Read &rarr;</span>
-      </a>
-      <a href="shifting-role.html" class="writing-card">
-        <span class="kicker">On the craft</span>
-        <span class="title">The Shifting Role of a Product Designer</span>
-        <span class="summary">If AI isn't replacing designers, what is it doing to the role? Four pillars and the workflow that follows.</span>
-        <span class="more">Read &rarr;</span>
-      </a>
-    </div>
-  </section>
 
   <section class="sect--qa">
     <div class="sect-head sect-head--mb36">
@@ -442,15 +413,26 @@
   </section>
 
   <section class="contact">
+    <div class="writing-grid">
+      <a href="crossing-the-chasm.html" class="writing-card">
+        <span class="kicker">Learning to build</span>
+        <span class="title">Crossing the Chasm</span>
+        <span class="summary">Sitting on a call with DevOps, hearing "open your terminal," and building a coded component library anyway.</span>
+        <span class="more">Read &rarr;</span>
+      </a>
+      <a href="shifting-role.html" class="writing-card">
+        <span class="kicker">On the craft</span>
+        <span class="title">The Shifting Role of a Product Designer</span>
+        <span class="summary">If AI isn't replacing designers, what is it doing to the role? Four pillars and the workflow that follows.</span>
+        <span class="more">Read &rarr;</span>
+      </a>
+    </div>
+
     <h2>If any of this resonated, I'd love to hear from you.</h2>
     <div class="contact-grid">
       <a href="mailto:halievw@gmail.com" class="contact-item">
         <span class="label">Email</span>
         <span class="value">halievw@gmail.com</span>
-      </a>
-      <a href="tel:+14142072807" class="contact-item">
-        <span class="label">Phone</span>
-        <span class="value">(414) 207-2807</span>
       </a>
       <a href="#" class="contact-item">
         <span class="label">LinkedIn</span>
@@ -459,7 +441,6 @@
     </div>
     <div class="contact-actions">
       <a href="#" class="btn btn-primary">Download resume <span style="font-size:15px">↓</span></a>
-      <a href="#" class="btn btn-secondary">View in browser</a>
       <span class="contact-note">PDF · updated when you send it to me</span>
     </div>
   </section>
