@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Medbridge — Halie</title>
-<link rel="stylesheet" href="styles.css?v=202609011415">
+<link rel="stylesheet" href="styles.css?v=202609011519">
 <style>
 .pill {
   padding: 12px 20px; border-radius: 8px; cursor: pointer;
@@ -86,6 +86,20 @@
   border: 0;
   border-radius: 4px;
 }
+/* A dash rather than a disc — the page has no other bullets, and a plum
+   hairline sits in the palette where a filled dot would not. */
+.bullets {
+  margin: 26px 0 0; padding: 0; list-style: none; max-width: 44em;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.bullets li { position: relative; padding-left: 24px; font-size: 16.5px; line-height: 1.85; color: rgba(66,59,63,.88); }
+.bullets li::before { content: ''; position: absolute; left: 0; top: .88em; width: 9px; height: 1px; background: var(--plum); }
+
+/* The framework diagram is near-square and carries small type, so it gets a
+   generous but capped width and stays clickable into the lightbox. */
+.framework-figure { margin: 40px 0 0; }
+.framework-figure img, .framework-figure .imgph { width: 100%; max-width: 620px; height: auto; border-radius: var(--radius); }
+
 .stat-callout { background: var(--rose); border-radius: var(--radius); padding: 40px 44px; display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; }
 /* The tabs pin under the back bar and stay put for as long as the workstream
    section is on screen — their containing block is that section's wrapper, so
@@ -137,6 +151,9 @@
   .caption { font-size: 11px; }
   .nav-btn { width: 44px; height: 44px; }
 
+  .bullets { margin-top: 20px; gap: 12px; }
+  .bullets li { font-size: 15.5px; line-height: 1.8; padding-left: 20px; }
+  .framework-figure { margin-top: 26px; }
   .ws-gallery { margin-top: 20px; }
   .ws-gallery .carousel-slide { padding: 12px; }
   .ws-gallery .carousel-slide img { height: 260px; }
@@ -198,10 +215,20 @@
   <div style="padding:72px var(--gutter) 0">
     <div class="chapter-label">Chapter three</div>
     <h2 style="margin:0 0 28px;font-size:42px;line-height:1.2;letter-spacing:-.002em;font-weight:200;color:#423b3f">Rethinking what the role looks like</h2>
-    <div class="copy-aside">
-      <p class="body-copy">For the last nine months, my team and I have been asking what "design engineer" actually means, and shifting how we work to match. We fully coded our Storybook component library from the ground up — not just designed it, built it — and started shipping front-end code alongside engineering, closing the communication gap that handoff so often creates. I also fully built an internal tool myself, one that lets my team see the health of our core workflows, set goals against them, and track how shipped work actually moves the needle.</p>
-      <div class="imgph" style="height:200px"><span>storybook or<br>internal tool shot</span></div>
-    </div>
+    <p class="body-copy" style="max-width:44em">Everyone in our industry is debating about whether AI will replace designers or not. I got tired of the debate and started asking a better question: if it’s not replacing us, what is it actually doing to the role? A year of digging into that turned into a framework for how design needs to operate now — less about craft alone, more about judgement, systems thinking, and owning outcomes.</p>
+
+    <ul class="bullets">
+      <li>Defined four pillars (Systems Thinking, Judgement, Influence, Champion for the User) and six core skills that translate them into daily practice</li>
+      <li>Redesigned the team’s workflow from a linear handoff model into a non-linear Understand → Explore → Build → Measure loop</li>
+      <li>Reframed design’s relationship to Product and Engineering — from service function to strategic partner, with concrete implications for both teams</li>
+      <li>Rolled the framework into an all-hands presentation and a career ladder redesign, moving the org from theory to practice</li>
+    </ul>
+
+    <p class="body-copy" style="max-width:44em;margin-top:26px">Read the full breakdown below</p>
+
+    <figure class="framework-figure">
+      <div class="imgph" style="aspect-ratio:1/1"><span>design engineer venn diagram</span></div>
+    </figure>
   </div>
 
   <section class="contact">
@@ -232,14 +259,14 @@
       </a>
     </div>
     <div class="contact-actions">
-      <a href="HalieStrike_Resume.pdf" class="btn btn-primary" download>Download resume <span style="font-size:15px">&darr;</span></a>
+      <a href="HalieStrike_Resume.pdf" class="btn btn-primary" download>Download resume</a>
     </div>
   </section>
 </article>
 
 </main>
-<script src="carousel.js?v=202609011415"></script>
-<script src="case-studies.js?v=202609011415"></script>
-<script src="lightbox.js?v=202609011415"></script>
+<script src="carousel.js?v=202609011519"></script>
+<script src="case-studies.js?v=202609011519"></script>
+<script src="lightbox.js?v=202609011519"></script>
 </body>
 </html>
