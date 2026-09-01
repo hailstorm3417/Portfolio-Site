@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Optimize Health — Halie</title>
-<link rel="stylesheet" href="styles.css?v=202609010411">
+<link rel="stylesheet" href="styles.css?v=202609010421">
 <style>
 .pill {
   padding: 12px 20px; border-radius: 8px; cursor: pointer;
@@ -96,25 +96,34 @@
 
   <div style="padding:72px var(--gutter) 0">
     <hr class="rule--strong" style="margin-bottom:44px">
-    <h2 class="section-h2" style="margin-bottom:12px">Designing every state, not just the happy one</h2>
-    <p style="margin:0 0 36px;max-width:34em;font-size:16.5px;line-height:1.85;color:rgba(66,59,63,.75)">Patient search had to hold up when a name returned nothing, returned too much, or returned one exact match mid-call. Four states, one pattern.</p>
-    <div class="pair-grid">
-      <figure style="margin:0">
-        <img src="uploads/assets-1787975017293-uqed.png" alt="Search overlay, empty state" style="width:100%;height:230px;object-fit:cover;object-position:top;border-radius:8px;border:1px solid rgba(66,59,63,.12)">
-        <figcaption style="font:400 11.5px Archivo;letter-spacing:.1em;text-transform:uppercase;color:rgba(66,59,63,.55);margin-top:12px">Search appears</figcaption>
-      </figure>
-      <figure style="margin:0">
-        <img src="uploads/assets-1787975017316-jwc1.png" alt="Search results, single match" style="width:100%;height:230px;object-fit:cover;object-position:top;border-radius:8px;border:1px solid rgba(66,59,63,.12)">
-        <figcaption style="font:400 11.5px Archivo;letter-spacing:.1em;text-transform:uppercase;color:rgba(66,59,63,.55);margin-top:12px">Results only</figcaption>
-      </figure>
-      <figure style="margin:0">
-        <img src="uploads/assets-1787975017305-9i1c.png" alt="Search results, too many matches" style="width:100%;height:230px;object-fit:cover;object-position:top;border-radius:8px;border:1px solid rgba(66,59,63,.12)">
-        <figcaption style="font:400 11.5px Archivo;letter-spacing:.1em;text-transform:uppercase;color:rgba(66,59,63,.55);margin-top:12px">Too many results</figcaption>
-      </figure>
-      <figure style="margin:0">
-        <img src="uploads/assets-1787975017332-ygls.png" alt="Search results, no matches" style="width:100%;height:230px;object-fit:cover;object-position:top;border-radius:8px;border:1px solid rgba(66,59,63,.12)">
-        <figcaption style="font:400 11.5px Archivo;letter-spacing:.1em;text-transform:uppercase;color:rgba(66,59,63,.55);margin-top:12px">No results</figcaption>
-      </figure>
+    <!-- Captions stay in the markup but out of sight: the lightbox reads them
+         when a shot is opened, and screen readers still get them. -->
+    <div data-carousel>
+      <div class="carousel-track">
+        <figure class="carousel-slide">
+          <img src="uploads/assets-1787975017293-uqed.png" alt="Search overlay, empty state">
+          <figcaption class="sr-only">Search appears</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="uploads/assets-1787975017316-jwc1.png" alt="Search results, single match" loading="lazy">
+          <figcaption class="sr-only">Results only</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="uploads/assets-1787975017305-9i1c.png" alt="Search results, too many matches" loading="lazy">
+          <figcaption class="sr-only">Too many results</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="uploads/assets-1787975017332-ygls.png" alt="Search results, no matches" loading="lazy">
+          <figcaption class="sr-only">No results</figcaption>
+        </figure>
+      </div>
+      <div class="carousel-controls">
+        <div class="carousel-dots" aria-label="Patient search states"></div>
+        <div class="carousel-nav">
+          <button class="nav-btn" type="button" data-carousel-prev aria-label="Previous image">&larr;</button>
+          <button class="nav-btn" type="button" data-carousel-next aria-label="Next image">&rarr;</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -135,6 +144,7 @@
 </article>
 
 </main>
-<script src="lightbox.js?v=202609010411"></script>
+<script src="carousel.js?v=202609010421"></script>
+<script src="lightbox.js?v=202609010421"></script>
 </body>
 </html>
