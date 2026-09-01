@@ -135,9 +135,17 @@
 .work-row {
   display: flex; flex-direction: column; align-items: flex-start; gap: 9px;
   padding: 26px 0; border-bottom: 1px solid rgba(66, 59, 63, .14); text-decoration: none;
-  transition: padding-left .18s ease, background .18s ease;
+  transition: background .18s ease;
 }
-.work-row:hover, .work-row:focus-visible { padding-left: 14px; background: var(--rose); border-radius: 8px; }
+/* The nudge moves the text, not the box. padding-left relayouts the row,
+   which can rewrap a name, change the list height, resize the stretched
+   preview panel and re-crop its cover background — so the image appears to
+   jump when only the text was meant to slide. transform is painted, not
+   laid out, so nothing downstream can move. */
+.work-row:hover, .work-row:focus-visible { background: var(--rose); border-radius: 8px; }
+.work-row .meta, .work-row .name { transition: transform .18s ease; }
+.work-row:hover .meta, .work-row:hover .name,
+.work-row:focus-visible .meta, .work-row:focus-visible .name { transform: translateX(14px); }
 .work-row .name { font-size: 30px; line-height: 1.25; letter-spacing: .004em; font-weight: 300; color: var(--charcoal); }
 .work-row .meta {
   font: 300 11px/1 Archivo, sans-serif; letter-spacing: .12em; text-transform: uppercase;
@@ -263,7 +271,9 @@
     border-top: 1px solid rgba(66, 59, 63, .14); border-bottom: 0;
   }
   .work-row:last-child { border-bottom: 1px solid rgba(66, 59, 63, .14); }
-  .work-row:hover, .work-row:focus-visible { padding-left: 0; border-radius: 0; }
+  .work-row:hover, .work-row:focus-visible { border-radius: 0; }
+  .work-row:hover .meta, .work-row:hover .name,
+  .work-row:focus-visible .meta, .work-row:focus-visible .name { transform: none; }
   .work-row .meta { display: block; font-size: 10.5px; letter-spacing: .14em; margin-bottom: 8px; }
   .work-row .name { display: block; font-size: 24px; line-height: 1.2; margin-bottom: 14px; }
   .work-thumb { display: block; width: 100%; height: 150px; object-fit: cover; border-radius: var(--radius); }
