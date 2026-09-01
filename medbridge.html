@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Medbridge — Halie</title>
-<link rel="stylesheet" href="styles.css?v=202609011519">
+<link rel="stylesheet" href="styles.css?v=202609011532">
 <style>
 .pill {
   padding: 12px 20px; border-radius: 8px; cursor: pointer;
@@ -98,7 +98,10 @@
 /* The framework diagram is near-square and carries small type, so it gets a
    generous but capped width and stays clickable into the lightbox. */
 .framework-figure { margin: 40px 0 0; }
-.framework-figure img, .framework-figure .imgph { width: 100%; max-width: 620px; height: auto; border-radius: var(--radius); }
+.framework-figure img { width: 100%; max-width: 620px; height: auto; border-radius: var(--radius); }
+/* Vector, so it stays crisp at any size — no need for the lightbox. Wider
+   than a photo would be, because the labels are small inside it. */
+.framework-figure .venn { display: block; width: 100%; max-width: 720px; height: auto; }
 
 .stat-callout { background: var(--rose); border-radius: var(--radius); padding: 40px 44px; display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; }
 /* The tabs pin under the back bar and stay put for as long as the workstream
@@ -227,7 +230,54 @@
     <p class="body-copy" style="max-width:44em;margin-top:26px">Read the full breakdown below</p>
 
     <figure class="framework-figure">
-      <div class="imgph" style="aspect-ratio:1/1"><span>design engineer venn diagram</span></div>
+      <svg class="venn" viewBox="0 0 955 881" role="img" aria-labelledby="venn-title venn-desc">
+        <title id="venn-title">The product engineer</title>
+        <desc id="venn-desc">Three overlapping circles: product design, engineering, and product management. Their pairs overlap as design engineer, design strategist, and technical product. Where all three meet is the product engineer.</desc>
+
+        <defs>
+          <clipPath id="venn-b"><circle cx="640" cy="300" r="265"/></clipPath>
+          <clipPath id="venn-c"><circle cx="477.5" cy="581.5" r="265"/></clipPath>
+        </defs>
+
+        <!-- Each pair drawn as one circle clipped by another. Where all three
+             meet the tint stacks three deep, then the solid wedge covers it. -->
+        <g fill="#6a5567" fill-opacity=".09">
+          <g clip-path="url(#venn-b)"><circle cx="315" cy="300" r="265"/></g>
+          <g clip-path="url(#venn-c)"><circle cx="315" cy="300" r="265"/></g>
+          <g clip-path="url(#venn-c)"><circle cx="640" cy="300" r="265"/></g>
+        </g>
+
+        <g clip-path="url(#venn-b)">
+          <g clip-path="url(#venn-c)">
+            <circle cx="315" cy="300" r="265" fill="#6a5567"/>
+          </g>
+        </g>
+
+        <g fill="none" stroke="#423b3f" stroke-opacity=".5" stroke-width="1.6">
+          <circle cx="315" cy="300" r="265"/>
+          <circle cx="640" cy="300" r="265"/>
+          <circle cx="477.5" cy="581.5" r="265"/>
+        </g>
+
+        <g font-family="Archivo, system-ui, sans-serif" text-anchor="middle" dominant-baseline="middle">
+          <g font-size="19" font-weight="500" letter-spacing="1.8" fill="#6a5567">
+            <text x="212" y="266">PRODUCT DESIGN</text>
+            <text x="746" y="266">ENGINEERING</text>
+            <text x="477" y="252">DESIGN</text>
+            <text x="477" y="279">ENGINEER</text>
+            <text x="314" y="504">DESIGN</text>
+            <text x="314" y="531">STRATEGIST</text>
+            <text x="637" y="505">TECHNICAL</text>
+            <text x="637" y="532">PRODUCT</text>
+            <text x="473" y="721">PRODUCT</text>
+            <text x="473" y="748">MANAGEMENT</text>
+          </g>
+          <g font-size="26" font-weight="400" letter-spacing="1" fill="#f6f2ee">
+            <text x="478" y="378">PRODUCT</text>
+            <text x="478" y="410">ENGINEER</text>
+          </g>
+        </g>
+      </svg>
     </figure>
   </div>
 
@@ -265,8 +315,8 @@
 </article>
 
 </main>
-<script src="carousel.js?v=202609011519"></script>
-<script src="case-studies.js?v=202609011519"></script>
-<script src="lightbox.js?v=202609011519"></script>
+<script src="carousel.js?v=202609011532"></script>
+<script src="case-studies.js?v=202609011532"></script>
+<script src="lightbox.js?v=202609011532"></script>
 </body>
 </html>
