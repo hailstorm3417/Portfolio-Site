@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Medbridge — Halie</title>
-<link rel="stylesheet" href="styles.css?v=202609010158">
+<link rel="stylesheet" href="styles.css?v=202609010258">
 <style>
 .pill {
   padding: 12px 20px; border-radius: 8px; cursor: pointer;
@@ -52,6 +52,8 @@
    44em, the same measure the rest of this page uses for full-width body
    copy — the column itself is only a little wider. */
 .ws-full { grid-column: 1 / -1; margin-top: 40px; }
+/* A block with no image has nothing above the run, so it needs no gap. */
+.ws-full--only { margin-top: 0; }
 .ws-full p { margin: 0 0 22px; max-width: 44em; }
 .ws-full p:last-child { margin-bottom: 0; }
 .stat-callout { background: var(--rose); border-radius: var(--radius); padding: 40px 44px; display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; }
@@ -189,7 +191,7 @@
 </article>
 
 </main>
-<script src="case-studies.js?v=202609010158"></script>
-<script src="lightbox.js?v=202609010158"></script>
+<script src="case-studies.js?v=202609010258"></script>
+<script src="lightbox.js?v=202609010258"></script>
 </body>
 </html>

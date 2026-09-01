@@ -34,11 +34,15 @@ const WORKSTREAMS = [
   },
   {
     title: 'Educate',
-    note: 'placeholder copy',
     blocks: [{
       paras: [
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        'Educate is Medbridge’s foundation — the product that built our reputation as a best-in-class destination for continuing education. But years of success also left us with legacy experiences and technical architecture that hadn’t evolved alongside our customers.'
+      ],
+      full: [
+        'Over the last three years, we’ve been modernizing both at once. While Engineering undertook the long process of rebuilding the underlying architecture, Design rethought the experiences sitting on top of it — user management, Skills, Knowledge Tracks, assignments, completion records, HRIS integrations, course discovery, the course player, and more. The goal wasn’t simply to refresh old screens, but to realign them around the needs of today’s users and increasingly complex organizations.',
+        'At the same time, we found opportunities to make the content we already had useful in entirely new ways. CPM was built as a net-new experience for the "just-in-time" needs of home health providers. These clinicians were already Medbridge users, and much of the content they needed already existed — but the way we delivered it wasn’t designed for someone who needed an answer in the moment of care.',
+        'CPM reorganized that content around the clinical scenarios providers actually encounter, creating a faster path from a question in the field to relevant guidance. Since launching, we’ve continued measuring adoption, retention, growth, and the journeys clinicians take through the experience. CPM has reached more than 500 customer accounts, with account retention consistently remaining above 90% — strong validation for an entirely new way of putting our existing clinical content to work.',
+        'Together, this work has given Educate a much stronger foundation: modernizing what made us successful while creating new ways for that same depth of content to serve larger and more complex enterprise customers.'
       ],
       img: 'uploads/assets-1787975326295-yi88.png',
       alt: 'Completion history view'
@@ -46,11 +50,15 @@ const WORKSTREAMS = [
   },
   {
     title: 'Growth',
-    note: 'placeholder copy',
     blocks: [{
       paras: [
-        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
-        'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.'
+        'As Medbridge expanded, we also had to rethink how smaller organizations bought and managed the product.',
+        'Historically, many subscription changes required a conversation with our Customer Support team. That worked, but it created friction for customers and required significant internal resources to manage tasks that could ultimately be self-service.'
+      ],
+      full: [
+        'Integrating Stripe gave us the opportunity to redesign that model. We built an in-app purchasing and subscription-management experience where SMB customers can understand what they own, purchase additional products, upgrade or downgrade subscriptions, manage payment issues and renewals, and assign purchased seats to their teams.',
+        'What looks like a purchasing interface is actually a dense system of business rules — subscription states, product eligibility, billing cycles, seat assignments, payment status, upgrades, downgrades, and renewals all have to work together without becoming visible complexity for the customer.',
+        'The result isn’t only a better buying experience. Self-service creates another path for net-new customers while allowing existing customers who once required hands-on support to move into a more scalable SMB model — reducing operational overhead as the business grows.'
       ],
       img: 'uploads/assets-1787975255512-1u83.png',
       alt: 'Cart with items'
@@ -58,14 +66,16 @@ const WORKSTREAMS = [
   },
   {
     title: 'GTM initiatives',
-    note: 'placeholder copy',
     blocks: [{
-      paras: [
-        'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.',
-        'Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.'
-      ],
-      img: 'uploads/assets-1787975331540-puu4.png',
-      alt: 'Collection view'
+      full: [
+        'Shipping a product and selling the value of that product are two different design problems.',
+        'Our product mocks were intentionally comprehensive. They showed the system and its possible states so Engineering and I could work through how the experience should actually function. But that made them poorly suited to a sales conversation — they explained the product, not necessarily why a customer should buy it.',
+        'My work with our go-to-market teams was rarely about creating new screens. Instead, I adapted the mocks we already had to follow a specific talk track. A generic patient became a 73-year-old with a previous back injury who didn’t have exercise reminders enabled. The next screen needed to reflect that context, and the screen after that needed to build on it.',
+        'Those details mattered because the demo was telling a story. Each state had to set up the next part of the conversation, surface a customer pain point, demonstrate the product’s response, and ultimately help communicate ROI and create a reason to buy.',
+        'That meant a steady stream of small but important adjustments as the product and sales narrative evolved — keeping Product, Marketing, and Sales aligned so the experience being shown wasn’t simply accurate, but purposeful.',
+        'The product designs showed everything the system could do.',
+        'The GTM versions showed why any of it mattered.'
+      ]
     }]
   }
 ];
@@ -76,18 +86,31 @@ const wsBlocks = document.getElementById('ws-blocks');
 const wsNote = document.getElementById('ws-note');
 let wsIndex = 0;
 
+function paragraphs(into, texts) {
+  for (const text of texts) {
+    const p = document.createElement('p');
+    p.className = 'body-copy';
+    p.textContent = text;
+    into.append(p);
+  }
+}
+
 function buildBlock(block) {
   const el = document.createElement('div');
   el.className = 'ws-block';
 
+  // No image means nothing to sit beside — the copy simply runs full width.
+  if (!block.img) {
+    const only = document.createElement('div');
+    only.className = 'ws-full ws-full--only';
+    paragraphs(only, block.full || block.paras || []);
+    el.append(only);
+    return el;
+  }
+
   const copy = document.createElement('div');
   copy.className = 'ws-copy';
-  for (const text of block.paras) {
-    const p = document.createElement('p');
-    p.className = 'body-copy';
-    p.textContent = text;
-    copy.append(p);
-  }
+  paragraphs(copy, block.paras);
 
   const figure = document.createElement('figure');
   figure.className = 'ws-figure';
@@ -105,12 +128,7 @@ function buildBlock(block) {
   if (block.full) {
     const full = document.createElement('div');
     full.className = 'ws-full';
-    for (const text of block.full) {
-      const p = document.createElement('p');
-      p.className = 'body-copy';
-      p.textContent = text;
-      full.append(p);
-    }
+    paragraphs(full, block.full);
     el.append(full);
   }
   return el;
