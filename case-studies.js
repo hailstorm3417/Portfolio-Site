@@ -3,6 +3,23 @@
 // workstream with more to say simply gets more blocks.
 const WORKSTREAMS = [
   {
+    title: 'Keystone',
+    blocks: [{
+      full: [
+        'For a long time, our design decisions were shaped as much by instinct and the loudest voice in the room as by evidence. Feedback existed everywhere — support tickets, Pendo, sales calls, hallway conversations — but it lived in fragments. No one could sit down and answer a deceptively simple question: how is this part of the product actually doing, for the people who depend on it?',
+        'As we tried to become more data-driven, we ran into a wall we couldn’t design our way around. One of our designers, based outside the US, couldn’t dig into our customer data directly — contractual restrictions kept it out of reach. The people who most needed to work from evidence were, in some cases, the furthest from it. Before anything else, I needed a way to make our data safely accessible to the whole team.',
+        'There was a second, quieter problem. Understanding the health of a single feature took real effort — pulling the numbers, stitching sources together, making sense of it all — and honestly, no one had the time. So it rarely happened.',
+        { turn: 'So why not automate it?' },
+        'That question became the heart of Keystone: not just a snapshot of how a workflow is doing today, but how it’s trending over time — a way to keep a hand on the pulse of the product without stopping everything to take its temperature.',
+        'To make that work, we organized everything around the workflow — the real thing a user is trying to accomplish — and brought together what people say with what they actually do. Each workflow earns a grade from a single, transparent formula, so scattered signals become something you can see, compare, and watch move.',
+        'Converging all of our data into one place was the end-state vision, not the starting line. The MVP did one thing well: connect Pendo and prove the model. From there, the roadmap was about steadily bringing the rest of our world together — Alfred, Salesforce, HubSpot — each integration making the picture more complete and the grades more trustworthy.',
+        'Keystone was also a proof of what our design team could be. I took it end to end — the product thinking, the design, and the engineering — building it myself rather than handing it off. That meant owning the questions a PM would own and then writing the code to answer them.',
+        'From there, the vision kept extending. I worked on integrating JIRA so we could tie the work happening in production back to the health it was meant to move — closing the loop between “we shipped a fix” and “did the needle actually turn?” I built a way to set goals against that health, like cutting a workflow’s completion time from three minutes to two by a target date, so progress had something concrete to measure against. And the next horizon was AI: helping generate and store ideas, then turning the strongest of them into JIRA tickets automatically — so the path from insight to action was as short as the path from feedback to grade.',
+        'Keystone became more than a dashboard. It became the load-bearing piece that turns scattered signals into a shared, living read on where the product is headed — and a way to act on it.'
+      ]
+    }]
+  },
+  {
     title: 'Pathways',
     blocks: [
       {
@@ -86,11 +103,14 @@ const wsBlocks = document.getElementById('ws-blocks');
 const wsNote = document.getElementById('ws-note');
 let wsIndex = 0;
 
+// A plain string is body copy. A { turn } entry is the line the story pivots
+// on, set larger and given room on either side.
 function paragraphs(into, texts) {
   for (const text of texts) {
+    const isTurn = typeof text !== 'string';
     const p = document.createElement('p');
-    p.className = 'body-copy';
-    p.textContent = text;
+    p.className = isTurn ? 'ws-turn' : 'body-copy';
+    p.textContent = isTurn ? text.turn : text;
     into.append(p);
   }
 }

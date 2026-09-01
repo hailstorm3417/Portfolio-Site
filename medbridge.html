@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Medbridge — Halie</title>
-<link rel="stylesheet" href="styles.css?v=202609010344">
+<link rel="stylesheet" href="styles.css?v=202609010357">
 <style>
 .pill {
   padding: 12px 20px; border-radius: 8px; cursor: pointer;
@@ -56,6 +56,12 @@
 .ws-full--only { margin-top: 0; }
 .ws-full p { margin: 0 0 22px; max-width: 44em; }
 .ws-full p:last-child { margin-bottom: 0; }
+/* The line a workstream pivots on — set apart rather than buried in the run.
+   Two classes beat the `.ws-full p` type selector above without !important. */
+.ws-full .ws-turn, .ws-copy .ws-turn {
+  margin: 34px 0; max-width: 18em;
+  font-size: 30px; line-height: 1.3; font-weight: 200; color: var(--plum);
+}
 .stat-callout { background: var(--rose); border-radius: var(--radius); padding: 40px 44px; display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; }
 /* The tabs pin under the back bar and stay put for as long as the workstream
    section is on screen — their containing block is that section's wrapper, so
@@ -74,17 +80,6 @@
 .ws-nav { display: flex; gap: 7px; flex: none; }
 .plum-body { margin: 0 0 22px; max-width: 44em; font-size: 17px; line-height: 1.85; color: rgba(246,242,238,.84); }
 .plum-body--last { margin-bottom: 0; }
-
-/* Keystone. The rose panel frames the opening only, and the rest of the story
-   runs on the page ground below it — eleven paragraphs inside a single tinted
-   block reads as a wall, and the emphasis stops meaning anything. */
-.ks-panel { background: var(--rose); border-radius: var(--radius); padding: 44px 48px; }
-.ks-label { font: 400 11.5px Archivo, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--plum); margin-bottom: 18px; }
-.ks-lede { margin: 0; max-width: 32em; font-size: 24px; line-height: 1.55; font-weight: 300; color: var(--charcoal); }
-.ks-copy p { margin: 0 0 22px; max-width: 44em; }
-.ks-copy p:last-child { margin-bottom: 0; }
-/* The hinge the whole story turns on, set apart rather than buried mid-run. */
-.ks-copy .ks-turn { margin: 34px 0; max-width: 18em; font-size: 30px; line-height: 1.3; font-weight: 200; color: var(--plum); }
 
 /* ── Mobile — 390pt target ─────────────────────────────────────────────── */
 @media (max-width: 720px) {
@@ -118,11 +113,7 @@
   .caption { font-size: 11px; }
   .nav-btn { width: 44px; height: 44px; }
 
-  .ks-panel { padding: 28px 24px; }
-  .ks-label { font-size: 11px; margin-bottom: 14px; }
-  .ks-lede { font-size: 19px; line-height: 1.6; max-width: none; }
-  .ks-copy p { max-width: none; }
-  .ks-copy .ks-turn { font-size: 23px; line-height: 1.3; margin: 26px 0; max-width: none; }
+  .ws-full .ws-turn, .ws-copy .ws-turn { font-size: 23px; line-height: 1.3; margin: 26px 0; max-width: none; }
   /* Pills scroll by touch here, so the arrows are redundant — and a 32px
      heading plus two 44px controls will not fit 390px. */
   .ws-nav { display: none; }
@@ -158,10 +149,11 @@
       </div>
     </div>
     <div class="pill-row" id="ws-tabs" role="tablist">
-      <button class="pill" role="tab" data-ws="0">Pathways</button>
-      <button class="pill" role="tab" data-ws="1">Educate</button>
-      <button class="pill" role="tab" data-ws="2">Growth</button>
-      <button class="pill" role="tab" data-ws="3">GTM initiatives</button>
+      <button class="pill" role="tab" data-ws="0">Keystone</button>
+      <button class="pill" role="tab" data-ws="1">Pathways</button>
+      <button class="pill" role="tab" data-ws="2">Educate</button>
+      <button class="pill" role="tab" data-ws="3">Growth</button>
+      <button class="pill" role="tab" data-ws="4">GTM initiatives</button>
     </div>
     <h3 class="ws-title" id="ws-title"></h3>
     <div id="ws-blocks"></div>
@@ -185,25 +177,6 @@
     </div>
   </div>
 
-  <div style="padding:56px var(--gutter) 0">
-    <div class="ks-panel">
-      <div class="ks-label">Keystone · a design engineer problem</div>
-      <p class="ks-lede">For a long time, our design decisions were shaped as much by instinct and the loudest voice in the room as by evidence. Feedback existed everywhere — support tickets, Pendo, sales calls, hallway conversations — but it lived in fragments. No one could sit down and answer a deceptively simple question: how is this part of the product actually doing, for the people who depend on it?</p>
-    </div>
-  </div>
-
-  <div class="ks-copy" style="padding:40px var(--gutter) 0">
-    <p class="body-copy">As we tried to become more data-driven, we ran into a wall we couldn’t design our way around. One of our designers, based outside the US, couldn’t dig into our customer data directly — contractual restrictions kept it out of reach. The people who most needed to work from evidence were, in some cases, the furthest from it. Before anything else, I needed a way to make our data safely accessible to the whole team.</p>
-    <p class="body-copy">There was a second, quieter problem. Understanding the health of a single feature took real effort — pulling the numbers, stitching sources together, making sense of it all — and honestly, no one had the time. So it rarely happened.</p>
-    <p class="ks-turn">So why not automate it?</p>
-    <p class="body-copy">That question became the heart of Keystone: not just a snapshot of how a workflow is doing today, but how it’s trending over time — a way to keep a hand on the pulse of the product without stopping everything to take its temperature.</p>
-    <p class="body-copy">To make that work, we organized everything around the workflow — the real thing a user is trying to accomplish — and brought together what people say with what they actually do. Each workflow earns a grade from a single, transparent formula, so scattered signals become something you can see, compare, and watch move.</p>
-    <p class="body-copy">Converging all of our data into one place was the end-state vision, not the starting line. The MVP did one thing well: connect Pendo and prove the model. From there, the roadmap was about steadily bringing the rest of our world together — Alfred, Salesforce, HubSpot — each integration making the picture more complete and the grades more trustworthy.</p>
-    <p class="body-copy">Keystone was also a proof of what our design team could be. I took it end to end — the product thinking, the design, and the engineering — building it myself rather than handing it off. That meant owning the questions a PM would own and then writing the code to answer them.</p>
-    <p class="body-copy">From there, the vision kept extending. I worked on integrating JIRA so we could tie the work happening in production back to the health it was meant to move — closing the loop between “we shipped a fix” and “did the needle actually turn?” I built a way to set goals against that health, like cutting a workflow’s completion time from three minutes to two by a target date, so progress had something concrete to measure against. And the next horizon was AI: helping generate and store ideas, then turning the strongest of them into JIRA tickets automatically — so the path from insight to action was as short as the path from feedback to grade.</p>
-    <p class="body-copy">Keystone became more than a dashboard. It became the load-bearing piece that turns scattered signals into a shared, living read on where the product is headed — and a way to act on it.</p>
-  </div>
-
   <section class="contact" style="margin-top:72px;padding:80px var(--gutter) 88px">
     <h2 style="font-size:52px">If any of this resonated, I'd love to hear from you.</h2>
     <div class="contact-grid">
@@ -223,7 +196,7 @@
 </article>
 
 </main>
-<script src="case-studies.js?v=202609010344"></script>
-<script src="lightbox.js?v=202609010344"></script>
+<script src="case-studies.js?v=202609010357"></script>
+<script src="lightbox.js?v=202609010357"></script>
 </body>
 </html>
