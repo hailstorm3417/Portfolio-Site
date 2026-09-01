@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Medbridge — Halie</title>
-<link rel="stylesheet" href="styles.css?v=202609011532">
+<link rel="stylesheet" href="styles.css?v=202609011606">
 <style>
 .pill {
   padding: 12px 20px; border-radius: 8px; cursor: pointer;
@@ -95,13 +95,11 @@
 .bullets li { position: relative; padding-left: 24px; font-size: 16.5px; line-height: 1.85; color: rgba(66,59,63,.88); }
 .bullets li::before { content: ''; position: absolute; left: 0; top: .88em; width: 9px; height: 1px; background: var(--plum); }
 
-/* The framework diagram is near-square and carries small type, so it gets a
-   generous but capped width and stays clickable into the lightbox. */
+/* The framework diagram. Vector, so it stays sharp at any size and does not
+   need the lightbox — capped a little wider than the text column so its
+   labels stay legible without the diagram dominating the chapter. */
 .framework-figure { margin: 40px 0 0; }
-.framework-figure img { width: 100%; max-width: 620px; height: auto; border-radius: var(--radius); }
-/* Vector, so it stays crisp at any size — no need for the lightbox. Wider
-   than a photo would be, because the labels are small inside it. */
-.framework-figure .venn { display: block; width: 100%; max-width: 720px; height: auto; }
+.framework-figure .venn { display: block; width: 100%; max-width: 640px; height: auto; }
 
 .stat-callout { background: var(--rose); border-radius: var(--radius); padding: 40px 44px; display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; }
 /* The tabs pin under the back bar and stay put for as long as the workstream
@@ -215,7 +213,7 @@
     <p class="plum-body plum-body--last">Eventually, I realized my job wasn't to build a team that could execute my vision. It was to build one where each designer could develop their own.</p>
   </div>
 
-  <div style="padding:72px var(--gutter) 0">
+  <div style="padding:72px var(--gutter) 88px">
     <div class="chapter-label">Chapter three</div>
     <h2 style="margin:0 0 28px;font-size:42px;line-height:1.2;letter-spacing:-.002em;font-weight:200;color:#423b3f">Rethinking what the role looks like</h2>
     <p class="body-copy" style="max-width:44em">Everyone in our industry is debating about whether AI will replace designers or not. I got tired of the debate and started asking a better question: if it’s not replacing us, what is it actually doing to the role? A year of digging into that turned into a framework for how design needs to operate now — less about craft alone, more about judgement, systems thinking, and owning outcomes.</p>
@@ -226,8 +224,6 @@
       <li>Reframed design’s relationship to Product and Engineering — from service function to strategic partner, with concrete implications for both teams</li>
       <li>Rolled the framework into an all-hands presentation and a career ladder redesign, moving the org from theory to practice</li>
     </ul>
-
-    <p class="body-copy" style="max-width:44em;margin-top:26px">Read the full breakdown below</p>
 
     <figure class="framework-figure">
       <svg class="venn" viewBox="0 0 955 881" role="img" aria-labelledby="venn-title venn-desc">
@@ -315,8 +311,8 @@
 </article>
 
 </main>
-<script src="carousel.js?v=202609011532"></script>
-<script src="case-studies.js?v=202609011532"></script>
-<script src="lightbox.js?v=202609011532"></script>
+<script src="carousel.js?v=202609011606"></script>
+<script src="case-studies.js?v=202609011606"></script>
+<script src="lightbox.js?v=202609011606"></script>
 </body>
 </html>
