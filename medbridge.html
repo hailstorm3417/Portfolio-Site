@@ -48,6 +48,12 @@
 .ws-figure img { width: 100%; height: auto; border-radius: var(--radius); }
 .ws-copy p { margin: 0 0 22px; }
 .ws-copy p:last-child { margin-bottom: 0; }
+/* Copy that runs under both columns rather than beside the image. Capped at
+   44em, the same measure the rest of this page uses for full-width body
+   copy — the column itself is only a little wider. */
+.ws-full { grid-column: 1 / -1; margin-top: 40px; }
+.ws-full p { margin: 0 0 22px; max-width: 44em; }
+.ws-full p:last-child { margin-bottom: 0; }
 .stat-callout { background: var(--rose); border-radius: var(--radius); padding: 40px 44px; display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; }
 .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
 .ws-nav { display: flex; gap: 7px; flex: none; }
@@ -62,6 +68,8 @@
   .ws-block + .ws-block { margin-top: 40px; }
   .ws-block:nth-of-type(even) .ws-figure { order: 0; }
   .ws-title { font-size: 23px; margin-bottom: 24px; }
+  .ws-full { margin-top: 20px; }
+  .ws-full p { max-width: none; }
   .stat-callout { grid-template-columns: 1fr; gap: 18px; padding: 28px 24px; }
 
   /* Tabs scroll rather than wrap; the last one is otherwise clipped. */
@@ -182,5 +190,6 @@
 
 </main>
 <script src="case-studies.js"></script>
+<script src="lightbox.js"></script>
 </body>
 </html>

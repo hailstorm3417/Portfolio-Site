@@ -235,6 +235,67 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* — image lightbox, on the case study pages — */
+main img { cursor: zoom-in; }
+/* The striped placeholder tiles are divs, not images, so they are unaffected. */
+
+.lightbox {
+  width: 90vw;
+  height: 90vh;
+  max-width: 90vw;
+  max-height: 90vh;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--oat);
+  color: var(--charcoal);
+  overflow: hidden;
+  /* Column so the image takes whatever height is left and the caption keeps
+     its own row — overlaying it would veil the foot of the picture. */
+  display: flex;
+  flex-direction: column;
+}
+.lightbox::backdrop { background: rgba(66, 59, 63, .72); }
+
+.lightbox .lightbox-img {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  object-fit: contain;
+  cursor: default;
+  padding: 56px 24px 12px;
+}
+.lightbox .lightbox-cap {
+  flex: none;
+  margin: 0;
+  padding: 0 24px 22px;
+  font: 400 13px/1.6 Archivo, sans-serif;
+  color: rgba(66, 59, 63, .75);
+  text-align: center;
+}
+.lightbox .lightbox-cap[hidden] { display: none; }
+
+.lightbox .lightbox-close {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(66, 59, 63, .28);
+  border-radius: var(--radius);
+  background: var(--oat);
+  color: var(--charcoal);
+  font: 400 22px/1 Archivo, sans-serif;
+  cursor: pointer;
+}
+.lightbox .lightbox-close:hover {
+  background: var(--plum); color: var(--oat); border-color: var(--plum);
+}
+
+@media (max-width: 720px) {
+  .lightbox { width: 94vw; max-width: 94vw; }
+  .lightbox .lightbox-img { padding: 56px 12px 12px; }
+}
+
 @media (max-width: 900px) {
   .page { border-radius: 0; }
 }

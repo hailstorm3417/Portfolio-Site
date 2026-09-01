@@ -7,7 +7,9 @@ const WORKSTREAMS = [
     blocks: [
       {
         paras: [
-          'When I joined, Medbridge was best known as a best-in-class education platform with a single, much-loved product used by clinicians. There was an emerging idea to explore lower-acuity, self-managed care — something that could complement the higher-touch experiences we already offered — but it wasn’t yet a committed direction.',
+          'When I joined, Medbridge was best known as a best-in-class education platform with a single, much-loved product used by clinicians. There was an emerging idea to explore lower-acuity, self-managed care — something that could complement the higher-touch experiences we already offered — but it wasn’t yet a committed direction.'
+        ],
+        full: [
           'Out of curiosity, I spent a weekend exploring what that future might look like. That exploration became the foundation for a six-month pursuit of a multi-million dollar RFP with one of the largest hospital systems in the country.',
           'We won.'
         ],
@@ -17,7 +19,9 @@ const WORKSTREAMS = [
       {
         paras: [
           'But winning the RFP was only the beginning.',
-          'Pathways evolved from an early concept into a core part of Medbridge’s strategy for delivering lower-acuity, self-managed care. As the product grew, so did the complexity of the problems we were solving.',
+          'Pathways evolved from an early concept into a core part of Medbridge’s strategy for delivering lower-acuity, self-managed care. As the product grew, so did the complexity of the problems we were solving.'
+        ],
+        full: [
           'We introduced capabilities like Remote Therapeutic Monitoring (RTM), designing workflows that help clinicians understand patient activity and engagement while supporting reimbursement requirements. That meant designing within a system shaped not only by user needs, but by billing codes, documentation requirements, clinical workflows, and strict regulatory constraints.',
           'And that system doesn’t stand still.',
           'Reimbursement rules and industry standards continue to evolve, creating a product environment where a seemingly small regulatory change can reshape workflows, metrics, and even the value proposition of a feature. Our job has been to build for today while creating enough flexibility to adapt to what comes next.',
@@ -96,6 +100,19 @@ function buildBlock(block) {
   // Copy before image in source, always — the stacked mobile view reads in
   // this order, and CSS flips the sides on the alternating rows.
   el.append(copy, figure);
+
+  // Copy that runs the width of both columns, underneath the pair.
+  if (block.full) {
+    const full = document.createElement('div');
+    full.className = 'ws-full';
+    for (const text of block.full) {
+      const p = document.createElement('p');
+      p.className = 'body-copy';
+      p.textContent = text;
+      full.append(p);
+    }
+    el.append(full);
+  }
   return el;
 }
 
