@@ -142,7 +142,13 @@
    preview panel and re-crop its cover background — so the image appears to
    jump when only the text was meant to slide. transform is painted, not
    laid out, so nothing downstream can move. */
-.work-row:hover, .work-row:focus-visible { background: var(--rose); border-radius: 8px; }
+.work-row:hover, .work-row:focus-visible {
+  background: var(--rose); border-radius: 8px;
+  /* The 14%-opacity hairline vanishes once it is drawn along the bottom of a
+     rose-filled, rounded box, so hovering would silently delete a rule and
+     break the list's rhythm. Darkened just enough to survive the tint. */
+  border-bottom-color: rgba(66, 59, 63, .3);
+}
 .work-row .meta, .work-row .name { transition: transform .18s ease; }
 .work-row:hover .meta, .work-row:hover .name,
 .work-row:focus-visible .meta, .work-row:focus-visible .name { transform: translateX(14px); }
