@@ -22,19 +22,28 @@ const QUOTES = [
   ['Halie has an amazing ability to grasp what the users need, and asks the right questions to really understand the problem for which she is creating a solution. She makes the collaboration process very rewarding!', 'Beth Turner', 'Project Manager, CareCloud']
 ];
 
-// Hero glitch — swaps the title mid-glitch, every 5s.
+// Hero glitch — swaps the title mid-glitch. The first run fires early so
+// someone who lands and immediately starts scrolling still sees it happen;
+// after that it settles into a steadier rhythm.
 const glitch = document.getElementById('glitch');
 const glitchSpans = glitch.querySelectorAll('.base, .ghost');
+const GLITCH_FIRST = 1400;
+const GLITCH_EVERY = 3200;
 let titleIndex = 0;
 
-setInterval(() => {
+function runGlitch() {
   glitch.classList.add('on');
   setTimeout(() => {
     titleIndex = (titleIndex + 1) % TITLES.length;
     glitchSpans.forEach(el => { el.textContent = TITLES[titleIndex]; });
   }, 300);
   setTimeout(() => glitch.classList.remove('on'), 820);
-}, 5000);
+}
+
+setTimeout(() => {
+  runGlitch();
+  setInterval(runGlitch, GLITCH_EVERY);
+}, GLITCH_FIRST);
 
 // "How I got here" progressive disclosure — gradient reveal.
 //
@@ -124,14 +133,14 @@ workRows.forEach(row => {
 // the list rather than assuming a fixed order.
 showWorkPreview(Number(workRows[0].dataset.work));
 
-// Everything below shares one breakpoint with the stylesheet: desktop shows
-// two quotes side by side, mobile one at a time, so the page count and the
-// number of dots both change with it.
-const MOBILE = window.matchMedia('(max-width: 720px)');
+// Shares a breakpoint with the stylesheet: wide screens show two quotes side
+// by side, tablet and below one at a time, so the page count and the number
+// of dots both change with it.
+const SINGLE_QUOTE = window.matchMedia('(max-width: 1024px)');
 
 // Recommendation quotes
 const quoteDots = document.getElementById('quote-dots');
-let perPage = MOBILE.matches ? 1 : 2;
+let perPage = SINGLE_QUOTE.matches ? 1 : 2;
 let quotePage = 0;
 
 function pageCount() {
@@ -143,7 +152,7 @@ function renderDots() {
     const dot = document.createElement('button');
     dot.className = 'dot';
     dot.setAttribute('aria-label', perPage === 1 ? `Quote ${i + 1}` : `Quotes ${i * 2 + 1} and ${i * 2 + 2}`);
-    dot.addEventListener('click', () => goToQuotePage(i));
+    dot.addEventListener('click', () => nudgeQuotes(i));
     return dot;
   }));
 }
@@ -168,12 +177,45 @@ function goToQuotePage(page) {
   renderQuotes();
 }
 
-document.getElementById('quote-prev').addEventListener('click', () => goToQuotePage(quotePage - 1));
-document.getElementById('quote-next').addEventListener('click', () => goToQuotePage(quotePage + 1));
+// Autoplay. It steps forward on its own but yields to the reader: any manual
+// move restarts the clock, hovering or focusing the section holds it, and it
+// never runs for someone who asked for reduced motion.
+const QUOTE_EVERY = 7000;
+const quoteSection = document.getElementById('quote-dots').closest('section');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let quoteTimer = null;
+
+function stopQuoteAutoplay() {
+  if (quoteTimer) { clearInterval(quoteTimer); quoteTimer = null; }
+}
+
+function startQuoteAutoplay() {
+  stopQuoteAutoplay();
+  if (reduceMotion.matches) return;
+  quoteTimer = setInterval(() => goToQuotePage(quotePage + 1), QUOTE_EVERY);
+}
+
+// Manual control wins, then the clock resumes from that point.
+function nudgeQuotes(page) {
+  goToQuotePage(page);
+  startQuoteAutoplay();
+}
+
+document.getElementById('quote-prev').addEventListener('click', () => nudgeQuotes(quotePage - 1));
+document.getElementById('quote-next').addEventListener('click', () => nudgeQuotes(quotePage + 1));
+
+quoteSection.addEventListener('mouseenter', stopQuoteAutoplay);
+quoteSection.addEventListener('mouseleave', startQuoteAutoplay);
+quoteSection.addEventListener('focusin', stopQuoteAutoplay);
+quoteSection.addEventListener('focusout', startQuoteAutoplay);
+// Nothing should keep ticking in a tab nobody is looking at.
+document.addEventListener('visibilitychange', () =>
+  document.hidden ? stopQuoteAutoplay() : startQuoteAutoplay());
+reduceMotion.addEventListener('change', startQuoteAutoplay);
 
 // Crossing the breakpoint changes how many quotes fit, so rebuild the dots
 // and keep the reader near the quote they were already on.
-MOBILE.addEventListener('change', e => {
+SINGLE_QUOTE.addEventListener('change', e => {
   const firstVisible = quotePage * perPage;
   perPage = e.matches ? 1 : 2;
   quotePage = Math.min(Math.floor(firstVisible / perPage), pageCount() - 1);
@@ -183,6 +225,7 @@ MOBILE.addEventListener('change', e => {
 
 renderDots();
 renderQuotes();
+startQuoteAutoplay();
 
 // Bring a pill fully inside its scroller, with 16px of breathing room. Without
 // this the last pill in each row sits clipped off the right edge on a phone.

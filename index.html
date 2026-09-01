@@ -128,7 +128,10 @@
 .hint { font: 300 11px/1 Archivo, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: rgba(66, 59, 63, .45); }
 
 /* ── The work ──────────────────────────────────────────────────────────── */
-.work-grid { display: grid; grid-template-columns: 1fr 400px; gap: 52px; align-items: stretch; }
+/* minmax(0, …) on both tracks so neither refuses to shrink. With a plain
+   1fr the left column floors at its content's minimum and shoves the fixed
+   400px preview past the right gutter at tablet widths. */
+.work-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 400px); gap: 52px; align-items: stretch; }
 .work-row {
   display: flex; flex-direction: column; align-items: flex-start; gap: 9px;
   padding: 26px 0; border-bottom: 1px solid rgba(66, 59, 63, .14); text-decoration: none;
@@ -209,6 +212,14 @@
 .qa-answer { margin: 0; font-size: 16.5px; line-height: 1.8; color: rgba(66, 59, 63, .85); }
 .qa-note { margin: 18px 0 0; font: 300 10.5px/1.5 Archivo, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: rgba(66, 59, 63, .4); }
 
+/* Tablet and below: a single quote, full width. Wider cards mean fewer
+   lines per quote, so the section keeps less vertical space. */
+@media (max-width: 1024px) {
+  .quote-grid { grid-template-columns: 1fr; gap: 0; }
+  .quote-card--second { display: none; }
+  .work-grid { gap: 32px; }
+}
+
 /* ── Mobile — 390pt target ─────────────────────────────────────────────── */
 @media (max-width: 720px) {
   /* Hero type sits above the portrait and overlaps its top edge. The overlap
@@ -272,7 +283,6 @@
   .quote-card blockquote { font-size: 13.5px; line-height: 1.75; }
   .quote-card .qname { font-size: 14px; }
   .quote-card .qrole { font-size: 12px; }
-  .quote-card--second { display: none; }
   .dots { margin-top: 14px; margin-bottom: 34px; }
   .dot { width: 20px; }
 
@@ -441,7 +451,6 @@
     </div>
     <div class="contact-actions">
       <a href="#" class="btn btn-primary">Download resume <span style="font-size:15px">↓</span></a>
-      <span class="contact-note">PDF · updated when you send it to me</span>
     </div>
   </section>
 

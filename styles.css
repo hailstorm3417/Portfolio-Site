@@ -65,8 +65,8 @@ img { max-width: 100%; display: block; }
 .contact h2 {
   margin: 0 0 44px;
   max-width: 17em;
-  font-size: 58px;
-  line-height: 1.16;
+  font-size: 44px;
+  line-height: 1.2;
   letter-spacing: -.002em;
   font-weight: 200;
   color: var(--charcoal);
@@ -141,12 +141,6 @@ img { max-width: 100%; display: block; }
 }
 .btn-secondary:hover { background: var(--charcoal); color: var(--oat); border-color: var(--charcoal); }
 
-.contact-note {
-  font: 400 11px Archivo, sans-serif;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: rgba(66, 59, 63, .42);
-}
 
 /* — "Next" link block, shared by journal + case studies — */
 .next-link {
@@ -255,7 +249,7 @@ button:focus-visible {
   .page { margin: 0 auto !important; }
 
   .contact { padding: 48px var(--gutter) 52px; }
-  .contact h2 { font-size: 34px; line-height: 1.2; margin-bottom: 32px; max-width: none; }
+  .contact h2 { font-size: 30px; line-height: 1.2; margin-bottom: 32px; max-width: none; }
 
   /* Contact links stack into ruled rows rather than three columns. */
   .contact-grid {
@@ -272,7 +266,6 @@ button:focus-visible {
   .contact-actions { flex-direction: column; align-items: stretch; gap: 10px; }
   .btn { min-height: 48px; padding: 15px 22px; justify-content: flex-start; }
   .btn-primary { justify-content: space-between; }
-  .contact-note { display: none; }
 
   .next-link { margin-left: 0; margin-right: 0; padding: 20px 0; }
   .next-link .title { font-size: 26px !important; }
