@@ -250,6 +250,11 @@ main img { cursor: zoom-in; }
   background: var(--oat);
   color: var(--charcoal);
   overflow: hidden;
+}
+/* Scoped to [open]. A closed <dialog> is hidden by the browser's own
+   display:none; setting display on the bare class overrides that, leaving the
+   dialog laid out over the page and swallowing every click even while closed. */
+.lightbox[open] {
   /* Column so the image takes whatever height is left and the caption keeps
      its own row — overlaying it would veil the foot of the picture. */
   display: flex;
