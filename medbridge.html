@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Medbridge — Halie</title>
-<link rel="stylesheet" href="styles.css?v=202609010421">
+<link rel="stylesheet" href="styles.css?v=202609010536">
 <style>
 .pill {
   padding: 12px 20px; border-radius: 8px; cursor: pointer;
@@ -64,6 +64,28 @@
   margin: 30px 0; max-width: 26em;
   font-size: 19px; line-height: 1.6; font-weight: 300; color: var(--plum);
 }
+/* A gallery inside a workstream. Deliberately shorter than the Optimize Health
+   carousel — these sit within a chapter rather than being the point of the
+   section — so the frame is a fixed height and each shot is contained inside
+   it rather than filling the width. That also lets tall phone screens and wide
+   desktop montages share one carousel without the frame jumping between
+   slides. */
+.ws-gallery { grid-column: 1 / -1; margin-top: 40px; }
+.ws-gallery .carousel-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: var(--oat-banner);
+}
+.ws-gallery .carousel-slide img {
+  height: 340px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border: 0;
+  border-radius: 4px;
+}
 .stat-callout { background: var(--rose); border-radius: var(--radius); padding: 40px 44px; display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; }
 /* The tabs pin under the back bar and stay put for as long as the workstream
    section is on screen — their containing block is that section's wrapper, so
@@ -115,6 +137,9 @@
   .caption { font-size: 11px; }
   .nav-btn { width: 44px; height: 44px; }
 
+  .ws-gallery { margin-top: 20px; }
+  .ws-gallery .carousel-slide { padding: 12px; }
+  .ws-gallery .carousel-slide img { height: 260px; }
   .ws-full .ws-turn, .ws-copy .ws-turn { font-size: 17.5px; line-height: 1.55; margin: 24px 0; max-width: none; }
   /* Pills scroll by touch here, so the arrows are redundant — and a 32px
      heading plus two 44px controls will not fit 390px. */
@@ -152,7 +177,7 @@
     </div>
     <div class="pill-row" id="ws-tabs" role="tablist">
       <button class="pill" role="tab" data-ws="0">Keystone</button>
-      <button class="pill" role="tab" data-ws="1">Pathways</button>
+      <button class="pill" role="tab" data-ws="1">Care</button>
       <button class="pill" role="tab" data-ws="2">Educate</button>
       <button class="pill" role="tab" data-ws="3">Growth</button>
       <button class="pill" role="tab" data-ws="4">GTM initiatives</button>
@@ -198,7 +223,8 @@
 </article>
 
 </main>
-<script src="case-studies.js?v=202609010421"></script>
-<script src="lightbox.js?v=202609010421"></script>
+<script src="carousel.js?v=202609010536"></script>
+<script src="case-studies.js?v=202609010536"></script>
+<script src="lightbox.js?v=202609010536"></script>
 </body>
 </html>

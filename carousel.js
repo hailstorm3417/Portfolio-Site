@@ -12,7 +12,13 @@ function setUpCarousel(root) {
   const track = root.querySelector('.carousel-track');
   const dotRow = root.querySelector('.carousel-dots');
   const slides = [...track.children];
-  if (slides.length < 2) return;
+
+  // A single image is just an image. Drop the chrome rather than leaving dead
+  // arrows and an empty dot row beneath it.
+  if (slides.length < 2) {
+    root.querySelector('.carousel-controls')?.remove();
+    return;
+  }
 
   let index = 0;
 
@@ -74,4 +80,16 @@ function setUpCarousel(root) {
   markCurrent(0);
 }
 
-document.querySelectorAll('[data-carousel]').forEach(setUpCarousel);
+// Exposed because not every carousel is in the page at load: the Medbridge
+// workstreams rebuild their blocks on each tab change, so whatever they just
+// created has to be set up then. Marking each root keeps a second pass from
+// binding the same carousel twice.
+window.initCarousels = function initCarousels(root = document) {
+  root.querySelectorAll('[data-carousel]').forEach(el => {
+    if (el.dataset.carouselReady) return;
+    el.dataset.carouselReady = '1';
+    setUpCarousel(el);
+  });
+};
+
+initCarousels();

@@ -20,7 +20,7 @@ const WORKSTREAMS = [
     }]
   },
   {
-    title: 'Pathways',
+    title: 'Care',
     blocks: [
       {
         paras: [
@@ -45,7 +45,16 @@ const WORKSTREAMS = [
           'Now, we’re pushing Pathways further — exploring things like benchmarking and better ways to turn patient activity into meaningful signals clinicians can use to understand performance and make decisions.'
         ],
         img: 'uploads/assets-1787975263498-fqw4.png',
-        alt: 'Pathways collection builder'
+        alt: 'Pathways collection builder',
+        // Shots of the patient-facing app, in a compact carousel under the
+        // block. Add to this list to add slides — nothing else needs changing.
+        gallery: [
+          {
+            img: 'uploads/care-app-screens.webp',
+            alt: 'Patient app screens — programs, progress, education and check-ins',
+            caption: 'The patient-facing app: programs, progress tracking, education and check-ins.'
+          }
+        ]
       }
     ]
   },
@@ -151,13 +160,58 @@ function buildBlock(block) {
     paragraphs(full, block.full);
     el.append(full);
   }
+
+  if (block.gallery) el.append(buildGallery(block.gallery));
   return el;
+}
+
+// A compact carousel of shots, spanning both columns beneath the block. The
+// captions are not drawn — they ride along for the lightbox and for screen
+// readers, the same arrangement the Optimize Health carousel uses.
+function buildGallery(shots) {
+  const gallery = document.createElement('div');
+  gallery.className = 'ws-gallery';
+  gallery.dataset.carousel = '';
+
+  const track = document.createElement('div');
+  track.className = 'carousel-track';
+  for (const shot of shots) {
+    const figure = document.createElement('figure');
+    figure.className = 'carousel-slide';
+
+    const img = document.createElement('img');
+    img.src = shot.img;
+    img.alt = shot.alt;
+    img.loading = 'lazy';
+
+    const caption = document.createElement('figcaption');
+    caption.className = 'sr-only';
+    caption.textContent = shot.caption || shot.alt;
+
+    figure.append(img, caption);
+    track.append(figure);
+  }
+
+  const controls = document.createElement('div');
+  controls.className = 'carousel-controls';
+  controls.innerHTML =
+    '<div class="carousel-dots"></div>' +
+    '<div class="carousel-nav">' +
+      '<button class="nav-btn" type="button" data-carousel-prev aria-label="Previous image">&larr;</button>' +
+      '<button class="nav-btn" type="button" data-carousel-next aria-label="Next image">&rarr;</button>' +
+    '</div>';
+
+  gallery.append(track, controls);
+  return gallery;
 }
 
 function renderWorkstream() {
   const ws = WORKSTREAMS[wsIndex];
   wsTitle.textContent = ws.title;
   wsBlocks.replaceChildren(...ws.blocks.map(buildBlock));
+  // These blocks did not exist a moment ago, so any carousel among them still
+  // needs binding.
+  window.initCarousels?.(wsBlocks);
   wsNote.textContent = ws.note || '';
   wsTabs.forEach((tab, i) => tab.setAttribute('aria-selected', String(i === wsIndex)));
 }
