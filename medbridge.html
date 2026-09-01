@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Medbridge — Halie</title>
-<link rel="stylesheet" href="styles.css?v=202609010306">
+<link rel="stylesheet" href="styles.css?v=202609010317">
 <style>
 .pill {
   padding: 12px 20px; border-radius: 8px; cursor: pointer;
@@ -57,7 +57,20 @@
 .ws-full p { margin: 0 0 22px; max-width: 44em; }
 .ws-full p:last-child { margin-bottom: 0; }
 .stat-callout { background: var(--rose); border-radius: var(--radius); padding: 40px 44px; display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; }
-.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+/* The tabs pin under the back bar and stay put for as long as the workstream
+   section is on screen — their containing block is that section's wrapper, so
+   they release on their own at the end of it, no script needed. The negative
+   side margins let the oat ground run to the page edges while the pills stay
+   on the text column, so copy scrolls underneath rather than beside. */
+.pill-row {
+  position: sticky;
+  top: var(--back-bar);
+  z-index: 4;
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 0 calc(var(--gutter) * -1) 22px;
+  padding: 14px var(--gutter);
+  background: var(--oat);
+}
 .ws-nav { display: flex; gap: 7px; flex: none; }
 .plum-body { margin: 0 0 22px; max-width: 44em; font-size: 17px; line-height: 1.85; color: rgba(246,242,238,.84); }
 .plum-body--last { margin-bottom: 0; }
@@ -76,7 +89,8 @@
 
   /* Tabs scroll rather than wrap; the last one is otherwise clipped. */
   .pill-row {
-    flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; margin-bottom: 26px;
+    flex-wrap: nowrap; overflow-x: auto;
+    padding-top: 12px; padding-bottom: 12px; margin-bottom: 14px;
     scrollbar-width: none; -ms-overflow-style: none;
   }
   .pill-row::-webkit-scrollbar { display: none; }
@@ -102,7 +116,7 @@
 
 <main class="page page--narrow" style="margin:40px auto">
 <article id="medbridge">
-  <div style="padding:36px var(--gutter) 0">
+  <div class="back-bar">
     <a href="index.html" class="back-link">← Back</a>
   </div>
 
@@ -119,7 +133,7 @@
   <div style="padding:72px var(--gutter) 0">
     <hr class="rule--strong" style="margin-bottom:44px">
     <div class="chapter-label">Chapter one</div>
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:32px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:18px">
       <h2 style="margin:0;font-size:42px;line-height:1.2;letter-spacing:-.002em;font-weight:200;color:#423b3f">The workstreams</h2>
       <div class="ws-nav">
         <button class="nav-btn" id="ws-prev" aria-label="Previous workstream">&larr;</button>
@@ -191,7 +205,7 @@
 </article>
 
 </main>
-<script src="case-studies.js?v=202609010306"></script>
-<script src="lightbox.js?v=202609010306"></script>
+<script src="case-studies.js?v=202609010317"></script>
+<script src="lightbox.js?v=202609010317"></script>
 </body>
 </html>
