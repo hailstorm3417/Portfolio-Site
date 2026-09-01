@@ -115,6 +115,17 @@ img { max-width: 100%; display: block; }
   color: var(--charcoal);
 }
 
+/* Both rows are links, so both carry the arrow that says so. Drawn rather
+   than typed, so it never ends up inside the selection when someone copies
+   the address, and so the two rows can never drift apart. */
+.contact-item .value::after {
+  content: '\2192';
+  display: inline-block;
+  margin-left: .4em;
+  transition: transform .18s ease;
+}
+.contact-item:hover .value::after { transform: translateX(3px); }
+
 .contact-actions {
   display: flex;
   flex-wrap: wrap;
@@ -363,8 +374,32 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* — images lift on hover, across the whole site — */
+/* Warm rather than neutral grey, so the shadow belongs to the same palette as
+   everything else. box-shadow is painted rather than laid out, so nothing
+   around the image can move. Gated on a real pointer: on a touchscreen
+   :hover sticks after a tap and the shadow would be left behind. */
+@media (hover: hover) {
+  main img { transition: box-shadow .22s ease; }
+  main img:hover { box-shadow: 0 14px 34px rgba(66, 59, 63, .22); }
+
+  /* The portrait is blended into the page ground, so a shadow behind it gets
+     multiplied along with the image and reads as a smudge. */
+  main .hero-portrait:hover { box-shadow: none; }
+
+  /* A carousel track is a scroll container and therefore clips its children,
+     so a shadow here would be sliced off at the frame edge instead of falling
+     outside it. Better none than half of one. */
+  main .carousel-track img:hover { box-shadow: none; }
+}
+
 /* — image lightbox, on the case study pages — */
-main img { cursor: zoom-in; }
+/* Scoped to pages that actually load lightbox.js: the class is set by that
+   script. Unscoped, the homepage and the journal posts promised a zoom that
+   was never there. */
+.has-lightbox main img { cursor: zoom-in; }
+/* An image inside a link belongs to the link — that is where the click goes. */
+.has-lightbox main a img { cursor: pointer; }
 /* The striped placeholder tiles are divs, not images, so they are unaffected. */
 
 .lightbox {

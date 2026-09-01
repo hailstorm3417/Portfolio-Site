@@ -9,6 +9,10 @@
 
 const ZOOMABLE = 'main img';
 
+// Tells the stylesheet this page can actually zoom, so the zoom-in cursor is
+// only promised where the promise can be kept.
+document.documentElement.classList.add('has-lightbox');
+
 const dialog = document.createElement('dialog');
 dialog.className = 'lightbox';
 dialog.innerHTML = `
@@ -45,7 +49,9 @@ function open(img) {
 document.addEventListener('click', event => {
   if (event.target.closest('.lightbox')) return;
   const img = event.target.closest(ZOOMABLE);
-  if (img) open(img);
+  // An image inside a link belongs to the link; opening the lightbox as well
+  // would fire a navigation and a modal from one click.
+  if (img && !img.closest('a')) open(img);
 });
 
 // Keyboard route in, since a bare <img> is not focusable.
