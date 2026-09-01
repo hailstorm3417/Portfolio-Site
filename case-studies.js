@@ -154,10 +154,38 @@ function scrollPillIntoView(row, pill) {
   }
 }
 
+// Switching workstreams replaces everything under the tabs, so someone who was
+// reading halfway down would otherwise be dropped into the middle of copy they
+// have never seen. Put them back at the top of the new one.
+//
+// The target is the point where the tabs start sticking: land there and the
+// tabs sit pinned under the back bar with the new heading directly beneath.
+// Measuring it means asking where the row would be without sticky, which is
+// what the brief position swap below reads — cheap, and exact, at one layout
+// per click rather than a chain of hardcoded offsets that drift with the copy.
+function revealWorkstreamTop() {
+  const row = document.getElementById('ws-tabs');
+  const bar = document.querySelector('.back-bar');
+  const barHeight = bar ? bar.getBoundingClientRect().height : 0;
+
+  const previous = row.style.position;
+  row.style.position = 'static';
+  const naturalTop = row.getBoundingClientRect().top + window.scrollY;
+  row.style.position = previous;
+
+  // Above that point the whole section header is already on screen — scrolling
+  // would yank the page under someone who could see everything anyway.
+  const target = naturalTop - barHeight;
+  if (window.scrollY <= target) return;
+  const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: target, behavior: smooth ? 'smooth' : 'auto' });
+}
+
 function goToWorkstream(index) {
   wsIndex = (index + WORKSTREAMS.length) % WORKSTREAMS.length;
   renderWorkstream();
   scrollPillIntoView(document.getElementById('ws-tabs'), wsTabs[wsIndex]);
+  revealWorkstreamTop();
 }
 
 document.getElementById('ws-prev').addEventListener('click', () => goToWorkstream(wsIndex - 1));
